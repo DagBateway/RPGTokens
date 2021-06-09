@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <meta property="og:image" content="%PUBLIC_URL%/images/monster.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="512">
+  <meta property="og:image:height" content="512">
+
+  <!-- <link href="https://bootswatch.com/4/simplex/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+    integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="screen, print"
+    href="%PUBLIC_URL%/css/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen, print"
+    href="%PUBLIC_URL%/css/bootstrap/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen, print" href="%PUBLIC_URL%/css/main.css" />
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="https://unpkg.com/sticky-table-headers"></script>
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Paper Tokens Generator</title>
+  <meta name="Description"
+    content="Paper Tokens Generator is a free tool to easily generate and print round or squared creature tokens to be used with RPGs or Tabletop games.">
+  <meta name="Keywords"
+    content="token generator mtg, token generator dnd, tokes, generator, free tool, dungeons and dragons generator, token generator online, token generator app, tabletop games, game, board game, pawns, paper pawns generator, monster tokens, monsters d&amp;d, dnd">
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-3383359742123022",
+      enable_page_level_ads: true
+    });
+  </script>
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PHPSR3R');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PHPSR3R" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <header class="header">
+    <div class="container">
+      <h1>Paper Tokens Generator</h1>
+    </div>
+  </header>
+  <main role="main" class="container">
+    <p>
+      <strong>Paper Tokens Generator</strong> is a
+      <strong>free</strong> tool to easily generate and print round or squared creature tokens to be used with RPGs or
+      Tabletop games.
+      These tokens can be easily glued to any round or squared supports like wooden
+      circles, or even better, transparent
+      dome circles or self-adhesive
+      felt pads! Below some examples you can find on Amazon:
+    </p>
+
+    <div id="root"></div>
+
+    <div id="donate">
+      <p>
+        <strong>Paper Tokens Generator</strong> is a work in progress tool, so come back for new improvements and
+        updates and
+        <strong>if you like this free tool and want to offer me a coffee</strong> press the cup ♥️
+      </p>
+      <a target="_blank" href="http://PayPal.Me/AlbertoCamillo">
+        <img width="120" src="./images/donate.png" />
+      </a>
+    </div>
+
+    <div class="row" id="crondale">
+      <div class="col-md-12">
+        <div class="instructions">
+          <p><strong>Clock Tower module is out!</strong> It is a
+            short but balanced adventure for Dungeons & Dragons 5th Edition and suitable for groups of 4-5 Level 1
+            adventurers for a 2-3 hour session. It offers opportunities for combat, enigmas, exploration, and
+            investigation.</p>
+          <p> <a target="_blank" href="https://www.dmsguild.com/product/316994/Crondale-Clock-Tower">CHECK IT OUT!</a>
+          </p>
+          <p>It's great for beginner DMs and Players and it's available in English, Italian and Fantasy
+            Grounds!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap-collabsible">
+      <input id="collapsible" class="toggle" type="checkbox">
+      <label for="collapsible" class="lbl-toggle btn btn-primary btn-sm">Changelog</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+          <p>
+            <strong>09.06.2021</strong> Updated the quantity numbers on the tokens and on the paper minis to contain
+            number > 99
+          </p>
+          <p>
+            <strong>09.08.2019</strong> Fixed paper pawns layout issue when printing. (Thanks Eli White for your help!)
+            Also updated the paper pawns sizes.
+          </p>
+          <p>
+            <strong>25.01.2019</strong> Updated links to Amazon for token supports.
+          </p>
+          <p>
+            <strong>20.01.2019</strong> Added bulk selection/deletion on desktop and also improved pawns layout when
+            printing.
+          </p>
+          <p>
+            <strong>18.08.2018</strong> Added paper pawns! They're WIP and for now available from Tiny to Huge.
+          </p>
+          <p>
+            <strong>17.08.2018</strong> Improved table icons.
+          </p>
+          <p>
+            <strong>09.07.2018</strong> Now you can upload your images directly from Dropbox!
+          </p>
+          <p>
+            <strong>04.07.2018</strong> Made tokens and tent visibility optional. (You might need to reset the state of
+            Count Start
+            and Count in order to see the token correctly)
+          </p>
+          <p>
+            <strong>03.07.2018</strong> Added minimal Monster Tents, useful on a DM screen to keep track of initiative
+            or the encounters.
+          </p>
+          <p>
+            <strong>28.06.2018</strong> Improved image URL validation and fixed issue with tokens sizes when printing.
+          </p>
+          <p>
+            <strong>26.06.2018</strong> Made tokens count optional.
+          </p>
+          <p>
+            <strong>25.06.2018</strong> Added tokens "Shape Selector".
+          </p>
+          <p>
+            <strong>23.06.2018</strong> Released first version with image load via URL.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">© 2018
+        <a target="_blank" href="http://www.albertocamillo.com">Alberto Camillo</a> | All Rights Reserved</span>
+    </div>
+  </footer>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-121335602-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-121335602-1');
+  </script>
+
+</body>
+<script>
+  $(function () {
+    $("#tokens-table").stickyTableHeaders();
+  });
+</script>
+
+</html>

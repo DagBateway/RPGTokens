@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "staging": "paper-tokens",
+    "default": "paper-tokens"
+  }
+}

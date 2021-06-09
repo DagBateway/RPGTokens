@@ -1,0 +1,26 @@
+{
+  "name": "paper-tokens",
+  "version": "0.1.0",
+  "repository": "https://github.com/platypus85/paper-tokens.git",
+  "author": "Alberto Camillo <info@albertocamillo.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "downloadjs": "^1.4.7",
+    "html-to-image": "^0.1.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.13.1",
+    "react-dropbox-chooser": "0.0.5",
+    "react-scripts": "1.1.4",
+    "sticky-table-headers": "^0.1.24",
+    "uuid-by-string": "^3.0.2",
+    "webpack": "^3.11.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {}
+}
