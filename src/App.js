@@ -1,89 +1,56 @@
-import React, {Component} from 'react';
-import {ShapeEnum, SizeEnum} from './constants/Enums';
-import {AddToken} from './components/AddToken';
-import {Table} from './components/Table';
-import {Shape} from './components/Shape';
-import {Tokens} from './components/Tokens';
-import htmlToImage from 'html-to-image';
-import download from 'downloadjs';
-import {uuidByString} from './components/Utils'
-import {toggleNumber} from './components/Utils'
+import React, { Component } from "react";
+import { ShapeEnum, SizeEnum } from "./constants/Enums";
+import { AddToken } from "./components/AddToken";
+import { Table } from "./components/Table";
+import { Shape } from "./components/Shape";
+import { Tokens } from "./components/Tokens";
+import htmlToImage from "html-to-image";
+import download from "downloadjs";
+import { uuidByString } from "./components/Utils";
+import { toggleNumber } from "./components/Utils";
+import FeedBack from "react-feedback-popup";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
-    this.removeToken = this
-      .removeToken
-      .bind(this);
-    this.removeAllTokens = this
-      .removeAllTokens
-      .bind(this);
-    this.updateAllPawnsVisibility = this
-      .updateAllPawnsVisibility
-      .bind(this);
-    this.updateAllTokensVisibility = this
-      .updateAllTokensVisibility
-      .bind(this);
-    this.updateAllTokenTentsVisibility = this
-      .updateAllTokenTentsVisibility
-      .bind(this);
-    this.updateAllTokensCountVisibility = this
-      .updateAllTokensCountVisibility
-      .bind(this);
-    this.updateSize = this
-      .updateSize
-      .bind(this);
-    this.updateTokenQuantity = this
-      .updateTokenQuantity
-      .bind(this);
-    this.updateTokenCountStart = this
-      .updateTokenCountStart
-      .bind(this);
-    this.handleAddToken = this
-      .handleAddToken
-      .bind(this);
-    this.updateTokenName = this
-      .updateTokenName
-      .bind(this);
-    this.updateShape = this
-      .updateShape
-      .bind(this);
-    this.updateTokenCountVisibility = this
-      .updateTokenCountVisibility
-      .bind(this);
-    this.updateTokenTentVisibility = this
-      .updateTokenTentVisibility
-      .bind(this);
-    this.updateTokenVisibility = this
-      .updateTokenVisibility
-      .bind(this);
-    this.updatePawnVisibility = this
-      .updatePawnVisibility
-      .bind(this);
-    this.downloadToken = this
-      .downloadToken
-      .bind(this);
-    this.downloadAllTokens = this
-      .downloadAllTokens
-      .bind(this);
+    this.removeToken = this.removeToken.bind(this);
+    this.removeAllTokens = this.removeAllTokens.bind(this);
+    this.updateAllPawnsVisibility = this.updateAllPawnsVisibility.bind(this);
+    this.updateAllTokensVisibility = this.updateAllTokensVisibility.bind(this);
+    this.updateAllTokenTentsVisibility =
+      this.updateAllTokenTentsVisibility.bind(this);
+    this.updateAllTokensCountVisibility =
+      this.updateAllTokensCountVisibility.bind(this);
+    this.updateSize = this.updateSize.bind(this);
+    this.updateTokenQuantity = this.updateTokenQuantity.bind(this);
+    this.updateTokenCountStart = this.updateTokenCountStart.bind(this);
+    this.handleAddToken = this.handleAddToken.bind(this);
+    this.updateTokenName = this.updateTokenName.bind(this);
+    this.updateShape = this.updateShape.bind(this);
+    this.updateTokenCountVisibility =
+      this.updateTokenCountVisibility.bind(this);
+    this.updateTokenTentVisibility = this.updateTokenTentVisibility.bind(this);
+    this.updateTokenVisibility = this.updateTokenVisibility.bind(this);
+    this.updatePawnVisibility = this.updatePawnVisibility.bind(this);
+    this.downloadToken = this.downloadToken.bind(this);
+    this.downloadAllTokens = this.downloadAllTokens.bind(this);
     this.state = {
       tokens: [],
-      shape: ShapeEnum.SQUARE
-    }
+      shape: ShapeEnum.SQUARE,
+    };
   }
 
   componentDidMount() {
     try {
-      const jsonTokens = localStorage.getItem('tokens');
+      const jsonTokens = localStorage.getItem("tokens");
       const tokens = JSON.parse(jsonTokens);
       if (tokens) {
-        this.setState(() => ({tokens}));
+        this.setState(() => ({ tokens }));
       }
-      const jsonShape = localStorage.getItem('shape');
+      const jsonShape = localStorage.getItem("shape");
       const shape = JSON.parse(jsonShape);
       if (shape) {
-        this.setState(() => ({shape}));
+        this.setState(() => ({ shape }));
       }
     } catch (e) {
       //Do nothing at all
@@ -93,18 +60,19 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const jsonTokens = JSON.stringify(this.state.tokens);
     const jsonShape = JSON.stringify(this.state.shape);
-    localStorage.setItem('tokens', jsonTokens);
-    localStorage.setItem('shape', jsonShape);
+    localStorage.setItem("tokens", jsonTokens);
+    localStorage.setItem("shape", jsonShape);
   }
 
   render() {
     return (
       <div>
-        <AddToken handleAddToken={this.handleAddToken}/>
+        <AddToken handleAddToken={this.handleAddToken} />
         <Shape
           shape={this.state.shape}
           tokens={this.state.tokens}
-          onUpdateShape={this.updateShape}/>
+          onUpdateShape={this.updateShape}
+        />
         <Table
           shape={this.state.shape}
           tokens={this.state.tokens}
@@ -123,47 +91,77 @@ class App extends Component {
           onUpdateTokenVisibility={this.updateTokenVisibility}
           onUpdatePawnVisibility={this.updatePawnVisibility}
           onDownloadToken={this.downloadToken}
-          onDownloadAllTokens={this.downloadAllTokens}/>
-        <Tokens shape={this.state.shape} tokens={this.state.tokens}/>
+          onDownloadAllTokens={this.downloadAllTokens}
+        />
+        <Tokens shape={this.state.shape} tokens={this.state.tokens} />
+        <FeedBack
+          style={{ zIndex: "99", marginLeft: "20px", position: "fixed" }}
+          position="right"
+          numberOfStars={0}
+          headerText="Feedback"
+          bodyText="Please, if you have any questions or want to provide some feedback and suggestions, fill the form!"
+          buttonText="Feedback"
+          handleClose={() => console.log("handleclose")}
+          handleSubmit={(data) =>
+            fetch("xxxxxx", {
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              method: "POST", // or 'PUT'
+              body: JSON.stringify(data),
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  return Promise.reject(
+                    "Our servers are having issues! We couldn't send your feedback!"
+                  );
+                }
+                response.json();
+              })
+              .then(() => {
+                alert("Success!");
+              })
+              .catch((error) => {
+                alert(
+                  "Our servers are having issues! We couldn't send your feedback!",
+                  error
+                );
+              })
+          }
+          handleButtonClick={() => console.log("handleButtonClick")}
+        />
       </div>
     );
   }
 
   removeToken(token) {
     this.setState((prevState) => ({
-      tokens: prevState
-        .tokens
-        .filter((p) => p !== token)
-    }))
+      tokens: prevState.tokens.filter((p) => p !== token),
+    }));
   }
 
   removeAllTokens() {
-    this.setState((prevState) => ({tokens: []}))
+    this.setState((prevState) => ({ tokens: [] }));
   }
 
   updateSize(token, s) {
-    let updatedSizeTokens = this
-      .state
-      .tokens
-      .slice();
+    let updatedSizeTokens = this.state.tokens.slice();
     updatedSizeTokens.forEach((t, index) => {
       if (t === token) {
         t.size = SizeEnum.properties[s].value;
       }
     });
 
-    this.setState({token: updatedSizeTokens})
+    this.setState({ token: updatedSizeTokens });
   }
 
   updateShape(s) {
-    this.setState({shape: s})
+    this.setState({ shape: s });
   }
 
   updateTokenQuantity(token, q) {
-    let updatedQtyTokens = this
-      .state
-      .tokens
-      .slice();
+    let updatedQtyTokens = this.state.tokens.slice();
 
     //If there is already a timeout in process cancel it
     if (this._timeout) {
@@ -178,15 +176,12 @@ class App extends Component {
         }
       });
 
-      this.setState({tokens: updatedQtyTokens})
+      this.setState({ tokens: updatedQtyTokens });
     }, 500);
   }
 
   updateTokenCountStart(token, sf) {
-    let updatedStartFrom = this
-      .state
-      .tokens
-      .slice();
+    let updatedStartFrom = this.state.tokens.slice();
 
     //If there is already a timeout in process cancel it
     if (this._timeout) {
@@ -201,16 +196,12 @@ class App extends Component {
         }
       });
 
-      this.setState({tokens: updatedStartFrom})
+      this.setState({ tokens: updatedStartFrom });
     }, 1000);
   }
 
   updateTokenName(token, n) {
-
-    let updatedNameTokens = this
-      .state
-      .tokens
-      .slice();
+    let updatedNameTokens = this.state.tokens.slice();
 
     //If there is already a timeout in process cancel it
     if (this._timeout) {
@@ -225,13 +216,13 @@ class App extends Component {
         }
       });
 
-      this.setState({token: updatedNameTokens})
+      this.setState({ token: updatedNameTokens });
     }, 1000);
   }
 
   handleAddToken(tokenUrl) {
-    if (this.state.tokens.some(token => token.url === tokenUrl)) {
-      return 'This token already exists';
+    if (this.state.tokens.some((token) => token.url === tokenUrl)) {
+      return "This token already exists";
     }
 
     const token = {
@@ -244,122 +235,97 @@ class App extends Component {
       quantity: 1,
       showTent: true,
       showToken: true,
-      showPawn: true
-    }
+      showPawn: true,
+    };
 
     this.setState((prevState) => {
       return {
-        tokens: prevState
-          .tokens
-          .concat(token)
-      }
+        tokens: prevState.tokens.concat(token),
+      };
     });
   }
 
   updateTokenCountVisibility(token, value) {
-    let updatedTokensCountVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensCountVisibility = this.state.tokens.slice();
     updatedTokensCountVisibility.forEach((t, index) => {
       if (t === token) {
         t.count = value;
       }
     });
-    this.setState({token: updatedTokensCountVisibility})
+    this.setState({ token: updatedTokensCountVisibility });
   }
 
   updateAllTokensCountVisibility(value) {
-    let updatedTokensCountVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensCountVisibility = this.state.tokens.slice();
     updatedTokensCountVisibility.forEach((t, index) => {
       t.count = value;
     });
-    this.setState({token: updatedTokensCountVisibility})
+    this.setState({ token: updatedTokensCountVisibility });
   }
 
   updateTokenTentVisibility(token, value) {
-    let updatedTokensTents = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensTents = this.state.tokens.slice();
     updatedTokensTents.forEach((t, index) => {
       if (t === token) {
         t.showTent = value;
       }
     });
-    this.setState({token: updatedTokensTents})
+    this.setState({ token: updatedTokensTents });
   }
 
   updateAllTokenTentsVisibility(value) {
-    let updatedTokensTents = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensTents = this.state.tokens.slice();
     updatedTokensTents.forEach((t, index) => {
       t.showTent = value;
     });
-    this.setState({token: updatedTokensTents})
+    this.setState({ token: updatedTokensTents });
   }
 
   updateTokenVisibility(token, value) {
-    let updatedTokensVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensVisibility = this.state.tokens.slice();
     updatedTokensVisibility.forEach((t, index) => {
       if (t === token) {
         t.showToken = value;
       }
     });
-    this.setState({token: updatedTokensVisibility})
+    this.setState({ token: updatedTokensVisibility });
   }
 
   updateAllTokensVisibility(value) {
-    let updatedTokensVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensVisibility = this.state.tokens.slice();
     updatedTokensVisibility.forEach((t, index) => {
       t.showToken = value;
     });
-    this.setState({token: updatedTokensVisibility})
+    this.setState({ token: updatedTokensVisibility });
   }
 
   updatePawnVisibility(token, value) {
-    let updatedTokensPawnsVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensPawnsVisibility = this.state.tokens.slice();
     updatedTokensPawnsVisibility.forEach((t, index) => {
       if (t === token) {
         t.showPawn = value;
       }
     });
-    this.setState({token: updatedTokensPawnsVisibility})
+    this.setState({ token: updatedTokensPawnsVisibility });
   }
 
   downloadToken(token) {
-
     try {
-
       var tokenElement = document.getElementById(uuidByString(token.url));
       // Make the number container inside tokenElement invisible
       toggleNumber(tokenElement, "hidden");
       console.log(tokenElement);
 
-      var bar = async(tokenElement) => {
+      var bar = async (tokenElement) => {
         await htmlToImage
           .toPng(tokenElement)
           .then(function (dataUrl) {
-            download(dataUrl, token.name.concat('.png'));
+            download(dataUrl, token.name.concat(".png"));
           })
           .then(function () {
             toggleNumber(tokenElement, "visible");
           });
-      }
+      };
 
       bar(tokenElement);
     } catch (err) {
@@ -371,14 +337,11 @@ class App extends Component {
   downloadAllTokens() {}
 
   updateAllPawnsVisibility(value) {
-    let updatedTokensPawnsVisibility = this
-      .state
-      .tokens
-      .slice();
+    let updatedTokensPawnsVisibility = this.state.tokens.slice();
     updatedTokensPawnsVisibility.forEach((t, index) => {
       t.showPawn = value;
     });
-    this.setState({token: updatedTokensPawnsVisibility})
+    this.setState({ token: updatedTokensPawnsVisibility });
   }
 }
 
