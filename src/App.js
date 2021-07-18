@@ -4,7 +4,8 @@ import { AddToken } from "./components/AddToken";
 import { Table } from "./components/Table";
 import { Shape } from "./components/Shape";
 import { Tokens } from "./components/Tokens";
-import htmlToImage from "html-to-image";
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import download from "downloadjs";
 import { uuidByString } from "./components/Utils";
 import { toggleNumber } from "./components/Utils";
@@ -324,6 +325,9 @@ class App extends Component {
           })
           .then(function () {
             toggleNumber(tokenElement, "visible");
+          })
+          .catch(function (error) {
+            console.error("oops, something went wrong!", error);
           });
       };
 
