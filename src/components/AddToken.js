@@ -55,10 +55,10 @@ class AddToken extends Component {
 
   render() {
     return (
-      <div class="container-fluid" id="links-instructions">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="instructions">
+      <div className="container-fluid" id="links-instructions">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="instructions">
               <h3>How does it work? Paste, customise, print!</h3>
               <ol>
                 <li>
@@ -88,7 +88,7 @@ class AddToken extends Component {
             </div>
           </div>
 
-          <div id="add-token-container" class="col-md-6">
+          <div id="add-token-container" className="col-md-6">
             <div id="add-link-container">
               <p>Insert a link to a creature image to begin!</p>
               <form

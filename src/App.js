@@ -95,43 +95,45 @@ class App extends Component {
           onDownloadAllTokens={this.downloadAllTokens}
         />
         <Tokens shape={this.state.shape} tokens={this.state.tokens} />
-        <FeedBack
-          style={{ zIndex: "99", marginLeft: "20px", position: "fixed" }}
-          position="right"
-          numberOfStars={0}
-          headerText="Feedback"
-          bodyText="Please, if you have any questions or want to provide some feedback and suggestions, fill the form!"
-          buttonText="Feedback"
-          handleClose={() => console.log("handleclose")}
-          handleSubmit={(data) =>
-            fetch("xxxxxx", {
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              method: "POST", // or 'PUT'
-              body: JSON.stringify(data),
-            })
-              .then((response) => {
-                if (!response.ok) {
-                  return Promise.reject(
-                    "Our servers are having issues! We couldn't send your feedback!"
+        <div className="feedback">
+          <FeedBack
+            style={{ zIndex: "99", marginLeft: "20px", position: "fixed" }}
+            position="right"
+            numberOfStars={0}
+            headerText="Feedback"
+            bodyText="Please, if you have any questions or want to provide some feedback and suggestions, fill the form!"
+            buttonText="Feedback"
+            handleClose={() => console.log("handleclose")}
+            handleSubmit={(data) =>
+              fetch("xxxxxx", {
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                method: "POST", // or 'PUT'
+                body: JSON.stringify(data),
+              })
+                .then((response) => {
+                  if (!response.ok) {
+                    return Promise.reject(
+                      "Our servers are having issues! We couldn't send your feedback!"
+                    );
+                  }
+                  response.json();
+                })
+                .then(() => {
+                  alert("Success!");
+                })
+                .catch((error) => {
+                  alert(
+                    "Our servers are having issues! We couldn't send your feedback!",
+                    error
                   );
-                }
-                response.json();
-              })
-              .then(() => {
-                alert("Success!");
-              })
-              .catch((error) => {
-                alert(
-                  "Our servers are having issues! We couldn't send your feedback!",
-                  error
-                );
-              })
-          }
-          handleButtonClick={() => console.log("handleButtonClick")}
-        />
+                })
+            }
+            handleButtonClick={() => console.log("handleButtonClick")}
+          />
+        </div>
       </div>
     );
   }
