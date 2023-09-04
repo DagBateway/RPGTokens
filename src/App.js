@@ -5,11 +5,12 @@ import { Table } from "./components/Table";
 import { Shape } from "./components/Shape";
 import { Tokens } from "./components/Tokens";
 import * as htmlToImage from "html-to-image";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import download from "downloadjs";
 import { uuidByString } from "./components/Utils";
 import { toggleNumber } from "./components/Utils";
 import FeedBack from "react-feedback-popup";
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
 class App extends Component {
   constructor(props) {
@@ -18,18 +19,15 @@ class App extends Component {
     this.removeAllTokens = this.removeAllTokens.bind(this);
     this.updateAllPawnsVisibility = this.updateAllPawnsVisibility.bind(this);
     this.updateAllTokensVisibility = this.updateAllTokensVisibility.bind(this);
-    this.updateAllTokenTentsVisibility =
-      this.updateAllTokenTentsVisibility.bind(this);
-    this.updateAllTokensCountVisibility =
-      this.updateAllTokensCountVisibility.bind(this);
+    this.updateAllTokenTentsVisibility = this.updateAllTokenTentsVisibility.bind(this);
+    this.updateAllTokensCountVisibility = this.updateAllTokensCountVisibility.bind(this);
     this.updateSize = this.updateSize.bind(this);
     this.updateTokenQuantity = this.updateTokenQuantity.bind(this);
     this.updateTokenCountStart = this.updateTokenCountStart.bind(this);
     this.handleAddToken = this.handleAddToken.bind(this);
     this.updateTokenName = this.updateTokenName.bind(this);
     this.updateShape = this.updateShape.bind(this);
-    this.updateTokenCountVisibility =
-      this.updateTokenCountVisibility.bind(this);
+    this.updateTokenCountVisibility = this.updateTokenCountVisibility.bind(this);
     this.updateTokenTentVisibility = this.updateTokenTentVisibility.bind(this);
     this.updateTokenVisibility = this.updateTokenVisibility.bind(this);
     this.updatePawnVisibility = this.updatePawnVisibility.bind(this);
@@ -43,6 +41,20 @@ class App extends Component {
 
   componentDidMount() {
     try {
+      const firebaseConfig = {
+        apiKey: "AIzaSyA_9cM7P47m1mc-oo4dxJqmJ2w8ljYgCzI",
+        authDomain: "paper-tokens.firebaseapp.com",
+        databaseURL: "https://paper-tokens.firebaseio.com",
+        projectId: "paper-tokens",
+        storageBucket: "paper-tokens.appspot.com",
+        messagingSenderId: "953191343724",
+        appId: "1:953191343724:web:c72b746baf099f07905a49",
+        measurementId: "G-DRHE0C7GJH",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+
       const jsonTokens = localStorage.getItem("tokens");
       const tokens = JSON.parse(jsonTokens);
       if (tokens) {
@@ -69,11 +81,7 @@ class App extends Component {
     return (
       <div>
         <AddToken handleAddToken={this.handleAddToken} />
-        <Shape
-          shape={this.state.shape}
-          tokens={this.state.tokens}
-          onUpdateShape={this.updateShape}
-        />
+        <Shape shape={this.state.shape} tokens={this.state.tokens} onUpdateShape={this.updateShape} />
         <Table
           shape={this.state.shape}
           tokens={this.state.tokens}
@@ -115,9 +123,7 @@ class App extends Component {
               })
                 .then((response) => {
                   if (!response.ok) {
-                    return Promise.reject(
-                      "Our servers are having issues! We couldn't send your feedback!"
-                    );
+                    return Promise.reject("Our servers are having issues! We couldn't send your feedback!");
                   }
                   response.json();
                 })
@@ -125,10 +131,7 @@ class App extends Component {
                   alert("Success!");
                 })
                 .catch((error) => {
-                  alert(
-                    "Our servers are having issues! We couldn't send your feedback!",
-                    error
-                  );
+                  alert("Our servers are having issues! We couldn't send your feedback!", error);
                 })
             }
             handleButtonClick={() => console.log("handleButtonClick")}
