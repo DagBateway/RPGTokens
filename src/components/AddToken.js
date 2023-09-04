@@ -48,9 +48,7 @@ class AddToken extends Component {
   }
 
   handleFiles(files) {
-    files.map((file) =>
-      this.validateProcess(file.link.replace("?dl=0", "?raw=1"))
-    );
+    files.map((file) => this.validateProcess(file.link.replace("?dl=0", "?raw=1")));
   }
 
   render() {
@@ -59,31 +57,30 @@ class AddToken extends Component {
         <div className="row">
           <div className="col-md-6">
             <div className="instructions">
-              <h3>How does it work? Paste, customise, print!</h3>
+              <p>
+                <strong>How does it work? Paste, customise, print!</strong>
+              </p>
               <ol>
                 <li>
-                  <strong>Paste</strong> an image URL in the scroll and press{" "}
-                  <strong> Add Token</strong>
+                  <strong>Paste</strong> an image URL in the scroll and press <strong> Add Token</strong>
                 </li>
                 <li>
                   ...or <strong> upload</strong> images directly from Dropbox
                 </li>
                 <li>
-                  <strong>Customise</strong> your token choosing the shape,
-                  size, quantity, paper mini, etc.
+                  <strong>Customise</strong> your token choosing the shape, size, quantity, paper mini, etc.
                 </li>
                 <li>
                   Press
-                  <strong> Print</strong> and save to PDF or send it directly to
-                  the printer!
+                  <strong> Print</strong> and save to PDF or send it directly to the printer!
                 </li>
               </ol>
               <p>
                 <strong>...You can add as many creatures as you want!</strong>
               </p>
               <p>
-                Don't forget to check the changelog at the bottom of the page, I
-                constantly update and optimise the Paper Tokens Generator!
+                Don't forget to check the changelog at the bottom of the page, I constantly update and optimise the
+                Paper Tokens Generator!
               </p>
             </div>
           </div>
@@ -91,12 +88,14 @@ class AddToken extends Component {
           <div id="add-token-container" className="col-md-6">
             <div id="add-link-container">
               <p>Insert a link to a creature image to begin!</p>
-              <form
-                autoComplete="off"
-                id="tokens-form"
-                onSubmit={this.handleAddToken}
-              >
-                <input className="url-input" type="text" name="tokenUrl" />
+              <form autoComplete="off" id="tokens-form" onSubmit={this.handleAddToken}>
+                <input
+                  placeholder="Paste the Image URL"
+                  className="url-input"
+                  type="text"
+                  name="tokenUrl"
+                  label="Image URL"
+                />
                 <button className="btn btn-primary btn-lg">Add Token</button>
               </form>
               {this.state.error && <p className="error">{this.state.error}</p>}
