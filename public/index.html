@@ -10,9 +10,9 @@
       manifest.json provides metadata used when your web app is added to the
       homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-  <meta property="og:image" content="%PUBLIC_URL%/images/monster.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <meta property="og:image" content="/images/monster.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="512">
   <meta property="og:image:height" content="512">
@@ -21,11 +21,9 @@
   <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
     integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" media="screen, print"
-    href="%PUBLIC_URL%/css/bootstrap/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" media="screen, print"
-    href="%PUBLIC_URL%/css/bootstrap/css/bootstrap-theme.min.css" />
-  <link rel="stylesheet" type="text/css" media="screen, print" href="%PUBLIC_URL%/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="screen, print" href="/css/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen, print" href="/css/bootstrap/css/bootstrap-theme.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen, print" href="/css/main.css" />
   <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://unpkg.com/sticky-table-headers"></script>
   <!--
@@ -33,7 +31,7 @@
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
@@ -46,12 +44,12 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-2N4XGSMQCX"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-2N4XGSMQCX');
   </script>
-  </head>
+</head>
 
 <body>
   <noscript>
@@ -132,7 +130,7 @@
         updates and
         <strong>if you like this free tool and want to offer me a coffee</strong> press the cup ♥️
       </p>
-      <a target="_blank"  aria-label="Donate a coffee with Paypal" href="http://PayPal.Me/AlbertoCamillo">
+      <a target="_blank" aria-label="Donate a coffee with Paypal" href="http://PayPal.Me/AlbertoCamillo">
         <img width="120" alt="Donate a coffee" src="./images/donate.png" />
       </a>
       <div class="row" id="crondale">
