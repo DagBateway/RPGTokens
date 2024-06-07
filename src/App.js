@@ -8,7 +8,6 @@ import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { uuidByString } from "./components/Utils";
 import { toggleNumber } from "./components/Utils";
-import FeedBack from "react-feedback-popup";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
@@ -19,15 +18,18 @@ class App extends Component {
     this.removeAllTokens = this.removeAllTokens.bind(this);
     this.updateAllPawnsVisibility = this.updateAllPawnsVisibility.bind(this);
     this.updateAllTokensVisibility = this.updateAllTokensVisibility.bind(this);
-    this.updateAllTokenTentsVisibility = this.updateAllTokenTentsVisibility.bind(this);
-    this.updateAllTokensCountVisibility = this.updateAllTokensCountVisibility.bind(this);
+    this.updateAllTokenTentsVisibility =
+      this.updateAllTokenTentsVisibility.bind(this);
+    this.updateAllTokensCountVisibility =
+      this.updateAllTokensCountVisibility.bind(this);
     this.updateSize = this.updateSize.bind(this);
     this.updateTokenQuantity = this.updateTokenQuantity.bind(this);
     this.updateTokenCountStart = this.updateTokenCountStart.bind(this);
     this.handleAddToken = this.handleAddToken.bind(this);
     this.updateTokenName = this.updateTokenName.bind(this);
     this.updateShape = this.updateShape.bind(this);
-    this.updateTokenCountVisibility = this.updateTokenCountVisibility.bind(this);
+    this.updateTokenCountVisibility =
+      this.updateTokenCountVisibility.bind(this);
     this.updateTokenTentVisibility = this.updateTokenTentVisibility.bind(this);
     this.updateTokenVisibility = this.updateTokenVisibility.bind(this);
     this.updatePawnVisibility = this.updatePawnVisibility.bind(this);
@@ -81,7 +83,11 @@ class App extends Component {
     return (
       <div>
         <AddToken handleAddToken={this.handleAddToken} />
-        <Shape shape={this.state.shape} tokens={this.state.tokens} onUpdateShape={this.updateShape} />
+        <Shape
+          shape={this.state.shape}
+          tokens={this.state.tokens}
+          onUpdateShape={this.updateShape}
+        />
         <Table
           shape={this.state.shape}
           tokens={this.state.tokens}
@@ -103,40 +109,6 @@ class App extends Component {
           onDownloadAllTokens={this.downloadAllTokens}
         />
         <Tokens shape={this.state.shape} tokens={this.state.tokens} />
-        <div className="feedback">
-          <FeedBack
-            style={{ zIndex: "99", marginLeft: "20px", position: "fixed" }}
-            position="right"
-            numberOfStars={0}
-            headerText="Feedback"
-            bodyText="Please, if you have any questions or want to provide some feedback and suggestions, fill the form!"
-            buttonText="Feedback"
-            handleClose={() => console.log("handleclose")}
-            handleSubmit={(data) =>
-              fetch("xxxxxx", {
-                headers: {
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                method: "POST", // or 'PUT'
-                body: JSON.stringify(data),
-              })
-                .then((response) => {
-                  if (!response.ok) {
-                    return Promise.reject("Our servers are having issues! We couldn't send your feedback!");
-                  }
-                  response.json();
-                })
-                .then(() => {
-                  alert("Success!");
-                })
-                .catch((error) => {
-                  alert("Our servers are having issues! We couldn't send your feedback!", error);
-                })
-            }
-            handleButtonClick={() => console.log("handleButtonClick")}
-          />
-        </div>
       </div>
     );
   }
