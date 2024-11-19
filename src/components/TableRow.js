@@ -68,12 +68,13 @@ const TableRow = ({
         <label className="mobile">Size:</label>
         <select
           className="form-control"
-          value={SizeEnum.properties[size].value}
+          value={token.size} // Ensure token.size corresponds to keys in SizeEnum.properties
           onChange={(event) => onUpdateTokenSize(token, event.target.value)}
         >
-          {Object.keys(SizeEnum.properties).map((key) => (
-            <option key={key} value={key}>
-              {SizeEnum.properties[key].label}
+          {Object.entries(SizeEnum.properties).map(([key, value]) => (
+            <option key={key} value={value.value}>
+              {value.label ||
+                `${value.name.charAt(0).toUpperCase() + value.name.slice(1)}`}
             </option>
           ))}
         </select>
