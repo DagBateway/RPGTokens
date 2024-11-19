@@ -2,18 +2,57 @@ import React from "react";
 import { ShapeEnum, SizeEnum } from "../constants/Enums";
 import { uuidByString } from "./Utils";
 
-const TableRow = (props) => {
-  const token = props.token;
-  const shape = props.shape;
+const ToggleButtonGroup = ({ label, icon, value, onUpdate }) => (
+  <td>
+    <label className="mobile">{label}:</label>
+    <div className="btn-group btn-group-toggle" data-toggle="buttons">
+      <label className={`btn btn-primary ${!value && "active"}`}>
+        <input onClick={() => onUpdate(false)} type="checkbox" />
+        <i className={`fas ${icon}`}></i>
+      </label>
+      <label className={`btn btn-success ${value && "active"}`}>
+        <input onClick={() => onUpdate(true)} type="checkbox" />
+        <i className={`fas ${icon}`}></i>
+      </label>
+    </div>
+  </td>
+);
+
+const TableRow = ({
+  token,
+  shape,
+  onUpdateTokenName,
+  onUpdateTokenSize,
+  onUpdateTokenQuantity,
+  onUpdateTokenCount,
+  onUpdateTokenTentVisibility,
+  onUpdateTokenVisibility,
+  onUpdatePawnVisibility,
+  onUpdateTokenCountStart,
+  onRemoveToken,
+}) => {
+  const {
+    id,
+    name,
+    url,
+    size,
+    quantity,
+    startFrom,
+    count,
+    showTent,
+    showToken,
+    showPawn,
+  } = token;
+
   return (
     <tr>
-      <td className={"token-image " + (token.showToken ? " " : "greyscale")}>
+      <td className={`token-image ${showToken ? "" : "greyscale"}`}>
         <div
-          id={uuidByString(token.url)}
-          className={"token medium " + ShapeEnum.properties[shape].name}
+          id={uuidByString(url)}
+          className={`token medium ${ShapeEnum.properties[shape].name}`}
         >
-          <img alt={token.name} src={token.url} />{" "}
-          {token.count && <div className="number">#</div>}
+          <img alt={name} src={url} />
+          {count && <div className="number">#</div>}
         </div>
       </td>
       <td className="token-name">
@@ -21,214 +60,81 @@ const TableRow = (props) => {
         <input
           className="form-control"
           type="text"
-          onChange={(event) =>
-            props.onUpdateTokenName(token, event.target.value)
-          }
-          defaultValue={token.name}
-          name="name"
+          defaultValue={name}
+          onChange={(event) => onUpdateTokenName(token, event.target.value)}
         />
       </td>
       <td>
-        <div className="token-size">
-          <label className="mobile">Size:</label>
-          <select
-            className="form-control"
-            value={SizeEnum.properties[token.size].value}
-            onChange={(event) =>
-              props.onUpdateTokenSize(token, event.target.value)
-            }
-          >
-            <option value="0">Tiny (0.75x0.75 in)</option>
-            <option value="1">Small (1x1 in)</option>
-            <option value="2">Medium (1x1 in)</option>
-            <option value="3">Large (1.5x1.5 in)</option>
-            <option value="4">Large (2x2 in)</option>
-            <option value="5">Huge (3x3 in)</option>
-            <option value="6">Gargantuan (4x4 in)</option>
-          </select>
-        </div>
+        <label className="mobile">Size:</label>
+        <select
+          className="form-control"
+          value={SizeEnum.properties[size].value}
+          onChange={(event) => onUpdateTokenSize(token, event.target.value)}
+        >
+          {Object.keys(SizeEnum.properties).map((key) => (
+            <option key={key} value={key}>
+              {SizeEnum.properties[key].label}
+            </option>
+          ))}
+        </select>
       </td>
-      <td className="token-qty">
+      <td>
         <label className="mobile">Quantity:</label>
         <input
           className="form-control"
           type="number"
-          onChange={(event) =>
-            props.onUpdateTokenQuantity(token, event.target.value)
-          }
-          name="quantity"
-          defaultValue={token.quantity}
+          defaultValue={quantity}
+          onChange={(event) => onUpdateTokenQuantity(token, event.target.value)}
           min="1"
           max="99"
-          maxLength="2"
         />
       </td>
-      <td className="token-startFrom">
+      <td>
         <label className="mobile">Count Start:</label>
         <input
           className="form-control"
           type="number"
-          disabled={token.count ? "" : "disabled"}
+          defaultValue={startFrom || 1}
+          disabled={!count}
           onChange={(event) =>
-            props.onUpdateTokenCountStart(token, event.target.value)
+            onUpdateTokenCountStart(token, event.target.value)
           }
-          name="startFrom"
-          defaultValue={token.startFrom || 1}
           min="1"
         />
       </td>
-      <td className="token-showCount">
-        <label className="mobile">Count:</label>
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-          <label
-            className={
-              token.count === false
-                ? "btn btn-primary active"
-                : "btn btn-primary"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenCount(token, false);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-list-ol"></i>
-          </label>
-          <label
-            className={
-              token.count === true
-                ? "btn btn-success active"
-                : "btn btn-success"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenCount(token, true);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-list-ol"></i>
-          </label>
-        </div>
-      </td>
-      <td className="token-showTent">
-        <label className="mobile">Monster Tents:</label>
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-          <label
-            className={
-              token.showTent === false
-                ? "btn btn-primary active"
-                : "btn btn-primary"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenTentVisibility(token, false);
-              }}
-              type="checkbox"
-            />
-            <i className="far fa-map"></i>
-          </label>
-          <label
-            className={
-              token.showTent === true
-                ? "btn btn-success active"
-                : "btn btn-success"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenTentVisibility(token, true);
-              }}
-              type="checkbox"
-            />
-            <i className="far fa-map"></i>
-          </label>
-        </div>
-      </td>
-      <td className="token-showTokens">
-        <label className="mobile">Token:</label>
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-          <label
-            className={
-              token.showToken === false
-                ? "btn btn-primary active"
-                : "btn btn-primary"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenVisibility(token, false);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-user-circle"></i>
-          </label>
-          <label
-            className={
-              token.showToken === true
-                ? "btn btn-success active"
-                : "btn btn-success"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdateTokenVisibility(token, true);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-user-circle"></i>
-          </label>
-        </div>
-      </td>
-      <td className="token-showPawns">
-        <label className="mobile">Paper Pawn:</label>
-        <div className="btn-group btn-group-toggle" data-toggle="buttons">
-          <label
-            className={
-              token.showPawn === false
-                ? "btn btn-primary active"
-                : "btn btn-primary"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdatePawnVisibility(token, false);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-chess-pawn"></i>
-          </label>
-          <label
-            className={
-              token.showPawn === true
-                ? "btn btn-success active"
-                : "btn btn-success"
-            }
-          >
-            <input
-              onClick={() => {
-                props.onUpdatePawnVisibility(token, true);
-              }}
-              type="checkbox"
-            />
-            <i className="fas fa-chess-pawn"></i>
-          </label>
-        </div>
-      </td>
+      <ToggleButtonGroup
+        label="Count"
+        icon="fa-list-ol"
+        value={count}
+        onUpdate={(value) => onUpdateTokenCount(token, value)}
+      />
+      <ToggleButtonGroup
+        label="Monster Tents"
+        icon="fa-map"
+        value={showTent}
+        onUpdate={(value) => onUpdateTokenTentVisibility(token, value)}
+      />
+      <ToggleButtonGroup
+        label="Token"
+        icon="fa-user-circle"
+        value={showToken}
+        onUpdate={(value) => onUpdateTokenVisibility(token, value)}
+      />
+      <ToggleButtonGroup
+        label="Paper Pawn"
+        icon="fa-chess-pawn"
+        value={showPawn}
+        onUpdate={(value) => onUpdatePawnVisibility(token, value)}
+      />
       <td className="delete">
         <label className="mobile">Delete:</label>
         <button
           type="button"
           className="btn btn-warning"
           onClick={() => {
-            if (
-              window.confirm(
-                "Are you sure you wish to remove " + token.name + "?"
-              )
-            )
-              props.onRemoveToken(token);
+            if (window.confirm(`Are you sure you wish to remove ${name}?`)) {
+              onRemoveToken(token);
+            }
           }}
         >
           <i className="fas fa-trash-alt"></i>

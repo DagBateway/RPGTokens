@@ -7,18 +7,17 @@
   "private": true,
   "dependencies": {
     "downloadjs": "^1.4.7",
-    "firebase": "^10.14.1",
+    "firebase": "^10.13.2",
     "html-to-image": "^1.11.11",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-dropbox-chooser": "0.0.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
-    "sticky-table-headers": "^0.1.24",
-    "uuid-by-string": "^4.0.0"
+    "uuid-by-string": "^4.0.0",
+    "react-dropbox-chooser": "0.0.5"
   },
   "scripts": {
-    "start": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
