@@ -69,9 +69,7 @@ const Tokens = ({ tokens, shape }) => {
         key={`${token.id || token.url}-${i}`}
       >
         <div className="back">
-          <div className="base">
-            <p>{token.name}</p>
-          </div>
+          <div className="base"></div>
           <div className="pawn-wrapper">
             {token.count && <div className="number">{start + i}</div>}
             <div className="pawn">
