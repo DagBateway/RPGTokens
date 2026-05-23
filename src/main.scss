@@ -436,7 +436,7 @@ html {
           left: 50%;
           top: 50%;
           margin: 0 auto;
-          z-index: -999;
+          z-index: 1;
           -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
         }
@@ -652,6 +652,7 @@ html {
       vertical-align: middle;
       line-height: 18px;
       font-family: "Righteous", cursive;
+      z-index: 2;
     }
 
     // Modern Gothic Gaming Header
