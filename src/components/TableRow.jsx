@@ -8,7 +8,7 @@ const ToggleButtonGroup = ({ label, icon, value, onUpdate }) => (
     <div className="btn-group btn-group-toggle" data-toggle="buttons">
       <label className={`btn btn-primary ${!value && "active"}`}>
         <input onClick={() => onUpdate(false)} type="checkbox" />
-        <i className={`fas ${icon}`}></i>
+        <i className="fas fa-ban"></i>
       </label>
       <label className={`btn btn-success ${value && "active"}`}>
         <input onClick={() => onUpdate(true)} type="checkbox" />

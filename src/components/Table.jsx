@@ -49,7 +49,7 @@ const Table = ({
           <div className="btn-group btn-group-toggle" data-toggle="buttons">
             <label className="btn btn-primary">
               <input onClick={() => onUpdate(false)} type="checkbox" />
-              <i className={`fas ${icon}`}></i>
+              <i className="fas fa-ban"></i>
             </label>
             <label className="btn btn-success">
               <input onClick={() => onUpdate(true)} type="checkbox" />
