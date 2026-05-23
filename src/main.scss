@@ -699,21 +699,49 @@ html {
       }
     }
 
-    // Add Token Parchment Scroll Design
+    // Add Token Parchment Scroll Design (Interaction Zone)
     #add-token-container {
       text-align: center;
 
       #add-link-container {
-        background: rgba(21, 27, 30, 0.8) !important;
-        border: 1px solid $fantasy-gold-border !important;
+        background: rgba(28, 36, 40, 0.95) !important;
+        border: 2px solid rgba(207, 160, 53, 0.5) !important;
         border-radius: 12px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65), 0 0 20px rgba(207, 160, 53, 0.15) !important;
         text-align: center;
         margin: 25px auto;
         max-width: 460px;
-        padding: 24px !important;
+        padding: 28px 24px !important;
         backdrop-filter: blur(6px);
         position: relative;
+        animation: goldPulse 3.5s infinite ease-in-out;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 30px rgba(207, 160, 53, 0.25) !important;
+        }
+
+        .creator-station-badge {
+          display: inline-block;
+          font-family: "Cinzel", serif;
+          font-size: 11px;
+          font-weight: 700;
+          color: $fantasy-gold;
+          border: 1px solid rgba(207, 160, 53, 0.4);
+          background: rgba(207, 160, 53, 0.08);
+          padding: 4px 14px;
+          border-radius: 20px;
+          letter-spacing: 2px;
+          margin-bottom: 18px;
+          box-shadow: 0 0 10px rgba(207, 160, 53, 0.15);
+          
+          i {
+            margin-right: 6px;
+            color: $fantasy-gold;
+            text-shadow: 0 0 8px rgba(207, 160, 53, 0.6);
+          }
+        }
 
         &::before {
           content: "";
@@ -726,16 +754,39 @@ html {
 
         p {
           font-family: "Cinzel", serif !important;
-          color: $fantasy-gold !important;
-          font-size: 16px;
-          font-weight: 600;
+          color: #ffffff !important;
+          text-shadow: 0 0 8px rgba(207, 160, 53, 0.8) !important;
+          font-size: 17px !important;
+          font-weight: 700 !important;
           letter-spacing: 0.5px;
-          margin-bottom: 16px;
+          margin-bottom: 20px;
         }
 
         .url-input {
           width: 80%;
           margin-bottom: 10px;
+        }
+
+        .or-divider {
+          display: flex;
+          align-items: center;
+          text-align: center;
+          margin: 18px 0;
+          color: rgba(207, 160, 53, 0.5);
+          font-family: "Cinzel", serif;
+          font-size: 11px;
+          letter-spacing: 2px;
+          font-weight: bold;
+          
+          &::before, &::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid rgba(207, 160, 53, 0.15);
+          }
+          
+          span {
+            padding: 0 12px;
+          }
         }
       }
 
@@ -1198,19 +1249,28 @@ html {
 
 // 🖨️ STAGE SAFE PRINT INK-SAVER OVERRIDES
 @media print {
-  html {
+  html, body {
     background-color: white !important;
-    
-    body {
-      margin: 0 !important;
-      background: white !important;
-      color: black !important;
-      font-family: "Scala Sans Regular", sans-serif !important;
+    background: white !important;
+    color: black !important;
+    font-family: "Scala Sans Regular", sans-serif !important;
+    height: auto !important;
+    min-height: 0 !important;
+    min-height: auto !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+  }
 
+  html {
+    body {
       main {
         &.container {
-          padding: 0;
-          width: auto !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          width: 100% !important;
+          max-width: 100% !important;
         }
       }
       
@@ -1221,10 +1281,14 @@ html {
       }
     }
 
-    .printable:last-child {
-      page-break-before: none;
-      page-break-after: none;
-      page-break-inside: avoid;
+    .printable {
+      page-break-before: auto !important;
+      page-break-after: auto !important;
+      page-break-inside: auto !important;
+      display: block !important;
+      height: auto !important;
+      min-height: 0 !important;
+      position: static !important;
     }
 
     #links-instructions,
@@ -1248,11 +1312,13 @@ html {
     .feedback,
     .intro-section,
     .how-to-use-section,
-    .crafting-tips-section {
+    .crafting-tips-section,
+    .crafting-links-row {
       display: none !important;
     }
 
-    .tent p {
+    .tent p,
+    .pawn-container p {
       display: block !important;
     }
   }
@@ -1347,5 +1413,21 @@ html {
     color: #b8c4c7 !important;
     margin-bottom: 25px;
     line-height: 1.6;
+  }
+}
+
+// Gold Pulse Glow for Interaction Card
+@keyframes goldPulse {
+  0% {
+    border-color: rgba(207, 160, 53, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+  50% {
+    border-color: rgba(207, 160, 53, 0.85);
+    box-shadow: 0 0 25px rgba(207, 160, 53, 0.35);
+  }
+  100% {
+    border-color: rgba(207, 160, 53, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
   }
 }

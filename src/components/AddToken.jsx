@@ -73,6 +73,9 @@ const AddToken = ({ handleAddToken }) => {
 
         <div id="add-token-container" className="col-md-6">
           <div id="add-link-container">
+            <div className="creator-station-badge">
+              <i className="fas fa-dice-d20"></i> CREATOR STATION
+            </div>
             <p>Insert a link to a creature image to begin!</p>
             <form
               autoComplete="off"
@@ -89,18 +92,23 @@ const AddToken = ({ handleAddToken }) => {
               <button className="btn btn-primary btn-lg">Add Token</button>
             </form>
             {error && <p className="error">{error}</p>}
-          </div>
-          <DropboxChooser
-            appKey="ki5u4q9h7qgzlkr"
-            success={handleFiles}
-            multiselect={true}
-            extensions={[".jpg", ".jpeg", ".png"]}
-          >
-            <div className="dropbox-button">
-              Upload images from Dropbox&nbsp;
-              <i className="fab fa-dropbox"></i>
+            
+            <div className="or-divider">
+              <span>OR</span>
             </div>
-          </DropboxChooser>
+
+            <DropboxChooser
+              appKey="ki5u4q9h7qgzlkr"
+              success={handleFiles}
+              multiselect={true}
+              extensions={[".jpg", ".jpeg", ".png"]}
+            >
+              <div className="dropbox-button">
+                Upload images from Dropbox&nbsp;
+                <i className="fab fa-dropbox"></i>
+              </div>
+            </DropboxChooser>
+          </div>
         </div>
       </div>
     </div>
