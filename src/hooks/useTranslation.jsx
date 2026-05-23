@@ -6,6 +6,16 @@ const TranslationContext = createContext();
 export const TranslationProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     try {
+      // 1. Explicit URL parameter check (Crucial for search engines like Googlebot to index each language separately!)
+      if (typeof window !== "undefined") {
+        const params = new URLSearchParams(window.location.search);
+        const langParam = params.get("lang");
+        if (langParam === "it" || langParam === "en") {
+          return langParam;
+        }
+      }
+
+      // 2. Persisted user preference check
       const saved = localStorage.getItem("rpg_tokens_lang");
       if (saved) return saved;
     } catch (e) {}
@@ -30,6 +40,13 @@ export const TranslationProvider = ({ children }) => {
   // Non-persisted region auto-detection on mount if no preference has been saved yet
   useEffect(() => {
     try {
+      // If there is an explicit URL parameter (e.g. from Googlebot), do not run background auto-detection
+      const params = new URLSearchParams(window.location.search);
+      const langParam = params.get("lang");
+      if (langParam === "it" || langParam === "en") {
+        return;
+      }
+
       const saved = localStorage.getItem("rpg_tokens_lang");
       if (saved) return; // Respect saved setting, do not run auto-detection
     } catch (e) {}
