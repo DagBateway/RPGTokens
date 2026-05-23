@@ -1,7 +1,18 @@
-$primary-background: white;
-$primary-red: #822000;
-$error: #ad0707;
-$defaultBorder: 1px solid #b9b9b9;
+// D&D Dark Fantasy TTRPG Theme Variables
+$primary-background: #0c0f12;
+$fantasy-bg-radial: radial-gradient(circle at 50% 50%, #1a2226 0%, #0c0f12 100%);
+$fantasy-surface: #151b1e;
+$fantasy-surface-glass: rgba(21, 27, 30, 0.85);
+$fantasy-gold: #cfa035;
+$fantasy-gold-light: rgba(207, 160, 53, 0.12);
+$fantasy-gold-border: rgba(207, 160, 53, 0.25);
+$fantasy-crimson: #a62b2b;
+$fantasy-crimson-hover: #c1272d;
+$fantasy-text: #f4f1ea;
+$fantasy-text-muted: #8e9e95;
+$error: #e04343;
+
+$defaultBorder: 1px solid rgba(207, 160, 53, 0.25);
 $half-square: 0.5in;
 $three-quarters-square: 0.75in;
 $one-square: 1in;
@@ -12,7 +23,7 @@ $three-square: 3in;
 $gargantuan-height: 3.5in;
 $four-square: 4in;
 $fold-border: 1pt dashed #e4e4e4;
-$cut-border: $defaultBorder;
+$cut-border: 1px solid #b9b9b9;
 
 @font-face {
   font-family: "MrsEavesSmallCaps";
@@ -33,33 +44,49 @@ $cut-border: $defaultBorder;
 html {
   position: relative;
   min-height: 100%;
+  background-color: $primary-background;
 
   body {
     margin-bottom: 60px;
-    background: $primary-background url("../images/bgtexture.jpg") repeat;
-    font-family: "Scala Sans Regular", Roboto, Helvetica, sans-serif;
+    background: $primary-background $fantasy-bg-radial no-repeat fixed;
+    background-size: cover;
+    font-family: "Outfit", "Scala Sans Regular", Roboto, Helvetica, sans-serif;
     font-size: 15px;
+    color: $fantasy-text;
     background-color: transparent;
 
     p {
+      color: #b8c4c7;
       &.error {
         color: $error;
+        font-weight: bold;
+        text-shadow: 0 0 4px rgba(224, 67, 67, 0.2);
       }
     }
 
     a {
-      text-decoration: underline;
+      color: $fantasy-gold;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.15s ease, text-shadow 0.15s ease;
+
+      &:hover {
+        color: $fantasy-text;
+        text-shadow: 0 0 6px rgba(244, 241, 234, 0.4);
+        text-decoration: underline;
+      }
     }
 
-    h1 {
-      font-family: "MrsEavesSmallCaps", Roboto, Helvetica, sans-serif;
-      font-size: 30px;
-      color: $primary-red;
+    h1, h2, h3, h4 {
+      font-family: "Cinzel", "MrsEavesSmallCaps", serif;
+      color: $fantasy-gold;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     strong {
       font-weight: bold;
-      color: $primary-red;
+      color: $fantasy-gold;
     }
 
     .hidden {
@@ -75,23 +102,80 @@ html {
       margin: 20px auto;
     }
 
+    // Modern Dashboard Card-List Table Styling
     #tokens-table {
       table-layout: fixed;
+      background: transparent;
+      border-collapse: separate;
+      border-spacing: 0 10px; // Adds space between rows to create the "card row" look
 
       thead tr:nth-child(1) th {
-        background: white;
+        background: transparent;
         position: sticky;
         top: 0;
         z-index: 10;
+        font-family: "Cinzel", serif;
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 1px;
+        color: $fantasy-gold !important;
+        border-bottom: 2px solid $fantasy-gold-border;
+        padding-bottom: 12px;
       }
 
       th {
         vertical-align: middle !important;
         text-align: center;
+        border-top: none;
+      }
+
+      tbody tr {
+        background: $fantasy-surface-glass !important;
+        border: 1px solid $fantasy-gold-border !important;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        transition: all 0.2s ease-in-out;
+        backdrop-filter: blur(8px);
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(207, 160, 53, 0.15);
+          background: rgba(30, 39, 43, 0.9) !important;
+          border-color: rgba(207, 160, 53, 0.5) !important;
+        }
+
+        td {
+          border-top: 1px solid rgba(207, 160, 53, 0.1) !important;
+          border-bottom: 1px solid rgba(207, 160, 53, 0.1) !important;
+          padding: 12px 8px !important;
+          vertical-align: middle !important;
+
+          &:first-child {
+            border-left: 1px solid rgba(207, 160, 53, 0.1) !important;
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+          }
+          
+          &:last-child {
+            border-right: 1px solid rgba(207, 160, 53, 0.1) !important;
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+          }
+        }
       }
 
       #bulk-selection {
-        background: #fff8eb;
+        background: rgba(207, 160, 53, 0.05) !important;
+        border-radius: 8px;
+        border: 1px solid rgba(207, 160, 53, 0.15) !important;
+
+        th {
+          border: none;
+          color: $fantasy-text;
+          font-family: "Cinzel", serif;
+          font-size: 14px;
+          vertical-align: middle !important;
+        }
       }
 
       .btn-group > .btn:last-child:not(:first-child),
@@ -101,13 +185,15 @@ html {
       }
     }
 
+    // Preview Token styling (keep dimensions intact)
     .token {
       display: inline-block;
       page-break-inside: avoid;
       position: relative;
       overflow: hidden;
-      border: $defaultBorder;
+      border: 1px solid #b9b9b9;
       background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
       &.square {
         border-radius: 0;
@@ -118,8 +204,8 @@ html {
       }
 
       &.tiny {
-        width: 0.75in;
-        height: 0.75in;
+        width: $three-quarters-square;
+        height: $three-quarters-square;
 
         .number {
           width: 16px;
@@ -131,28 +217,28 @@ html {
 
       &.medium,
       &.small {
-        width: 1in;
-        height: 1in;
+        width: $one-square;
+        height: $one-square;
       }
 
       &.large1 {
-        width: 1.5in;
-        height: 1.5in;
+        width: $one-half-square;
+        height: $one-half-square;
       }
 
       &.large2 {
-        width: 2in;
-        height: 2in;
+        width: $two-square;
+        height: $two-square;
       }
 
       &.huge {
-        width: 3in;
-        height: 3in;
+        width: $three-square;
+        height: $three-square;
       }
 
       &.gargantuan {
-        width: 4in;
-        height: 4in;
+        width: $four-square;
+        height: $four-square;
       }
 
       img {
@@ -169,15 +255,19 @@ html {
       }
     }
 
+    // Glassmorphic main container
     .content-main {
       position: relative;
       margin: 40px auto;
       height: auto;
       overflow: hidden;
-      padding: 20px;
+      padding: 24px;
       text-align: center;
-      background: white;
-      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+      background: $fantasy-surface-glass !important;
+      border: 1px solid $fantasy-gold-border !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+      backdrop-filter: blur(8px);
 
       #tokens-table {
         width: 100%;
@@ -187,15 +277,14 @@ html {
           vertical-align: middle;
 
           &.token-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
             &.greyscale {
               -webkit-filter: grayscale(100%);
-              -moz-filter: grayscale(100%);
-              -o-filter: grayscale(100%);
-              -ms-filter: grayscale(100%);
               filter: grayscale(100%);
               opacity: 0.4;
-              filter: alpha(opacity=40);
-              /* msie */
             }
           }
         }
@@ -204,27 +293,42 @@ html {
 
     #tokens-form {
       margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
 
       input.url-input {
-        margin-right: 12px;
+        margin-right: 0;
+        flex: 1;
+        max-width: 400px;
       }
     }
 
     #table-actions-container {
-      margin: 20px auto;
+      margin: 24px auto 12px auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
 
       #print-all {
+        box-shadow: 0 4px 15px rgba(166, 43, 43, 0.4);
       }
 
-      #remove-all {
-        float: left;
+      p {
+        margin: 0;
+        color: $fantasy-text-muted;
+        font-size: 13px;
+        text-align: left;
       }
     }
 
+    // Printable structures (keep measurements mathematically exact)
     .tent {
       width: 6cm;
       height: 13cm;
-      border: $defaultBorder;
+      border: 1px solid #b9b9b9;
       background: white;
       page-break-inside: avoid;
       display: table;
@@ -249,6 +353,8 @@ html {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: black;
+            font-family: "Scala Sans Regular", sans-serif;
           }
         }
 
@@ -256,8 +362,8 @@ html {
           overflow: hidden;
 
           .name {
-            border-bottom: $defaultBorder;
-            border-top: $defaultBorder;
+            border-bottom: 1px solid #b9b9b9;
+            border-top: 1px solid #b9b9b9;
           }
 
           .image {
@@ -278,15 +384,12 @@ html {
         &.back {
           .name {
             position: absolute;
-            border-top: $defaultBorder;
+            border-top: 1px solid #b9b9b9;
             bottom: 0;
 
             p {
               -webkit-transform: rotate(-180deg);
-              -moz-transform: rotate(-180deg);
-              -o-transform: rotate(-180deg);
               transform: rotate(-180deg);
-              filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
             }
           }
 
@@ -297,10 +400,8 @@ html {
               bottom: 1.6cm;
               right: 0.2cm;
               -webkit-transform: rotate(-180deg);
-              -moz-transform: rotate(-180deg);
-              -o-transform: rotate(-180deg);
               transform: rotate(-180deg);
-              filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+              color: black;
             }
           }
         }
@@ -314,6 +415,7 @@ html {
       position: relative;
       page-break-inside: avoid;
       margin: 0;
+      background: white;
 
       .pawn-wrapper {
         position: relative;
@@ -337,7 +439,6 @@ html {
           margin: 0 auto;
           z-index: -999;
           -webkit-transform: translate(-50%, -50%);
-          -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
         }
       }
@@ -347,7 +448,6 @@ html {
           border-bottom: $fold-border !important;
 
           img {
-            -ms-transform: translate(-50%, -50%) rotate(180deg) scaleX(-1);
             -webkit-transform: translate(-50%, -50%) rotate(180deg) scaleX(-1);
             transform: translate(-50%, -50%) rotate(180deg) scaleX(-1);
           }
@@ -379,10 +479,9 @@ html {
             top: 2px;
             left: 8px;
             -webkit-transform: rotate(-180deg);
-            -moz-transform: rotate(-180deg);
-            -o-transform: rotate(-180deg);
             transform: rotate(-180deg);
-            filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+            color: black;
+            font-family: "Scala Sans Regular", sans-serif;
           }
         }
 
@@ -390,7 +489,6 @@ html {
           top: 2px;
           -webkit-transform: rotate(-180deg);
           transform: rotate(-180deg);
-          filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
         }
       }
 
@@ -424,6 +522,8 @@ html {
             overflow: hidden;
             white-space: nowrap;
             font-size: 10px;
+            color: black;
+            font-family: "Scala Sans Regular", sans-serif;
           }
         }
       }
@@ -555,45 +655,83 @@ html {
       font-family: "Righteous", cursive;
     }
 
+    // Modern Gothic Gaming Header
     .header {
       top: 0;
       width: 100%;
       text-align: center;
-      padding: 20px;
-      background-color: #192527;
+      padding: 30px 20px;
+      background-color: #0b0e10 !important;
+      border-bottom: 2px solid #8e6e27 !important;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.6) !important;
 
       h1 {
-        color: white;
+        color: $fantasy-gold !important;
         margin: 0;
+        font-family: "Cinzel", serif !important;
+        font-weight: 700;
+        font-size: 34px !important;
+        letter-spacing: 2px;
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8) !important;
       }
     }
 
+    // Modern Gothic Gaming Footer
     .footer {
       position: absolute;
       bottom: 0;
       width: 100%;
-      /* Set the fixed height of the footer here */
       height: 60px;
       line-height: 60px;
-      /* Vertically center the text there */
-      background-color: #192527;
-      color: #a0a0a0;
+      background-color: #0b0e10 !important;
+      border-top: 1px solid rgba(207, 160, 53, 0.15) !important;
+      color: $fantasy-text-muted;
 
       a {
-        color: white;
+        color: $fantasy-gold !important;
+        font-weight: 600;
+        text-decoration: none;
+        
+        &:hover {
+          color: $fantasy-text !important;
+          text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+        }
       }
     }
 
+    // Add Token Parchment Scroll Design
     #add-token-container {
       text-align: center;
 
       #add-link-container {
-        background: transparent url(../images/scroll.png) no-repeat;
+        background: rgba(21, 27, 30, 0.8) !important;
+        border: 1px solid $fantasy-gold-border !important;
+        border-radius: 12px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
         text-align: center;
         margin: 25px auto;
-        max-width: 450px;
-        padding: 30px 30px 2px 30px;
-        background-size: 100% 100%;
+        max-width: 460px;
+        padding: 24px !important;
+        backdrop-filter: blur(6px);
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 4px; left: 4px; right: 4px; bottom: 4px;
+          border: 1px solid rgba(207, 160, 53, 0.08);
+          border-radius: 8px;
+          pointer-events: none;
+        }
+
+        p {
+          font-family: "Cinzel", serif !important;
+          color: $fantasy-gold !important;
+          font-size: 16px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          margin-bottom: 16px;
+        }
 
         .url-input {
           width: 80%;
@@ -608,10 +746,18 @@ html {
         color: white;
         border-radius: 6px;
         border: 1px solid #0040a7;
-        padding: 10px;
+        padding: 10px 15px;
         text-align: center;
         cursor: pointer;
         background: #0061fe;
+        font-weight: 600;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background: #1c72ff !important;
+          box-shadow: 0 0 15px rgba(0, 97, 254, 0.5) !important;
+          transform: translateY(-1px);
+        }
       }
     }
 
@@ -619,13 +765,84 @@ html {
       text-align: center;
     }
 
+    // Modernised Tactile Shape Selector
     #shape-selector {
       text-align: center;
       margin: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
 
-      label {
-        i {
-          font-size: 40px;
+      span {
+        font-family: "Cinzel", serif;
+        color: $fantasy-gold !important;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .btn-group {
+        border: 1px solid $fantasy-gold-border;
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+
+        .btn {
+          background: #1a2225 !important;
+          border: none !important;
+          color: $fantasy-text-muted !important;
+          padding: 8px 18px;
+          transition: all 0.2s ease;
+
+          i {
+            font-size: 20px;
+          }
+
+          &.active {
+            background: $fantasy-crimson !important;
+            color: $fantasy-text !important;
+            box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+          }
+
+          &:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.05) !important;
+            color: $fantasy-text !important;
+          }
+        }
+      }
+    }
+
+    // Gaming checkbox button toggles
+    .btn-group-toggle {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 2px;
+      background: #0f1315 !important;
+      display: inline-flex !important;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+      
+      .btn {
+        border-radius: 18px !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 5px 12px !important;
+        font-size: 10px;
+        background: transparent !important;
+        color: #4e5e65 !important;
+        transition: all 0.2s ease;
+        box-shadow: none !important;
+        
+        &.active {
+          color: #ffffff !important;
+        }
+        
+        &.btn-primary.active {
+          background: #2e393f !important; // Sleek dark slate for Off/False
+        }
+        
+        &.btn-success.active {
+          background: $fantasy-crimson !important; // Glowing crimson for On/True
+          box-shadow: 0 0 8px rgba(166, 43, 43, 0.6) !important;
         }
       }
     }
@@ -638,6 +855,7 @@ html {
       display: none;
     }
 
+    // Gothic Changelog Accordion
     .wrap-collabsible {
       margin-top: 30px;
       input[type="checkbox"] {
@@ -646,13 +864,17 @@ html {
 
       .lbl-toggle {
         display: block;
-        font-family: monospace;
-        font-size: 16px;
+        font-family: "Cinzel", monospace;
+        font-size: 15px;
         text-transform: uppercase;
         text-align: center;
         cursor: pointer;
-        border-radius: 7px;
-        transition: all 0.25s ease-out;
+        border-radius: 6px;
+        background-color: #151b1e !important;
+        border: 1px solid $fantasy-gold-border !important;
+        color: $fantasy-gold !important;
+        padding: 10px 20px !important;
+        transition: all 0.2s ease-out;
 
         &::before {
           content: " ";
@@ -664,6 +886,12 @@ html {
           margin-right: 0.7rem;
           transform: translateY(-2px);
           transition: transform 0.2s ease-out;
+        }
+
+        &:hover {
+          background-color: #1c252a !important;
+          color: $fantasy-text !important;
+          box-shadow: 0 0 12px rgba(207, 160, 53, 0.2) !important;
         }
       }
 
@@ -677,9 +905,25 @@ html {
         transition: max-height 0.25s ease-in-out;
 
         .content-inner {
-          padding: 12px;
+          padding: 16px;
+          background: rgba(21, 27, 30, 0.95) !important;
+          border-left: 1px solid $fantasy-gold-border !important;
+          border-right: 1px solid $fantasy-gold-border !important;
+          border-bottom: 1px solid $fantasy-gold-border !important;
+          border-bottom-left-radius: 6px;
+          border-bottom-right-radius: 6px;
           font-family: monospace;
           font-size: 12px;
+          color: #d1dadc !important;
+
+          p {
+            color: #d1dadc !important;
+            margin-bottom: 10px;
+            
+            strong {
+              color: $fantasy-gold !important;
+            }
+          }
 
           ol,
           ul,
@@ -692,10 +936,6 @@ html {
 
       .toggle:checked + .lbl-toggle + .collapsible-content {
         max-height: 100%;
-        background: rgba(130, 130, 130, 0.2);
-        border-bottom: 1px solid rgba(117, 117, 117, 0.45);
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
       }
 
       .toggle:checked + .lbl-toggle {
@@ -709,16 +949,94 @@ html {
       display: none;
     }
 
+    // Instruction container re-styled as a Parchment-Overlay Card
     .instructions {
       margin: 0 auto;
-      background: #fff8eb;
-      -webkit-box-shadow: 0 3px 5px rgb(230, 222, 195);
-      box-shadow: 0 3px 5px rgb(230, 222, 195);
-      padding: 8px;
+      background: rgba(21, 27, 30, 0.8) !important;
+      border: 1px solid $fantasy-gold-border !important;
+      border-radius: 12px !important;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+      padding: 24px !important;
+      backdrop-filter: blur(6px);
+      text-align: left !important;
 
       h3,
       p {
-        text-align: center;
+        text-align: left;
+        color: #ccd7d9 !important;
+      }
+
+      p strong {
+        color: $fantasy-gold !important;
+        font-family: "Cinzel", serif;
+        font-size: 16px;
+      }
+
+      ol {
+        padding-left: 20px;
+        margin-bottom: 16px;
+
+        li {
+          color: #ccd7d9 !important;
+          margin-bottom: 8px;
+          
+          strong {
+            color: $fantasy-text !important;
+          }
+        }
+      }
+    }
+
+    // General description elements
+    main.container > p {
+      font-size: 16px !important;
+      line-height: 1.6 !important;
+      color: #ccd7d9 !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+      
+      strong {
+        color: $fantasy-gold !important;
+      }
+    }
+
+    .main-links {
+      background: rgba(21, 27, 30, 0.6) !important;
+      border: 1px solid rgba(207, 160, 53, 0.15) !important;
+      border-radius: 8px !important;
+      padding: 16px !important;
+      margin-bottom: 24px !important;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      
+      p {
+        font-family: "Cinzel", serif !important;
+        color: $fantasy-gold !important;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(207, 160, 53, 0.15);
+        padding-bottom: 4px;
+      }
+      
+      ul {
+        padding-left: 16px;
+        margin-bottom: 0;
+        
+        li {
+          margin-bottom: 6px;
+          color: #ccd7d9;
+          
+          a {
+            color: #ccd7d9 !important;
+            text-decoration: none;
+            transition: color 0.15s ease;
+            
+            &:hover {
+              color: $fantasy-gold !important;
+              text-shadow: 0 0 4px rgba(207, 160, 53, 0.3);
+              text-decoration: underline;
+            }
+          }
+        }
       }
     }
   }
@@ -726,25 +1044,126 @@ html {
   div#donate {
     text-align: center;
     margin: 50px;
+    
+    p {
+      color: #ccd7d9 !important;
+      
+      strong {
+        color: $fantasy-gold !important;
+      }
+    }
+    
+    #crondale {
+      margin-top: 30px;
+      .instructions {
+        border-color: rgba(166, 43, 43, 0.3) !important;
+        background: rgba(26, 21, 21, 0.8) !important;
+        
+        p strong {
+          color: $fantasy-crimson !important;
+        }
+        
+        a {
+          color: $fantasy-gold !important;
+          font-family: "Cinzel", serif;
+          font-size: 16px;
+          text-decoration: underline;
+          
+          &:hover {
+            color: $fantasy-text !important;
+          }
+        }
+      }
+    }
   }
 }
 
+// Custom stylized inputs and buttons
+.form-control, input[type="text"], input[type="number"], select.form-control {
+  background-color: #12181a !important;
+  border: 1px solid rgba(207, 160, 53, 0.3) !important;
+  color: $fantasy-text !important;
+  border-radius: 6px !important;
+  padding: 8px 12px !important;
+  font-family: "Outfit", sans-serif;
+  transition: all 0.2s ease-in-out !important;
+  
+  &:focus {
+    border-color: $fantasy-gold !important;
+    box-shadow: 0 0 8px rgba(207, 160, 53, 0.4) !important;
+    outline: none !important;
+  }
+  
+  &:disabled {
+    background-color: #0b0e10 !important;
+    opacity: 0.5 !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
+  }
+}
+
+.btn-primary {
+  background-color: $fantasy-crimson !important;
+  border-color: rgba(166, 43, 43, 0.5) !important;
+  color: #ffffff !important;
+  font-family: "Cinzel", serif;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-radius: 6px !important;
+  transition: all 0.2s ease-in-out !important;
+  
+  &:hover {
+    background-color: $fantasy-crimson-hover !important;
+    box-shadow: 0 0 12px rgba(193, 39, 45, 0.6) !important;
+    transform: translateY(-1px);
+  }
+}
+
+.btn-success {
+  background-color: #1a5635 !important;
+  border-color: rgba(26, 86, 53, 0.5) !important;
+  color: #ffffff !important;
+  font-family: "Outfit", sans-serif;
+  border-radius: 6px !important;
+  
+  &:hover {
+    background-color: #247a4b !important;
+    box-shadow: 0 0 10px rgba(36, 122, 75, 0.5) !important;
+  }
+}
+
+.btn-warning {
+  background-color: #785a1a !important;
+  border-color: rgba(120, 90, 26, 0.5) !important;
+  color: $fantasy-text !important;
+  border-radius: 6px !important;
+  transition: all 0.2s ease !important;
+  
+  &:hover {
+    background-color: #9c7522 !important;
+    box-shadow: 0 0 10px rgba(156, 117, 34, 0.5) !important;
+  }
+}
+
+// Tablet and Mobile styling adjustments
 @media all and (max-width: 992px) {
   #tokens-table {
     border-collapse: separate;
-    border-spacing: 10px;
+    border-spacing: 0 15px;
 
     tr {
       display: table;
       width: 100%;
-      border: 1px solid #d6d6d6;
-      border-radius: 5px;
+      border: 1px solid $fantasy-gold-border !important;
+      border-radius: 8px;
       margin-top: 12px;
-      background: whitesmoke;
+      background: $fantasy-surface-glass !important;
+      padding: 10px;
     }
 
     td {
       display: table-row;
+      border: none !important;
+      padding: 6px 12px !important;
     }
 
     thead {
@@ -755,6 +1174,9 @@ html {
       display: inline-block;
       width: 40%;
       text-align: left;
+      font-family: "Cinzel", serif;
+      color: $fantasy-gold;
+      font-size: 13px;
     }
 
     .form-control,
@@ -774,17 +1196,28 @@ html {
   }
 }
 
+// 🖨️ STAGE SAFE PRINT INK-SAVER OVERRIDES
 @media print {
   html {
+    background-color: white !important;
+    
     body {
-      margin: 0px 0px 0px 0px;
+      margin: 0 !important;
       background: white !important;
+      color: black !important;
+      font-family: "Scala Sans Regular", sans-serif !important;
 
       main {
         &.container {
           padding: 0;
           width: auto !important;
         }
+      }
+      
+      p, strong, a, h1, h2, h3, h4, span, label {
+        color: black !important;
+        text-shadow: none !important;
+        background: transparent !important;
       }
     }
 
@@ -808,7 +1241,6 @@ html {
     #donate-form,
     #shape-selector,
     .wrap-collabsible,
-    #shape-selector,
     .instructions,
     .dropbox-button,
     #donate,
