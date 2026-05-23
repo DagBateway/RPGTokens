@@ -1487,3 +1487,382 @@ select.form-control {
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 15px rgba(207, 160, 53, 0.15) !important;
   }
 }
+
+// ==========================================
+// 🛡️ THEME TRANSITION & LIGHT MODE STYLES
+// ==========================================
+
+// Global smooth transition for theme switches
+body, body *, body *::before, body *::after {
+  transition: background-color 0.4s ease, background 0.4s ease, border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease !important;
+}
+
+// Keep print and image assets immune to transitions to avoid layout glitches
+.printable, .printable *, img, input, button, select {
+  transition: none !important;
+}
+
+// Light Mode SCSS Variables
+$parchment-background: #f4ecd8;
+$parchment-radial: radial-gradient(circle at 50% 50%, #faf5ea 0%, #e6d7bf 100%);
+$parchment-surface: #fbf9f4;
+$parchment-surface-glass: rgba(251, 249, 244, 0.9);
+$parchment-sepia: #704d1a;
+$parchment-sepia-border: rgba(112, 77, 26, 0.3);
+$parchment-text: #2b221a;
+$parchment-text-muted: #635343;
+
+// Floating Theme Toggle Button (Cinzel Medieval Style)
+#theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  background: rgba(21, 27, 30, 0.9) !important;
+  border: 1px solid rgba(207, 160, 53, 0.45) !important;
+  color: $fantasy-gold !important;
+  padding: 8px 16px !important;
+  font-family: "Cinzel", serif;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  border-radius: 20px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 10px rgba(207, 160, 53, 0.1) !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+
+  i {
+    font-size: 12px;
+    transition: transform 0.3s ease !important;
+  }
+
+  span {
+    font-weight: 700;
+  }
+
+  &:hover {
+    background: #151b1e !important;
+    border-color: $fantasy-gold !important;
+    color: $fantasy-text !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(207, 160, 53, 0.3) !important;
+    transform: translateY(-1px);
+
+    i {
+      transform: rotate(15deg) !important;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media all and (max-width: 768px) {
+  #theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 12px !important;
+    font-size: 9.5px;
+    letter-spacing: 1px;
+  }
+}
+
+// Parchment Light Mode Styles
+body.light-mode {
+  background: $parchment-background $parchment-radial no-repeat fixed !important;
+  color: $parchment-text !important;
+
+  p {
+    color: #4a3e31 !important;
+  }
+
+  h1, h2, h3, h4, strong {
+    color: $parchment-sepia !important;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+  }
+
+  a {
+    color: $parchment-sepia !important;
+    &:hover {
+      color: #000000 !important;
+      text-shadow: 0 0 6px rgba(112, 77, 26, 0.2) !important;
+    }
+  }
+
+  // Floating Theme Toggle Button in Light Mode
+  #theme-toggle {
+    background: rgba(251, 249, 244, 0.92) !important;
+    border-color: rgba(112, 77, 26, 0.4) !important;
+    color: $parchment-sepia !important;
+    box-shadow: 0 4px 15px rgba(112, 77, 26, 0.15) !important;
+    
+    &:hover {
+      background: #ffffff !important;
+      color: #000000 !important;
+      box-shadow: 0 4px 20px rgba(112, 77, 26, 0.25) !important;
+    }
+  }
+
+  // Cards & Layout
+  .instructions {
+    background: $parchment-surface-glass !important;
+    border: 1px solid rgba(112, 77, 26, 0.35) !important;
+    box-shadow: 0 8px 24px rgba(112, 77, 26, 0.1) !important;
+    
+    h3, p, ol li {
+      color: $parchment-text !important;
+    }
+    
+    p strong, ol li strong {
+      color: $parchment-sepia !important;
+    }
+  }
+
+  #add-link-container {
+    background: radial-gradient(circle at top, rgba(112, 77, 26, 0.05) 0%, rgba(251, 249, 244, 0.98) 70%) !important;
+    border-color: rgba(112, 77, 26, 0.6) !important;
+    box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 25px rgba(112, 77, 26, 0.1) !important;
+    animation: parchmentPulse 3s infinite ease-in-out !important;
+
+    &:hover {
+      border-color: $parchment-sepia !important;
+      box-shadow: 0 20px 56px rgba(112, 77, 26, 0.25), 0 0 35px rgba(112, 77, 26, 0.2) !important;
+    }
+
+    .creator-station-badge {
+      color: $parchment-sepia !important;
+      border-color: rgba(112, 77, 26, 0.5) !important;
+      background: rgba(112, 77, 26, 0.12) !important;
+      box-shadow: 0 0 8px rgba(112, 77, 26, 0.1) !important;
+      text-shadow: none !important;
+
+      i {
+        color: $parchment-sepia !important;
+        text-shadow: none !important;
+      }
+    }
+
+    p {
+      color: $parchment-text !important;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+    }
+
+    .or-divider {
+      color: rgba(112, 77, 26, 0.6) !important;
+      text-shadow: none !important;
+      
+      &::before, &::after {
+        border-bottom-color: rgba(112, 77, 26, 0.2) !important;
+      }
+    }
+  }
+
+  .dropbox-button {
+    background: linear-gradient(135deg, #fbf9f4 0%, #ebe2d3 100%) !important;
+    border-color: rgba(112, 77, 26, 0.4) !important;
+    color: $parchment-sepia !important;
+    box-shadow: 0 4px 12px rgba(112, 77, 26, 0.1) !important;
+
+    &:hover {
+      background: linear-gradient(135deg, #ffffff 0%, #f4ebd8 100%) !important;
+      border-color: $parchment-sepia !important;
+      box-shadow: 0 6px 20px rgba(112, 77, 26, 0.2), 0 0 15px rgba(0, 97, 254, 0.15) !important;
+    }
+  }
+
+  // Dashboard Table Card-Rows
+  #tokens-table {
+    thead tr:nth-child(1) th {
+      color: $parchment-sepia !important;
+      border-bottom-color: rgba(112, 77, 26, 0.3) !important;
+      text-shadow: none !important;
+    }
+
+    tbody tr {
+      background: $parchment-surface-glass !important;
+      border-color: rgba(112, 77, 26, 0.25) !important;
+      box-shadow: 0 4px 15px rgba(112, 77, 26, 0.08) !important;
+
+      &:hover {
+        box-shadow: 0 6px 20px rgba(112, 77, 26, 0.18) !important;
+        background: rgba(255, 255, 255, 0.92) !important;
+        border-color: rgba(112, 77, 26, 0.5) !important;
+      }
+
+      td {
+        border-top-color: rgba(112, 77, 26, 0.1) !important;
+        border-bottom-color: rgba(112, 77, 26, 0.1) !important;
+        color: $parchment-text !important;
+      }
+    }
+  }
+
+  // Forms & Inputs in Light Mode
+  .form-control, input[type="text"], input[type="number"], select.form-control {
+    background-color: #faf7f2 !important;
+    border: 1px solid rgba(112, 77, 26, 0.3) !important;
+    color: $parchment-text !important;
+
+    &:focus {
+      border-color: $parchment-sepia !important;
+      box-shadow: 0 0 8px rgba(112, 77, 26, 0.3) !important;
+    }
+    
+    &:disabled {
+      background-color: #f1ebd8 !important;
+      opacity: 0.6 !important;
+    }
+  }
+
+  // Button adjustments
+  .btn-primary {
+    &:hover {
+      box-shadow: 0 0 12px rgba(166, 43, 43, 0.4) !important;
+    }
+  }
+
+  .btn-group-toggle {
+    border-color: rgba(112, 77, 26, 0.15) !important;
+    background: #eedecc !important;
+    box-shadow: inset 0 2px 4px rgba(112, 77, 26, 0.15) !important;
+
+    .btn {
+      color: $parchment-text-muted !important;
+
+      &.active {
+        color: #ffffff !important;
+      }
+
+      &.btn-primary.active {
+        background: #bfaea2 !important; 
+      }
+
+      &.btn-success.active {
+        background: $fantasy-crimson !important; 
+        box-shadow: 0 0 8px rgba(166, 43, 43, 0.4) !important;
+      }
+    }
+  }
+
+  // Modern Tactile Shape Selector
+  #shape-selector {
+    span {
+      color: $parchment-sepia !important;
+    }
+
+    .btn-group {
+      border-color: rgba(112, 77, 26, 0.3) !important;
+      box-shadow: 0 4px 10px rgba(112, 77, 26, 0.1) !important;
+
+      .btn {
+        background: #ebe2d3 !important;
+        color: $parchment-text-muted !important;
+
+        &.active {
+          background: $fantasy-crimson !important;
+          color: #ffffff !important;
+        }
+
+        &:hover:not(.active) {
+          background: rgba(112, 77, 26, 0.08) !important;
+        }
+      }
+    }
+  }
+
+  // Instruction cards at the bottom
+  .instruction-card {
+    background: rgba(251, 249, 244, 0.8) !important;
+    border: 1px solid rgba(112, 77, 26, 0.2) !important;
+    box-shadow: 0 6px 20px rgba(112, 77, 26, 0.08) !important;
+
+    &:hover {
+      border-color: $parchment-sepia !important;
+      box-shadow: 0 8px 24px rgba(112, 77, 26, 0.15) !important;
+    }
+
+    .card-icon {
+      color: $parchment-sepia !important;
+    }
+
+    h3 {
+      color: $parchment-sepia !important;
+      text-shadow: none !important;
+    }
+    
+    p {
+      color: $parchment-text-muted !important;
+    }
+  }
+
+  // Support / links sections
+  .main-links {
+    background: rgba(251, 249, 244, 0.7) !important;
+    border: 1px solid rgba(112, 77, 26, 0.2) !important;
+    box-shadow: 0 4px 10px rgba(112, 77, 26, 0.05) !important;
+
+    p {
+      color: $parchment-sepia !important;
+      border-bottom-color: rgba(112, 77, 26, 0.2) !important;
+    }
+
+    ul li {
+      color: $parchment-text !important;
+      
+      a {
+        color: $parchment-text !important;
+
+        &:hover {
+          color: $parchment-sepia !important;
+          text-shadow: 0 0 4px rgba(112, 77, 26, 0.2) !important;
+        }
+      }
+    }
+  }
+
+  .crafting-tips-section {
+    p {
+      color: $parchment-text-muted !important;
+    }
+  }
+
+  // DMsGuild banner in Light Mode
+  div#donate #dmsguild-support {
+    .instructions {
+      border-color: rgba(166, 43, 43, 0.4) !important;
+      background: rgba(253, 248, 248, 0.95) !important;
+
+      p strong {
+        color: $fantasy-crimson !important;
+      }
+      
+      a {
+        color: $parchment-sepia !important;
+        
+        &:hover {
+          color: $fantasy-crimson !important;
+        }
+      }
+    }
+  }
+}
+
+// Parchment Breathing Glow for Creator Station Card in Light Mode
+@keyframes parchmentPulse {
+  0% {
+    border-color: rgba(112, 77, 26, 0.4);
+    box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 15px rgba(112, 77, 26, 0.05) !important;
+  }
+  50% {
+    border-color: rgba(112, 77, 26, 0.85);
+    box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 35px rgba(112, 77, 26, 0.25), inset 0 0 15px rgba(112, 77, 26, 0.05) !important;
+  }
+  100% {
+    border-color: rgba(112, 77, 26, 0.4);
+    box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 15px rgba(112, 77, 26, 0.05) !important;
+  }
+}

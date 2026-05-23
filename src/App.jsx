@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { AddToken } from "./components/AddToken";
 import { Table } from "./components/Table";
 import { Shape } from "./components/Shape";
@@ -19,6 +19,19 @@ const App = () => {
     updateAllTokensProperty,
     downloadToken,
   } = useTokens();
+
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "dark";
+  });
+
+  useEffect(() => {
+    if (theme === "light") {
+      document.body.classList.add("light-mode");
+    } else {
+      document.body.classList.remove("light-mode");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // Firebase Initialisation
   useEffect(() => {
@@ -41,8 +54,21 @@ const App = () => {
     }
   }, []);
 
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
     <div>
+      <button
+        id="theme-toggle"
+        onClick={toggleTheme}
+        aria-label="Toggle Theme"
+        title={theme === "dark" ? "Switch to Parchment Light Mode" : "Switch to Gothic Dark Mode"}
+      >
+        <i className={theme === "dark" ? "fas fa-scroll" : "fas fa-dungeon"}></i>
+        <span>{theme === "dark" ? " PARCHMENT LIGHT" : " GOTHIC DARK"}</span>
+      </button>
       <AddToken handleAddToken={handleAddToken} />
       <Shape shape={shape} tokens={tokens} onUpdateShape={setShape} />
       <Table
