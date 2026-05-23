@@ -60,15 +60,6 @@ const App = () => {
 
   return (
     <div>
-      <button
-        id="theme-toggle"
-        onClick={toggleTheme}
-        aria-label="Toggle Theme"
-        title={theme === "dark" ? "Switch to Parchment Light Mode" : "Switch to Gothic Dark Mode"}
-      >
-        <i className={theme === "dark" ? "fas fa-scroll" : "fas fa-dungeon"}></i>
-        <span>{theme === "dark" ? " PARCHMENT LIGHT" : " GOTHIC DARK"}</span>
-      </button>
       <AddToken handleAddToken={handleAddToken} />
       <Shape shape={shape} tokens={tokens} onUpdateShape={setShape} />
       <Table
