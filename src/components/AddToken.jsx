@@ -64,10 +64,6 @@ const AddToken = ({ handleAddToken }) => {
             <p>
               <strong>...You can add as many creatures as you want!</strong>
             </p>
-            <p>
-              Don't forget to check the changelog at the bottom of the page; I
-              constantly update and optimise the Paper Tokens Generator!
-            </p>
           </div>
         </div>
 
