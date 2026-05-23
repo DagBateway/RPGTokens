@@ -13,6 +13,13 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="canonical" href="https://pay-it-forward-automatic-reply.web.app" />
+  <!-- Restore theme before first paint to avoid flash -->
+  <script>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'light') document.documentElement.classList.add('light-mode');
+    })();
+  </script>
 
   <!-- Primary SEO Tags -->
   <title>Paper Tokens Generator | Custom Tabletop RPG Tokens & Standee Pawns</title>
@@ -85,8 +92,19 @@
     You need to enable JavaScript to run this app.
   </noscript>
   <header class="header">
-    <div class="container">
+    <div class="container header-inner">
       <h1>Paper Tokens Generator</h1>
+      <button id="theme-toggle" aria-label="Toggle theme" onclick="(function(){
+        var isLight = document.documentElement.classList.toggle('light-mode');
+        document.body.classList.toggle('light-mode', isLight);
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        var btn = document.getElementById('theme-toggle');
+        btn.innerHTML = isLight
+          ? '<i class=\'fas fa-dungeon\'></i><span> GOTHIC DARK</span>'
+          : '<i class=\'fas fa-scroll\'></i><span> PARCHMENT</span>';
+      })()">
+        <i class="fas fa-scroll"></i><span> PARCHMENT</span>
+      </button>
     </div>
   </header>
   <main role="main" class="container">
@@ -218,6 +236,21 @@
     $(function () {
       $("#tokens-table").stickyTableHeaders();
     });
+    // Sync body class and button label from localStorage on initial load
+    (function () {
+      var saved = localStorage.getItem('theme');
+      var isLight = saved === 'light';
+      if (isLight) {
+        document.body.classList.add('light-mode');
+        document.documentElement.classList.add('light-mode');
+      }
+      var btn = document.getElementById('theme-toggle');
+      if (btn) {
+        btn.innerHTML = isLight
+          ? "<i class='fas fa-dungeon'></i><span> GOTHIC DARK</span>"
+          : "<i class='fas fa-scroll'></i><span> PARCHMENT</span>";
+      }
+    })();
   </script>
 </body>
 

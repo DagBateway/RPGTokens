@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { AddToken } from "./components/AddToken";
 import { Table } from "./components/Table";
 import { Shape } from "./components/Shape";
@@ -20,19 +20,6 @@ const App = () => {
     downloadToken,
   } = useTokens();
 
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("theme") || "dark";
-  });
-
-  useEffect(() => {
-    if (theme === "light") {
-      document.body.classList.add("light-mode");
-    } else {
-      document.body.classList.remove("light-mode");
-    }
-    localStorage.setItem("theme", theme);
-  }, [theme]);
-
   // Firebase Initialisation
   useEffect(() => {
     try {
@@ -53,10 +40,6 @@ const App = () => {
       console.warn("Firebase initialization failed silently:", error);
     }
   }, []);
-
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  };
 
   return (
     <div>

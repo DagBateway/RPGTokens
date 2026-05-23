@@ -1512,12 +1512,36 @@ $parchment-sepia-border: rgba(112, 77, 26, 0.3);
 $parchment-text: #2b221a;
 $parchment-text-muted: #635343;
 
-// Floating Theme Toggle Button (Cinzel Medieval Style)
+
+// Header Layout
+.header {
+  background: rgba(12, 15, 18, 0.97);
+  border-bottom: 1px solid rgba(207, 160, 53, 0.2);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+// Inline Theme Toggle Button (Cinzel Medieval Style in header)
 #theme-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
+  position: static;
+  flex-shrink: 0;
+  z-index: auto;
   background: rgba(21, 27, 30, 0.9) !important;
   border: 1px solid rgba(207, 160, 53, 0.45) !important;
   color: $fantasy-gold !important;
@@ -1532,7 +1556,6 @@ $parchment-text-muted: #635343;
   display: flex;
   align-items: center;
   gap: 8px;
-  backdrop-filter: blur(4px);
 
   i {
     font-size: 12px;
@@ -1562,17 +1585,20 @@ $parchment-text-muted: #635343;
 
 @media all and (max-width: 768px) {
   #theme-toggle {
-    position: absolute;
-    top: 15px;
-    right: 15px;
     padding: 6px 12px !important;
     font-size: 9.5px;
     letter-spacing: 1px;
   }
+
+  .header h1 {
+    font-size: 1.1rem;
+  }
 }
 
-// Parchment Light Mode Styles
-body.light-mode {
+
+// Parchment Light Mode Styles — triggered via body.light-mode OR html.light-mode
+body.light-mode,
+html.light-mode body {
   background: $parchment-background $parchment-radial no-repeat fixed !important;
   color: $parchment-text !important;
 
@@ -1593,7 +1619,7 @@ body.light-mode {
     }
   }
 
-  // Floating Theme Toggle Button in Light Mode
+  // Inline Theme Toggle Button in Light Mode
   #theme-toggle {
     background: rgba(251, 249, 244, 0.92) !important;
     border-color: rgba(112, 77, 26, 0.4) !important;
@@ -1605,6 +1631,12 @@ body.light-mode {
       color: #000000 !important;
       box-shadow: 0 4px 20px rgba(112, 77, 26, 0.25) !important;
     }
+  }
+
+  // Parchment header
+  .header {
+    background: rgba(244, 236, 216, 0.97) !important;
+    border-bottom-color: rgba(112, 77, 26, 0.3) !important;
   }
 
   // Cards & Layout
@@ -1622,7 +1654,7 @@ body.light-mode {
     }
   }
 
-  #add-link-container {
+  #add-token-container #add-link-container {
     background: radial-gradient(circle at top, rgba(112, 77, 26, 0.05) 0%, rgba(251, 249, 244, 0.98) 70%) !important;
     border-color: rgba(112, 77, 26, 0.6) !important;
     box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 25px rgba(112, 77, 26, 0.1) !important;
@@ -1661,7 +1693,7 @@ body.light-mode {
     }
   }
 
-  .dropbox-button {
+  #add-token-container .dropbox-button {
     background: linear-gradient(135deg, #fbf9f4 0%, #ebe2d3 100%) !important;
     border-color: rgba(112, 77, 26, 0.4) !important;
     color: $parchment-sepia !important;
@@ -1830,11 +1862,25 @@ body.light-mode {
     }
   }
 
-  // DMsGuild banner in Light Mode
+  // DMsGuild banner in Light Mode — match dark specificity (div#donate p uses !important)
+  div#donate {
+    p {
+      color: $parchment-text !important;
+    }
+
+    strong {
+      color: $parchment-sepia !important;
+    }
+  }
+
   div#donate #dmsguild-support {
     .instructions {
       border-color: rgba(166, 43, 43, 0.4) !important;
       background: rgba(253, 248, 248, 0.95) !important;
+
+      p {
+        color: $parchment-text !important;
+      }
 
       p strong {
         color: $fantasy-crimson !important;
@@ -1849,7 +1895,80 @@ body.light-mode {
       }
     }
   }
+
+  // Footer text-muted in light mode
+  footer .text-muted {
+    color: $parchment-text-muted !important;
+  }
+
+  footer.footer {
+    background: rgba(244, 236, 216, 0.97) !important;
+    border-top: 1px solid rgba(112, 77, 26, 0.2) !important;
+  }
+
+  // Main table glass container
+  .content-main {
+    background: rgba(251, 249, 244, 0.85) !important;
+    border-color: rgba(112, 77, 26, 0.25) !important;
+    box-shadow: 0 10px 30px rgba(112, 77, 26, 0.12) !important;
+  }
+
+  // Bulk selection row — needs #tokens-table to beat dark mode's double-ID specificity
+  #tokens-table #bulk-selection {
+    background: rgba(112, 77, 26, 0.06) !important;
+    border-color: rgba(112, 77, 26, 0.15) !important;
+
+    th {
+      color: $parchment-text !important;
+    }
+  }
+
+  // Table-actions print button area
+  #table-actions-container {
+    p {
+      color: $parchment-text-muted !important;
+    }
+  }
+
+  // URL input inside creator station — scoped under #add-link-container for specificity
+  #add-link-container .url-input {
+    background-color: #faf7f2 !important;
+    border: 1px solid rgba(112, 77, 26, 0.3) !important;
+    color: $parchment-text !important;
+
+    &::placeholder {
+      color: $parchment-text-muted !important;
+      opacity: 0.7;
+    }
+
+    &:focus {
+      border-color: $parchment-sepia !important;
+      box-shadow: 0 0 8px rgba(112, 77, 26, 0.25) !important;
+      background-color: #ffffff !important;
+    }
+  }
+
+  // Token name input in table rows (overrides Bootstrap default dark)
+  #tokens-table tbody tr td input.form-control,
+  #tokens-table tbody tr td select.form-control {
+    background-color: #faf7f2 !important;
+    border-color: rgba(112, 77, 26, 0.25) !important;
+    color: $parchment-text !important;
+  }
+
+  // Intro section text on parchment
+  .intro-section {
+    .lead-text {
+      color: $parchment-text !important;
+      text-shadow: none !important;
+    }
+
+    .sub-text {
+      color: $parchment-text-muted !important;
+    }
+  }
 }
+
 
 // Parchment Breathing Glow for Creator Station Card in Light Mode
 @keyframes parchmentPulse {
