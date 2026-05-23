@@ -1,5 +1,6 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { TableRow } from "./TableRow";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Table = ({
   tokens,
@@ -20,27 +21,29 @@ const Table = ({
   onRemoveToken,
   onDownloadToken,
 }) => {
+  const { t } = useTranslation();
+
   const renderBulkSelection = () => (
     <tr id="bulk-selection">
-      <th colSpan="5">Bulk Selection</th>
+      <th colSpan="5">{t("bulkSelection")}</th>
       {[
         {
-          label: "Count",
+          label: t("thCount"),
           onUpdate: onUpdateAllTokensCountVisibility,
           icon: "fa-list-ol",
         },
         {
-          label: "Tents",
+          label: t("bulkTents"),
           onUpdate: onUpdateAllTokenTentsVisibility,
           icon: "fa-map",
         },
         {
-          label: "Tokens",
+          label: t("bulkTokens"),
           onUpdate: onUpdateAllTokensVisibility,
           icon: "fa-user-circle",
         },
         {
-          label: "Pawns",
+          label: t("bulkPawns"),
           onUpdate: onUpdateAllPawnsVisibility,
           icon: "fa-chess-pawn",
         },
@@ -63,7 +66,7 @@ const Table = ({
           type="button"
           className="btn btn-warning"
           onClick={() =>
-            window.confirm("Are you sure you wish to remove all the tokens?") &&
+            window.confirm(t("confirmDeleteAll")) &&
             onRemoveAllTokens()
           }
         >
@@ -80,16 +83,16 @@ const Table = ({
           <table className="table table-striped" id="tokens-table">
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Size</th>
-                <th>Quantity</th>
-                <th>Count Start</th>
-                <th>Count</th>
-                <th>Monster Tent</th>
-                <th>Token</th>
-                <th>Paper Pawn</th>
-                <th>Delete</th>
+                <th>{t("thImage")}</th>
+                <th>{t("thName")}</th>
+                <th>{t("thSize")}</th>
+                <th>{t("thQuantity")}</th>
+                <th>{t("thCountStart")}</th>
+                <th>{t("thCount")}</th>
+                <th>{t("thMonsterTent")}</th>
+                <th>{t("thToken")}</th>
+                <th>{t("thPaperPawn")}</th>
+                <th>{t("thDelete")}</th>
               </tr>
               {renderBulkSelection()}
             </thead>
@@ -120,12 +123,10 @@ const Table = ({
               id="print-all"
               onClick={() => window.print()}
             >
-              <i className="fas fa-print"></i>&nbsp;Print
+              <i className="fas fa-print"></i>&nbsp;{t("btnPrint")}
             </button>
             <p>
-              *In order to fit Large and Huge paper minis in an A4 page, I
-              suggest customising the margins when you print the PDF (5mm
-              margins should be enough).
+              {t("printFootnote")}
             </p>
           </div>
         </div>

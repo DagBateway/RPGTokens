@@ -3,10 +3,16 @@ import { createRoot } from 'react-dom/client';
 import App from './App';
 import './main.scss';
 import registerServiceWorker from './registerServiceWorker';
+import { TranslationProvider } from './hooks/useTranslation';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
-root.render(<App />);
+root.render(
+  <TranslationProvider>
+    <App />
+  </TranslationProvider>
+);
 
 registerServiceWorker();
+
 

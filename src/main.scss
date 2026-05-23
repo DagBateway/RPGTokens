@@ -264,7 +264,7 @@ html {
       position: relative;
       margin: 40px auto;
       height: auto;
-      overflow: hidden;
+      overflow: visible;
       padding: 24px;
       text-align: center;
       background: $fantasy-surface-glass !important;
@@ -276,6 +276,25 @@ html {
       #tokens-table {
         width: 100%;
         text-align: center;
+        border-collapse: separate !important;
+
+        thead {
+          tr:first-child th {
+            position: sticky;
+            top: var(--header-height, 57px);
+            z-index: 950;
+            background: #111518 !important;
+            border-bottom: 2px solid rgba(207, 160, 53, 0.3) !important;
+          }
+
+          #bulk-selection th {
+            position: sticky;
+            top: calc(var(--header-height, 57px) + 53px); /* Offset by first row height + 10px spacing */
+            z-index: 940;
+            background: #151b1e !important;
+            border-bottom: 2px solid rgba(207, 160, 53, 0.15) !important;
+          }
+        }
 
         td {
           vertical-align: middle;
@@ -367,7 +386,7 @@ html {
 
           .name {
             border-bottom: 1px solid #b9b9b9;
-            border-top: 1px solid #b9b9b9;
+            border-top: 1px dashed #b9b9b9;
           }
 
           .image {
@@ -704,22 +723,105 @@ html {
     }
 
     // Add Token Parchment Scroll Design (Interaction Zone)
-    #add-token-container {
+    #add-link-container {
+      background: radial-gradient(circle at top, rgba(207, 160, 53, 0.08) 0%, rgba(21, 27, 30, 0.98) 70%) !important;
+      border: 2.5px solid rgba(207, 160, 53, 0.6) !important;
+      border-radius: 12px !important;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 25px rgba(207, 160, 53, 0.25) !important;
       text-align: center;
+      margin: 25px auto;
+      max-width: 960px;
+      padding: 32px 28px !important;
+      backdrop-filter: blur(8px);
+      position: relative;
+      animation: goldPulse 3s infinite ease-in-out;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
-      #add-link-container {
-        background: radial-gradient(circle at top, rgba(207, 160, 53, 0.08) 0%, rgba(21, 27, 30, 0.98) 70%) !important;
-        border: 2.5px solid rgba(207, 160, 53, 0.6) !important;
-        border-radius: 12px !important;
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75), 0 0 25px rgba(207, 160, 53, 0.25) !important;
-        text-align: center;
-        margin: 25px auto;
-        max-width: 460px;
-        padding: 32px 28px !important;
-        backdrop-filter: blur(8px);
-        position: relative;
-        animation: goldPulse 3s infinite ease-in-out;
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        .instructions-pane {
+          border-right: 1px solid rgba(207, 160, 53, 0.15);
+          padding-right: 32px;
+          text-align: left;
+
+          ol {
+            padding-left: 20px;
+            margin-bottom: 15px;
+
+            li {
+              color: #ccd7d9;
+              font-size: 13.5px;
+              margin-bottom: 8px;
+            }
+          }
+
+          p strong {
+            color: $fantasy-gold !important;
+          }
+        }
+
+        .interaction-pane {
+          padding-left: 32px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+
+          .prompt-text {
+            font-family: "Cinzel", serif;
+            font-size: 15px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+          }
+
+          #tokens-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+
+            .url-input {
+              width: auto !important;
+              flex: 1;
+              min-width: 200px;
+              max-width: 320px;
+              margin-bottom: 0 !important;
+            }
+
+            button {
+              flex-shrink: 0;
+            }
+          }
+
+          .or-divider {
+            width: 100%;
+            max-width: 320px;
+          }
+
+          .dropbox-button {
+            margin: 0 auto !important;
+            width: 100%;
+            max-width: 320px;
+          }
+        }
+
+        @media all and (max-width: 768px) {
+          .instructions-pane {
+            border-right: none !important;
+            border-bottom: 1px solid rgba(207, 160, 53, 0.15) !important;
+            padding-right: 0 !important;
+            padding-bottom: 20px !important;
+            margin-bottom: 20px !important;
+          }
+
+          .interaction-pane {
+            padding-left: 0 !important;
+          }
+        }
 
         &:hover {
           transform: translateY(-3px);
@@ -832,7 +934,6 @@ html {
           transform: translateY(-2px);
         }
       }
-    }
 
     #donate-form {
       text-align: center;
@@ -1360,18 +1461,24 @@ select.form-control {
       display: block !important;
     }
 
+    .tent {
+      .side.front .name {
+        border-top: 1.5pt dashed #b9b9b9 !important;
+      }
+    }
+
     .pawn-container {
       .back .pawn {
-        border-bottom: 1.5pt dashed #555555 !important;
+        border-bottom: 1.5pt dashed #b9b9b9 !important;
       }
 
       .back .base {
-        border-bottom: 1.5pt dashed #555555 !important;
+        border-bottom: 1.5pt dashed #b9b9b9 !important;
         z-index: 2 !important;
       }
 
       .front .base {
-        border-top: 1.5pt dashed #555555 !important;
+        border-top: 1.5pt dashed #b9b9b9 !important;
         z-index: 2 !important;
       }
     }
@@ -1537,8 +1644,9 @@ $parchment-text-muted: #635343;
   gap: 16px;
 }
 
-// Inline Theme Toggle Button (Cinzel Medieval Style in header)
-#theme-toggle {
+// Inline Theme Toggle & Language Buttons (Cinzel Medieval Style in header)
+#theme-toggle,
+#language-toggle {
   position: static;
   flex-shrink: 0;
   z-index: auto;
@@ -1584,7 +1692,8 @@ $parchment-text-muted: #635343;
 }
 
 @media all and (max-width: 768px) {
-  #theme-toggle {
+  #theme-toggle,
+  #language-toggle {
     padding: 6px 12px !important;
     font-size: 9.5px;
     letter-spacing: 1px;
@@ -1619,8 +1728,9 @@ html.light-mode body {
     }
   }
 
-  // Inline Theme Toggle Button in Light Mode
-  #theme-toggle {
+  // Inline Buttons in Light Mode
+  #theme-toggle,
+  #language-toggle {
     background: rgba(251, 249, 244, 0.92) !important;
     border-color: rgba(112, 77, 26, 0.4) !important;
     color: $parchment-sepia !important;
@@ -1654,11 +1764,36 @@ html.light-mode body {
     }
   }
 
-  #add-token-container #add-link-container {
+  #add-link-container {
     background: radial-gradient(circle at top, rgba(112, 77, 26, 0.05) 0%, rgba(251, 249, 244, 0.98) 70%) !important;
     border-color: rgba(112, 77, 26, 0.6) !important;
     box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 25px rgba(112, 77, 26, 0.1) !important;
     animation: parchmentPulse 3s infinite ease-in-out !important;
+
+    .instructions-pane {
+      border-right-color: rgba(112, 77, 26, 0.15) !important;
+
+      ol li {
+        color: $parchment-text !important;
+      }
+
+      p strong {
+        color: $parchment-sepia !important;
+      }
+    }
+
+    .interaction-pane {
+      .prompt-text {
+        color: $parchment-text !important;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+      }
+    }
+
+    @media all and (max-width: 768px) {
+      .instructions-pane {
+        border-bottom-color: rgba(112, 77, 26, 0.15) !important;
+      }
+    }
 
     &:hover {
       border-color: $parchment-sepia !important;
@@ -1693,7 +1828,7 @@ html.light-mode body {
     }
   }
 
-  #add-token-container .dropbox-button {
+  #add-link-container .dropbox-button {
     background: linear-gradient(135deg, #fbf9f4 0%, #ebe2d3 100%) !important;
     border-color: rgba(112, 77, 26, 0.4) !important;
     color: $parchment-sepia !important;
@@ -1708,12 +1843,6 @@ html.light-mode body {
 
   // Dashboard Table Card-Rows
   #tokens-table {
-    thead tr:nth-child(1) th {
-      color: $parchment-sepia !important;
-      border-bottom-color: rgba(112, 77, 26, 0.3) !important;
-      text-shadow: none !important;
-    }
-
     tbody tr {
       background: $parchment-surface-glass !important;
       border-color: rgba(112, 77, 26, 0.25) !important;
@@ -1913,13 +2042,21 @@ html.light-mode body {
     box-shadow: 0 10px 30px rgba(112, 77, 26, 0.12) !important;
   }
 
-  // Bulk selection row — needs #tokens-table to beat dark mode's double-ID specificity
-  #tokens-table #bulk-selection {
-    background: rgba(112, 77, 26, 0.06) !important;
-    border-color: rgba(112, 77, 26, 0.15) !important;
+  // High specificity overrides for light mode sticky table headers to completely beat dark mode specificity
+  .content-main #tokens-table {
+    thead {
+      tr:first-child th {
+        color: $parchment-sepia !important;
+        background: #f4ebd8 !important; /* solid warm parchment background */
+        border-bottom: 2px solid rgba(112, 77, 26, 0.3) !important;
+        text-shadow: none !important;
+      }
 
-    th {
-      color: $parchment-text !important;
+      #bulk-selection th {
+        color: $parchment-text !important;
+        background: #ebe2d3 !important; /* warm shadowed parchment background */
+        border-bottom: 2px solid rgba(112, 77, 26, 0.15) !important;
+      }
     }
   }
 

@@ -3,8 +3,10 @@ import { ShapeEnum, SizeEnum } from "../constants/Enums";
 import * as htmlToImage from "html-to-image";
 import download from "downloadjs";
 import { uuidByString, toggleNumber } from "../components/Utils";
+import { useTranslation } from "./useTranslation";
 
 export const useTokens = () => {
+  const { t } = useTranslation();
   const [tokens, setTokens] = useState(() => {
     try {
       const saved = localStorage.getItem("tokens");
@@ -45,14 +47,35 @@ export const useTokens = () => {
   const handleAddToken = useCallback(
     (tokenUrl) => {
       if (tokens.some((token) => token.url === tokenUrl)) {
-        return "This token already exists";
+        return "errorExists";
+      }
+
+      let derivedName = t("defaultTokenName");
+      try {
+        if (tokenUrl && !tokenUrl.startsWith("data:")) {
+          const decodedUrl = decodeURIComponent(tokenUrl);
+          const cleanUrl = decodedUrl.split(/[?#]/)[0];
+          const cleanPath = cleanUrl.replace(/\/+$/, "");
+          const lastSegment = cleanPath.substring(cleanPath.lastIndexOf("/") + 1);
+          
+          if (lastSegment) {
+            const dotIndex = lastSegment.lastIndexOf(".");
+            let nameWithoutExt = dotIndex > 0 ? lastSegment.substring(0, dotIndex) : lastSegment;
+            nameWithoutExt = nameWithoutExt.replace(/[-_]+/g, " ").trim();
+            if (nameWithoutExt) {
+              derivedName = nameWithoutExt.charAt(0).toUpperCase() + nameWithoutExt.slice(1);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error parsing filename from URL:", error);
       }
 
       const newToken = {
         id: Math.random(),
         url: tokenUrl,
         size: SizeEnum.MEDIUM,
-        name: "Creature",
+        name: derivedName,
         count: true,
         startFrom: 1,
         quantity: 1,
@@ -63,7 +86,7 @@ export const useTokens = () => {
       setTokens((prevTokens) => [...prevTokens, newToken]);
       return undefined;
     },
-    [tokens]
+    [tokens, t]
   );
 
   const removeToken = useCallback((token) => {

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import DropboxChooser from "./DropboxChooser";
+import { useTranslation } from "../hooks/useTranslation";
 
 const AddToken = ({ handleAddToken }) => {
+  const { t } = useTranslation();
   const [error, setError] = useState(undefined);
 
   const validateProcess = async (url) => {
@@ -10,7 +12,7 @@ const AddToken = ({ handleAddToken }) => {
       const validationError = handleAddToken(url);
       setError(validationError);
     } catch {
-      setError("Please, enter a valid image URL");
+      setError("errorValidUrl");
     }
   };
 
@@ -37,73 +39,69 @@ const AddToken = ({ handleAddToken }) => {
   };
 
   return (
-    <div className="container-fluid" id="links-instructions">
+    <div id="links-instructions" style={{ margin: "20px 0" }}>
       <div className="row">
-        <div className="col-md-6">
-          <div className="instructions">
-            <p>
-              <strong>How does it work? Paste, customise, print!</strong>
-            </p>
-            <ol>
-              <li>
-                <strong>Paste</strong> an image URL in the scroll and press{" "}
-                <strong>Add Token</strong>
-              </li>
-              <li>
-                ...or <strong>upload</strong> images directly from Dropbox
-              </li>
-              <li>
-                <strong>Customise</strong> your token choosing the shape, size,
-                quantity, paper mini, etc.
-              </li>
-              <li>
-                Press <strong>Print</strong> and save to PDF or send it directly
-                to the printer!
-              </li>
-            </ol>
-            <p>
-              <strong>...You can add as many creatures as you want!</strong>
-            </p>
-          </div>
-        </div>
-
-        <div id="add-token-container" className="col-md-6">
+        <div className="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
           <div id="add-link-container">
             <div className="creator-station-badge">
-              <i className="fas fa-dice-d20"></i> CREATOR STATION
+              <i className="fas fa-dice-d20"></i> {t("creatorStationBadge")}
             </div>
-            <p>Insert a link to a creature image to begin!</p>
-            <form
-              autoComplete="off"
-              id="tokens-form"
-              onSubmit={handleAddTokenSubmit}
-            >
-              <input
-                placeholder="Paste the Image URL"
-                className="url-input"
-                type="text"
-                name="tokenUrl"
-                label="Image URL"
-              />
-              <button className="btn btn-primary btn-lg">Add Token</button>
-            </form>
-            {error && <p className="error">{error}</p>}
             
-            <div className="or-divider">
-              <span>OR</span>
-            </div>
-
-            <DropboxChooser
-              appKey="ki5u4q9h7qgzlkr"
-              success={handleFiles}
-              multiselect={true}
-              extensions={[".jpg", ".jpeg", ".png"]}
-            >
-              <div className="dropbox-button">
-                Upload images from Dropbox&nbsp;
-                <i className="fab fa-dropbox"></i>
+            <div className="row align-items-center">
+              {/* Left Column: Instructions */}
+              <div className="col-md-6 text-left instructions-pane">
+                <p>
+                  <strong>{t("creatorInstructionsTitle")}</strong>
+                </p>
+                <ol>
+                  <li>{t("creatorStep1")}</li>
+                  <li>{t("creatorStep2")}</li>
+                  <li>{t("creatorStep3")}</li>
+                  <li>{t("creatorStep4")}</li>
+                </ol>
+                <p className="instructions-footer">
+                  <strong>{t("creatorInstructionsFooter")}</strong>
+                </p>
               </div>
-            </DropboxChooser>
+
+              {/* Right Column: Interaction Form */}
+              <div className="col-md-6 interaction-pane">
+                <p className="prompt-text">
+                  {t("insertLinkPrompt")}
+                </p>
+                <form
+                  autoComplete="off"
+                  id="tokens-form"
+                  onSubmit={handleAddTokenSubmit}
+                >
+                  <input
+                    placeholder={t("pastePlaceholder")}
+                    className="url-input"
+                    type="text"
+                    name="tokenUrl"
+                    aria-label={t("pastePlaceholder")}
+                  />
+                  <button className="btn btn-primary btn-lg">{t("addTokenBtn")}</button>
+                </form>
+                {error && <p className="error">{t(error)}</p>}
+                
+                <div className="or-divider">
+                  <span>{t("orDivider")}</span>
+                </div>
+
+                <DropboxChooser
+                  appKey="ki5u4q9h7qgzlkr"
+                  success={handleFiles}
+                  multiselect={true}
+                  extensions={[".jpg", ".jpeg", ".png"]}
+                >
+                  <div className="dropbox-button">
+                    {t("uploadDropboxBtn")}&nbsp;
+                    <i className="fab fa-dropbox"></i>
+                  </div>
+                </DropboxChooser>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -112,3 +110,4 @@ const AddToken = ({ handleAddToken }) => {
 };
 
 export { AddToken };
+

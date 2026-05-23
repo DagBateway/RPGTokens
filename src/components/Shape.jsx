@@ -1,7 +1,9 @@
 import React from "react";
 import { ShapeEnum } from "../constants/Enums";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Shape = ({ tokens, shape, onUpdateShape }) => {
+  const { t } = useTranslation();
   if (tokens.length === 0) return null;
 
   const shapes = [
@@ -11,7 +13,7 @@ const Shape = ({ tokens, shape, onUpdateShape }) => {
 
   return (
     <div id="shape-selector" className="show">
-      <span>Select a shape for the tokens:&nbsp;&nbsp;</span>
+      <span>{t("shapeSelectorLabel")}&nbsp;&nbsp;</span>
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
         {shapes.map(({ type, icon }) => (
           <label

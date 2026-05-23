@@ -4,6 +4,7 @@ import {
   SizeEnum,
   ShapeEnum,
 } from "../constants/Enums";
+import { useTranslation } from "../hooks/useTranslation";
 
 const Tokens = memo(({ tokens, shape }) => {
   const [status, setStatus] = useState(DropboxLoadingStatusEnum.LOADING);
@@ -39,26 +40,29 @@ const Tokens = memo(({ tokens, shape }) => {
     ));
   };
 
-  const createTokensTents = (token) => (
-    <div className="tent" key={token.id || token.url}>
-      <div className="side back">
-        <div className="name">
-          <p>{token.name}</p>
+  const createTokensTents = (token) => {
+    const { t } = useTranslation();
+    return (
+      <div className="tent" key={token.id || token.url}>
+        <div className="side back">
+          <div className="name">
+            <p>{token.name}</p>
+          </div>
+          <div className="notes">
+            <p>{t("tentNotes")}</p>
+          </div>
         </div>
-        <div className="notes">
-          <p>Notes:</p>
+        <div className="side front">
+          <div className="name">
+            <p>{token.name}</p>
+          </div>
+          <div className="image">
+            <img alt={token.name} src={token.url} className="creature" />
+          </div>
         </div>
       </div>
-      <div className="side front">
-        <div className="name">
-          <p>{token.name}</p>
-        </div>
-        <div className="image">
-          <img alt={token.name} src={token.url} className="creature" />
-        </div>
-      </div>
-    </div>
-  );
+    );
+  };
 
   const createPawnsList = (token) => {
     const start = parseInt(token.startFrom, 10) || 1;
