@@ -30,6 +30,7 @@ const TableRow = memo(({
   onUpdatePawnVisibility,
   onUpdateTokenCountStart,
   onRemoveToken,
+  onDownloadToken,
 }) => {
   const {
     id,
@@ -50,6 +51,9 @@ const TableRow = memo(({
         <div
           id={uuidByString(url)}
           className={`token medium ${ShapeEnum.properties[shape].name}`}
+          onClick={() => onDownloadToken(token)}
+          style={{ cursor: "pointer" }}
+          title="Click to download PNG token"
         >
           <img alt={name} src={url} />
           {count && <div className="number">#</div>}

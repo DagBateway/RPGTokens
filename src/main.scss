@@ -281,6 +281,32 @@ html {
             justify-content: center;
             align-items: center;
 
+            .token {
+              transition: transform 0.2s ease, box-shadow 0.2s ease;
+              cursor: pointer;
+              
+              &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba(207, 160, 53, 0.5) !important;
+                
+                &::after {
+                  content: "\f019";
+                  font-family: "Font Awesome 5 Free";
+                  font-weight: 900;
+                  position: absolute;
+                  top: 0; left: 0; right: 0; bottom: 0;
+                  background: rgba(0, 0, 0, 0.45);
+                  color: #ffffff;
+                  font-size: 20px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+                  border-radius: inherit;
+                }
+              }
+            }
+
             &.greyscale {
               -webkit-filter: grayscale(100%);
               filter: grayscale(100%);
@@ -819,11 +845,20 @@ html {
     // Modernised Tactile Shape Selector
     #shape-selector {
       text-align: center;
-      margin: 30px;
+      margin: 30px auto;
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      gap: 12px;
+      gap: 30px;
+      max-width: 900px;
+
+      .shape-selector-group,
+      .transparent-toggle-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
 
       span {
         font-family: "Cinzel", serif;
@@ -853,6 +888,10 @@ html {
             background: $fantasy-crimson !important;
             color: $fantasy-text !important;
             box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.5);
+
+            &.btn-success {
+              background: #2b7a4b !important;
+            }
           }
 
           &:hover:not(.active) {
@@ -1320,6 +1359,20 @@ html {
     .tent p,
     .pawn-container p {
       display: block !important;
+    }
+
+    .pawn-container {
+      .back .pawn {
+        border-bottom: 1.5pt dashed #555555 !important;
+      }
+      .back .base {
+        border-bottom: 1.5pt dashed #555555 !important;
+        z-index: 2 !important;
+      }
+      .front .base {
+        border-top: 1.5pt dashed #555555 !important;
+        z-index: 2 !important;
+      }
     }
   }
 }

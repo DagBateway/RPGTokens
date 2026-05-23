@@ -23,14 +23,24 @@ export const useTokens = () => {
     }
   });
 
+  const [transparentDownload, setTransparentDownload] = useState(() => {
+    try {
+      const saved = localStorage.getItem("transparentDownload");
+      return saved ? JSON.parse(saved) : true;
+    } catch {
+      return true;
+    }
+  });
+
   useEffect(() => {
     try {
       localStorage.setItem("tokens", JSON.stringify(tokens));
       localStorage.setItem("shape", JSON.stringify(shape));
+      localStorage.setItem("transparentDownload", JSON.stringify(transparentDownload));
     } catch (error) {
       console.error("Error saving state to localStorage:", error);
     }
-  }, [tokens, shape]);
+  }, [tokens, shape, transparentDownload]);
 
   const updateTokenProperty = useCallback((token, key, value) => {
     setTokens((prevTokens) =>
@@ -79,7 +89,16 @@ export const useTokens = () => {
       const tokenElement = document.getElementById(uuidByString(token.url));
       toggleNumber(tokenElement, "hidden");
 
-      const dataUrl = await htmlToImage.toPng(tokenElement);
+      const options = transparentDownload ? {
+        backgroundColor: "transparent",
+        style: {
+          background: "transparent",
+          backgroundColor: "transparent",
+          boxShadow: "none",
+        }
+      } : {};
+
+      const dataUrl = await htmlToImage.toPng(tokenElement, options);
       download(dataUrl, `${token.name}.png`);
     } catch (error) {
       console.error("Error downloading token:", error);
@@ -87,12 +106,14 @@ export const useTokens = () => {
       const tokenElement = document.getElementById(uuidByString(token.url));
       toggleNumber(tokenElement, "visible");
     }
-  }, []);
+  }, [transparentDownload]);
 
   return {
     tokens,
     shape,
     setShape,
+    transparentDownload,
+    setTransparentDownload,
     handleAddToken,
     removeToken,
     removeAllTokens,
