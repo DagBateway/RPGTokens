@@ -55,7 +55,7 @@ const TableRow = memo(({
           style={{ cursor: "pointer" }}
           title="Click to download PNG token"
         >
-          <img alt={name} src={url} />
+          <img alt={name} src={url} crossOrigin="anonymous" />
           {count && <div className="number">#</div>}
         </div>
       </td>
