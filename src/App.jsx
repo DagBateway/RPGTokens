@@ -12,8 +12,6 @@ const App = () => {
     tokens,
     shape,
     setShape,
-    transparentDownload,
-    setTransparentDownload,
     handleAddToken,
     removeToken,
     removeAllTokens,
@@ -46,13 +44,7 @@ const App = () => {
   return (
     <div>
       <AddToken handleAddToken={handleAddToken} />
-      <Shape
-        shape={shape}
-        tokens={tokens}
-        onUpdateShape={setShape}
-        transparentDownload={transparentDownload}
-        onUpdateTransparentDownload={setTransparentDownload}
-      />
+      <Shape shape={shape} tokens={tokens} onUpdateShape={setShape} />
       <Table
         shape={shape}
         tokens={tokens}
