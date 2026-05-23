@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { ShapeEnum, SizeEnum } from "../constants/Enums";
 import { uuidByString } from "./Utils";
 
@@ -18,7 +18,7 @@ const ToggleButtonGroup = ({ label, icon, value, onUpdate }) => (
   </td>
 );
 
-const TableRow = ({
+const TableRow = memo(({
   token,
   shape,
   onUpdateTokenName,
@@ -143,6 +143,6 @@ const TableRow = ({
       </td>
     </tr>
   );
-};
+});
 
 export { TableRow };

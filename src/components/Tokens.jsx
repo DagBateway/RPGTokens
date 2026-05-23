@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import {
   DropboxLoadingStatusEnum,
   SizeEnum,
   ShapeEnum,
 } from "../constants/Enums";
 
-const Tokens = ({ tokens, shape }) => {
+const Tokens = memo(({ tokens, shape }) => {
   const [status, setStatus] = useState(DropboxLoadingStatusEnum.LOADING);
 
   useEffect(() => {
     // Simulate loading completion
-    setStatus(DropboxLoadingStatusEnum.LOADED);
+    setStatus(DropboxLoadingStatusEnum.COMPLETED);
   }, []);
 
   const renderTokens = (tokens, shape, showKey, renderFn) => {
@@ -106,6 +106,6 @@ const Tokens = ({ tokens, shape }) => {
       </div>
     </div>
   );
-};
+});
 
 export { Tokens };

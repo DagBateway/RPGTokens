@@ -498,8 +498,8 @@ html {
 
           .base {
             &:after {
-              top: $gargantuan-height/3;
-              height: $gargantuan-height/3;
+              top: calc($gargantuan-height / 3);
+              height: calc($gargantuan-height / 3);
               border-bottom: $cut-border !important;
             }
           }
@@ -512,8 +512,8 @@ html {
 
           .base {
             &:after {
-              top: $gargantuan-height/3;
-              height: $gargantuan-height/3;
+              top: calc($gargantuan-height / 3);
+              height: calc($gargantuan-height / 3);
               border-bottom: $cut-border !important;
             }
           }

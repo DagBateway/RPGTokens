@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DropboxChooser from "react-dropbox-chooser";
+import DropboxChooser from "./DropboxChooser";
 
 const AddToken = ({ handleAddToken }) => {
   const [error, setError] = useState(undefined);

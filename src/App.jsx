@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
-import { ShapeEnum, SizeEnum } from "./constants/Enums";
+import React, { useEffect } from "react";
 import { AddToken } from "./components/AddToken";
 import { Table } from "./components/Table";
 import { Shape } from "./components/Shape";
 import { Tokens } from "./components/Tokens";
-import * as htmlToImage from "html-to-image";
-import download from "downloadjs";
-import { uuidByString, toggleNumber } from "./components/Utils";
+import { useTokens } from "./hooks/useTokens";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
 const App = () => {
-  const [tokens, setTokens] = useState([]);
-  const [shape, setShape] = useState(ShapeEnum.SQUARE);
+  const {
+    tokens,
+    shape,
+    setShape,
+    handleAddToken,
+    removeToken,
+    removeAllTokens,
+    updateTokenProperty,
+    updateAllTokensProperty,
+    downloadToken,
+  } = useTokens();
 
-  // Firebase and Local Storage Initialisation
+  // Firebase Initialisation
   useEffect(() => {
     try {
       const firebaseConfig = {
@@ -30,71 +36,10 @@ const App = () => {
 
       const app = initializeApp(firebaseConfig);
       getAnalytics(app);
-
-      const savedTokens = JSON.parse(localStorage.getItem("tokens"));
-      const savedShape = JSON.parse(localStorage.getItem("shape"));
-      if (savedTokens) setTokens(savedTokens);
-      if (savedShape) setShape(savedShape);
-    } catch {
-      // Handle any initialisation errors silently
+    } catch (error) {
+      console.warn("Firebase initialization failed silently:", error);
     }
   }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tokens", JSON.stringify(tokens));
-    localStorage.setItem("shape", JSON.stringify(shape));
-  }, [tokens, shape]);
-
-  // Utility Functions
-  const updateTokenProperty = (token, key, value) => {
-    setTokens((prevTokens) =>
-      prevTokens.map((t) => (t === token ? { ...t, [key]: value } : t))
-    );
-  };
-
-  const updateAllTokensProperty = (key, value) => {
-    setTokens((prevTokens) => prevTokens.map((t) => ({ ...t, [key]: value })));
-  };
-
-  // Handlers
-  const handleAddToken = (tokenUrl) => {
-    if (tokens.some((token) => token.url === tokenUrl)) {
-      return "This token already exists";
-    }
-
-    const newToken = {
-      id: Math.random(),
-      url: tokenUrl,
-      size: SizeEnum.MEDIUM,
-      name: "Creature",
-      count: true,
-      startFrom: 1,
-      quantity: 1,
-      showTent: true,
-      showToken: true,
-      showPawn: true,
-    };
-    setTokens((prevTokens) => [...prevTokens, newToken]);
-  };
-
-  const removeToken = (token) => {
-    setTokens((prevTokens) => prevTokens.filter((t) => t !== token));
-  };
-
-  const downloadToken = async (token) => {
-    try {
-      const tokenElement = document.getElementById(uuidByString(token.url));
-      toggleNumber(tokenElement, "hidden");
-
-      const dataUrl = await htmlToImage.toPng(tokenElement);
-      download(dataUrl, `${token.name}.png`);
-    } catch (error) {
-      console.error("Error downloading token:", error);
-    } finally {
-      const tokenElement = document.getElementById(uuidByString(token.url));
-      toggleNumber(tokenElement, "visible");
-    }
-  };
 
   return (
     <div>
@@ -104,7 +49,7 @@ const App = () => {
         shape={shape}
         tokens={tokens}
         onRemoveToken={removeToken}
-        onRemoveAllTokens={() => setTokens([])}
+        onRemoveAllTokens={removeAllTokens}
         onUpdateAllPawnsVisibility={(value) =>
           updateAllTokensProperty("showPawn", value)
         }
