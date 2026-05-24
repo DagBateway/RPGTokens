@@ -1450,7 +1450,8 @@ select.form-control {
     .intro-section,
     .how-to-use-section,
     .crafting-tips-section,
-    .crafting-links-row {
+    .crafting-links-row,
+    .changelog-section {
       display: none !important;
     }
 
@@ -1479,6 +1480,10 @@ select.form-control {
         border-top: 1.5pt dashed #b9b9b9 !important;
         z-index: 2 !important;
       }
+    }
+
+    .token {
+      box-shadow: none !important;
     }
   }
 }
