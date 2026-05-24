@@ -120,11 +120,13 @@ export const useTokens = () => {
         },
         pixelRatio: 3,
         cacheBust: true,
+        fontEmbedCSS: "", // Stops html-to-image from parsing cross-origin stylesheets (like Google Fonts) which throws SecurityErrors
       });
 
       download(dataUrl, `${token.name || "creature"}.png`);
     } catch (error) {
       console.error("Error downloading token:", error);
+      alert(t("errorDownloadCors"));
     } finally {
       const tokenElement = document.getElementById(uuidByString(token.url));
       if (tokenElement) {

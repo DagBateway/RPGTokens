@@ -10,7 +10,7 @@ export const TRANSLATIONS = {
     themeGothicDark: "GOTHIC DARK",
 
     // Intro Section
-    introLead: "Paper Token Generator is a free, premium tabletop RPG companion and DnD token maker designed to let you instantly create, customize, and print custom paper tokens. Generate custom creature sheets, monster initiative tents, and fold-and-cut paper standee pawns for Dungeons & Dragons (D&D), Pathfinder, Fate, Savage Worlds, or any d20 tabletop game.",
+    introLead: "Paper Token Generator is a free, premium tabletop RPG companion and DnD token maker designed to let you instantly create, customize, and print custom paper tokens. Generate custom creature sheets, monster initiative tents, and fold-and-cut paper standee minis for Dungeons & Dragons (D&D), Pathfinder, Fate, Savage Worlds, or any d20 tabletop game.",
     introSub: "Ditch expensive plastic minis! Simply paste any creature portrait URL or upload your files directly from Dropbox, customize your sheet parameters, and print immediately. Our generator automatically fits your designs on an A4 page, saving paper and ink while keeping your d20 battle maps beautiful.",
 
     // Step-by-Step
@@ -49,6 +49,7 @@ export const TRANSLATIONS = {
     uploadDropboxBtn: "Upload images from Dropbox",
     errorValidUrl: "Please, enter a valid image URL",
     errorExists: "This token already exists",
+    errorDownloadCors: "We couldn't download this token directly because the website hosting the image is blocking access. To fix this easily, simply save the image to your device first, then upload it directly using the Dropbox button or drag-and-drop, or try a different image link!",
     defaultTokenName: "Creature",
 
     // Shape Selector
@@ -63,15 +64,28 @@ export const TRANSLATIONS = {
     thCount: "Count",
     thMonsterTent: "Monster Tent",
     thToken: "Token",
-    thPaperPawn: "Paper Pawn",
+    thPaperMini: "Paper Mini",
     thDelete: "Delete",
     thDownload: "Download",
+
+    // Header Tooltips
+    tooltipImage: "Preview of the token's appearance. You can scroll to zoom and drag to pan the image within the border.",
+    tooltipName: "Name of the creature. This will be printed on the initiative tents and fold-and-cut paper miniature bases.",
+    tooltipSize: "Tabletop scale category for the creature's token and paper mini (ranging from Tiny up to Gargantuan).",
+    tooltipQuantity: "Specify how many copies of the tokens and paper minis will be generated on your printed sheet.",
+    tooltipCountStart: "The starting number for sequential numbering on your printed tokens and paper miniatures.",
+    tooltipCount: "Enable or disable sequential number indicators (#1, #2, etc.) at the bottom of your printed tokens.",
+    tooltipMonsterTent: "Choose whether to generate foldable initiative tents to stand on top of your DM screen.",
+    tooltipToken: "Choose whether to print standard round or square tabletop creature tokens for battle maps.",
+    tooltipPaperMini: "Choose whether to print vertical fold-and-cut paper miniatures/standees.",
+    tooltipDownload: "Download this custom token as a high-resolution transparent PNG optimized for Roll20, Foundry, and other VTTs.",
+    tooltipDelete: "Permanently remove this creature token from your current sheet selection.",
 
     // Bulk Selection & Confirmations
     bulkSelection: "Bulk Selection",
     bulkTents: "Tents",
     bulkTokens: "Tokens",
-    bulkPawns: "Pawns",
+    bulkMinis: "Minis",
     confirmDeleteAll: "Are you sure you wish to remove all the tokens?",
     confirmDeleteToken: "Are you sure you wish to remove {name}?",
 
@@ -113,7 +127,7 @@ export const TRANSLATIONS = {
   it: {
     // SEO & Document Metadata
     docTitle: "Generatore di Token Cartacei & DnD Token Maker | Stampa Fogli RPG",
-    docDescription: "Generatore di token cartacei e dnd token maker gratuito. Crea token RPG personalizzati e pedine. Stampa fogli di token da tavolo per D&D e Pathfinder!",
+    docDescription: "Generatore di token cartacei e dnd token maker gratuito. Crea token RPG personalizzati e miniature. Stampa fogli di token da tavolo per D&D e Pathfinder!",
 
     // Header & Theme
     headerTitle: "Generatore di Token Cartacei",
@@ -121,7 +135,7 @@ export const TRANSLATIONS = {
     themeGothicDark: "BUIO GOTICO",
 
     // Intro Section
-    introLead: "Il Generatore di Token Cartacei è uno strumento gratuito e premium progettato per DM e giocatori come un dnd token maker all'avanguardia. Stampa fogli di token personalizzati, tendine di iniziativa e pedine cartacee pieghevoli per Dungeons & Dragons (D&D), Pathfinder o qualsiasi altro GDR tavolo d20.",
+    introLead: "Il Generatore di Token Cartacei è uno strumento gratuito e premium progettato per DM e giocatori come un dnd token maker all'avanguardia. Stampa fogli di token personalizzati, tendine di iniziativa e miniature cartacee pieghevoli (standee) per Dungeons & Dragons (D&D), Pathfinder o qualsiasi altro GDR tavolo d20.",
     introSub: "Dì addio alle costose miniature di plastica! Ti basta incollare l'URL del ritratto di una creatura o caricare i tuoi file direttamente da Dropbox, personalizzare i parametri e stampare immediatamente. Il nostro generatore impagina automaticamente i tuoi progetti su un foglio A4, risparmiando carta e inchiostro e mantenendo splendide le tue mappe d20.",
 
     // Step-by-Step
@@ -160,6 +174,7 @@ export const TRANSLATIONS = {
     uploadDropboxBtn: "Carica immagini da Dropbox",
     errorValidUrl: "Inserisci un URL di immagine valido, per favore",
     errorExists: "Questo token esiste già",
+    errorDownloadCors: "Non è stato possibile scaricare direttamente questo token perché il sito che ospita l'immagine blocca l'accesso esterno. Per risolvere facilmente, salva l'immagine sul tuo dispositivo e caricala premendo il pulsante Dropbox o trascinandola nel modulo, oppure prova a usare il link di un'altra immagine!",
     defaultTokenName: "Creatura",
 
     // Shape Selector
@@ -174,15 +189,28 @@ export const TRANSLATIONS = {
     thCount: "Conteggio",
     thMonsterTent: "Tendina Mostro",
     thToken: "Token",
-    thPaperPawn: "Pedina di Carta",
+    thPaperMini: "Mini di Carta",
     thDelete: "Elimina",
     thDownload: "Scarica",
+
+    // Header Tooltips
+    tooltipImage: "Anteprima dell'aspetto del token. Puoi usare la rotellina per lo zoom e trascinare per posizionare l'immagine.",
+    tooltipName: "Nome della creatura. Verrà stampato sulle tendine d'iniziativa e sulla base delle miniature di carta.",
+    tooltipSize: "Categoria di dimensione in pollici da tavolo per il token e la miniatura di carta (da Minuscolo a Gargantuesco).",
+    tooltipQuantity: "Specifica quante copie del token e della miniatura di carta generare sul foglio da stampare.",
+    tooltipCountStart: "Il numero di partenza da utilizzare per la numerazione progressiva dei token e delle miniature.",
+    tooltipCount: "Attiva o disattiva il numero identificativo sequenziale (#1, #2, ecc.) sul bordo inferiore dei token stampati.",
+    tooltipMonsterTent: "Seleziona se generare le tendine pieghevoli per tenere traccia dell'iniziativa sullo schermo del DM.",
+    tooltipToken: "Seleziona se stampare i token di forma rotonda o quadrata standard per le mappe da battaglia.",
+    tooltipPaperMini: "Seleziona se stampare le miniature verticali di carta pieghevoli (standee).",
+    tooltipDownload: "Scarica questo token personalizzato come PNG trasparente ad alta risoluzione ottimizzato per Roll20, Foundry e altri VTT.",
+    tooltipDelete: "Rimuovi permanentemente questa creatura dal foglio di lavoro corrente.",
 
     // Bulk Selection & Confirmations
     bulkSelection: "Selezione Multipla",
     bulkTents: "Tendina",
     bulkTokens: "Token",
-    bulkPawns: "Pedine",
+    bulkMinis: "Mini",
     confirmDeleteAll: "Sei sicuro di voler rimuovere tutti i token?",
     confirmDeleteToken: "Sei sicuro di voler rimuovere {name}?",
 

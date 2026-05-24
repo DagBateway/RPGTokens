@@ -8,7 +8,7 @@ const Table = ({
   onUpdateAllTokensCountVisibility,
   onUpdateAllTokenTentsVisibility,
   onUpdateAllTokensVisibility,
-  onUpdateAllPawnsVisibility,
+  onUpdateAllMinisVisibility,
   onRemoveAllTokens,
   onUpdateTokenName,
   onUpdateTokenSize,
@@ -44,8 +44,8 @@ const Table = ({
           icon: "fa-user-circle",
         },
         {
-          label: t("bulkPawns"),
-          onUpdate: onUpdateAllPawnsVisibility,
+          label: t("bulkMinis"),
+          onUpdate: onUpdateAllMinisVisibility,
           icon: "fa-chess-pawn",
         },
       ].map(({ label, onUpdate, icon }) => (
@@ -85,17 +85,83 @@ const Table = ({
           <table className="table table-striped" id="tokens-table">
             <thead>
               <tr>
-                <th>{t("thImage")}</th>
-                <th>{t("thName")}</th>
-                <th>{t("thSize")}</th>
-                <th>{t("thQuantity")}</th>
-                <th>{t("thCountStart")}</th>
-                <th>{t("thCount")}</th>
-                <th>{t("thMonsterTent")}</th>
-                <th>{t("thToken")}</th>
-                <th>{t("thPaperPawn")}</th>
-                <th>{t("thDownload")}</th>
-                <th>{t("thDelete")}</th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thImage")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipImage")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thName")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipName")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thSize")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipSize")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thQuantity")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipQuantity")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thCountStart")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipCountStart")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thCount")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipCount")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thMonsterTent")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipMonsterTent")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thToken")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipToken")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thPaperMini")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipPaperMini")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thDownload")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipDownload")}</span>
+                </th>
+                <th className="tooltip-trigger">
+                  <div className="tooltip-wrapper">
+                    <span>{t("thDelete")}</span>
+                    <i className="far fa-question-circle tooltip-icon"></i>
+                  </div>
+                  <span className="tooltip-bubble">{t("tooltipDelete")}</span>
+                </th>
               </tr>
               {renderBulkSelection()}
             </thead>

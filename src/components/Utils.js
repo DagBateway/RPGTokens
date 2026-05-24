@@ -41,3 +41,17 @@ export const toggleNumber = (node, visibility) => {
     item.style.visibility = visibility;
   });
 };
+
+/**
+ * Wraps external URLs in a CORS-enabling image proxy (images.weserv.nl).
+ * This ensures external images bypass CORS restrictions, preventing canvas tainting during download.
+ * @param {string} url - Input URL.
+ * @returns {string} - Proxied URL or original if local/data URL.
+ */
+export const getCorsProxiedUrl = (url) => {
+  if (!url) return "";
+  if (url.startsWith("data:") || url.startsWith("blob:")) return url;
+  if (url.startsWith("/") || url.startsWith("http://localhost") || url.startsWith("https://localhost") || url.startsWith("127.0.0.1")) return url;
+  
+  return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
+};

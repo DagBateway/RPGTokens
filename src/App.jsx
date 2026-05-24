@@ -228,7 +228,7 @@ const App = () => {
           onRemoveToken={removeToken}
           onRemoveAllTokens={removeAllTokens}
           onUpdateTokenProperty={updateTokenProperty}
-          onUpdateAllPawnsVisibility={(value) =>
+          onUpdateAllMinisVisibility={(value) =>
             updateAllTokensProperty("showPawn", value)
           }
           onUpdateAllTokensVisibility={(value) =>
@@ -315,7 +315,7 @@ const App = () => {
               </div>
               <div className="changelog-entry">
                 <span className="changelog-date">09.08.2019</span>
-                <p>Fixed paper pawns layout issue when printing. (Thanks Eli White for your help!) Also updated the paper pawns sizes.</p>
+                <p>Fixed paper minis layout issue when printing. (Thanks Eli White for your help!) Also updated the paper minis sizes.</p>
               </div>
               <div className="changelog-entry">
                 <span className="changelog-date">25.01.2019</span>
@@ -323,11 +323,11 @@ const App = () => {
               </div>
               <div className="changelog-entry">
                 <span className="changelog-date">20.01.2019</span>
-                <p>Added bulk selection/deletion on desktop and also improved pawns layout when printing.</p>
+                <p>Added bulk selection/deletion on desktop and also improved paper minis layout when printing.</p>
               </div>
               <div className="changelog-entry">
                 <span className="changelog-date">18.08.2018</span>
-                <p>Added paper pawns! They're WIP and for now available from Tiny to Huge.</p>
+                <p>Added paper minis! They're WIP and for now available from Tiny to Huge.</p>
               </div>
               <div className="changelog-entry">
                 <span className="changelog-date">17.08.2018</span>

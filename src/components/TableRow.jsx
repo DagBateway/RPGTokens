@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, memo } from "react";
 import { ShapeEnum, SizeEnum } from "../constants/Enums";
-import { uuidByString } from "./Utils";
+import { uuidByString, getCorsProxiedUrl } from "./Utils";
 import { useTranslation } from "../hooks/useTranslation";
 
 const ToggleButtonGroup = ({ label, icon, value, onUpdate }) => (
@@ -182,7 +182,7 @@ const TableRow = memo(({
           >
             <img 
               alt={name} 
-              src={url} 
+              src={getCorsProxiedUrl(url)} 
               style={{
                 transform: `translate(${token.offsetX ?? 0}%, ${token.offsetY ?? 0}%) scale(${(token.zoom ?? 100) / 100})`,
                 transformOrigin: "center center",
@@ -273,7 +273,7 @@ const TableRow = memo(({
           onUpdate={(value) => onUpdateTokenVisibility(token, value)}
         />
         <ToggleButtonGroup
-          label={t("thPaperPawn")}
+          label={t("thPaperMini")}
           icon="fa-chess-pawn"
           value={showPawn}
           onUpdate={(value) => onUpdatePawnVisibility(token, value)}

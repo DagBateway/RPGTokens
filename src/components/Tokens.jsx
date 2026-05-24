@@ -5,6 +5,7 @@ import {
   ShapeEnum,
 } from "../constants/Enums";
 import { useTranslation } from "../hooks/useTranslation";
+import { getCorsProxiedUrl } from "./Utils";
 
 const Tokens = memo(({ tokens, shape }) => {
   const [status, setStatus] = useState(DropboxLoadingStatusEnum.LOADING);
@@ -36,7 +37,7 @@ const Tokens = memo(({ tokens, shape }) => {
       >
         <img 
           alt={token.name} 
-          src={token.url} 
+          src={getCorsProxiedUrl(token.url)} 
           style={{
             transform: `translate(${token.offsetX ?? 0}%, ${token.offsetY ?? 0}%) scale(${(token.zoom ?? 100) / 100})`,
             transformOrigin: "center center"
@@ -64,14 +65,14 @@ const Tokens = memo(({ tokens, shape }) => {
             <p>{token.name}</p>
           </div>
           <div className="image">
-            <img alt={token.name} src={token.url} className="creature" />
+            <img alt={token.name} src={getCorsProxiedUrl(token.url)} className="creature" />
           </div>
         </div>
       </div>
     );
   };
 
-  const createPawnsList = (token) => {
+  const createMinisList = (token) => {
     const start = parseInt(token.startFrom, 10) || 1;
     const end = start + parseInt(token.quantity, 10) || 1;
     return Array.from({ length: end - start }, (_, i) => (
@@ -84,7 +85,7 @@ const Tokens = memo(({ tokens, shape }) => {
           <div className="pawn-wrapper">
             {token.count && <div className="number">{start + i}</div>}
             <div className="pawn">
-              <img alt={token.name} src={token.url} className="creature" />
+              <img alt={token.name} src={getCorsProxiedUrl(token.url)} className="creature" />
             </div>
           </div>
         </div>
@@ -92,7 +93,7 @@ const Tokens = memo(({ tokens, shape }) => {
           <div className="pawn-wrapper">
             {token.count && <div className="number">{start + i}</div>}
             <div className="pawn">
-              <img alt={token.name} src={token.url} className="creature" />
+              <img alt={token.name} src={getCorsProxiedUrl(token.url)} className="creature" />
             </div>
           </div>
           <div className="base">
@@ -113,7 +114,7 @@ const Tokens = memo(({ tokens, shape }) => {
         {renderTokens(tokens, shape, "showTent", (token) => [
           createTokensTents(token),
         ])}
-        {renderTokens(tokens, shape, "showPawn", createPawnsList)}
+        {renderTokens(tokens, shape, "showPawn", createMinisList)}
       </div>
     </div>
   );
