@@ -329,22 +329,7 @@ html {
     }
 
     #table-actions-container {
-      margin: 24px auto 12px auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-
-      #print-all {
-        box-shadow: 0 4px 15px rgba(166, 43, 43, 0.4);
-      }
-
-      p {
-        margin: 0;
-        color: $fantasy-text-muted;
-        font-size: 13px;
-        text-align: left;
-      }
+      display: none; // replaced by sticky bar
     }
 
     // Printable structures (keep measurements mathematically exact)
@@ -386,7 +371,7 @@ html {
 
           .name {
             border-bottom: 1px solid #b9b9b9;
-            border-top: 1px dashed #b9b9b9;
+            border-top: $fold-border;
           }
 
           .image {
@@ -1451,7 +1436,8 @@ select.form-control {
     .how-to-use-section,
     .crafting-tips-section,
     .crafting-links-row,
-    .changelog-section {
+    .changelog-section,
+    #sticky-action-bar {
       display: none !important;
     }
 
@@ -1462,22 +1448,22 @@ select.form-control {
 
     .tent {
       .side.front .name {
-        border-top: 1.5pt dashed #b9b9b9 !important;
+        border-top: 1pt dashed #e4e4e4 !important;
       }
     }
 
     .pawn-container {
       .back .pawn {
-        border-bottom: 1.5pt dashed #b9b9b9 !important;
+        border-bottom: 1pt dashed #b9b9b9 !important;
       }
 
       .back .base {
-        border-bottom: 1.5pt dashed #b9b9b9 !important;
+        border-bottom: 1pt dashed #b9b9b9 !important;
         z-index: 2 !important;
       }
 
       .front .base {
-        border-top: 1.5pt dashed #b9b9b9 !important;
+        border-top: 1pt dashed #b9b9b9 !important;
         z-index: 2 !important;
       }
     }
@@ -2230,4 +2216,142 @@ html.light-mode body {
       line-height: 1.5;
     }
   }
-}
+}
+
+// ──────────────────────────────────────────────
+// Sticky Action Bar (print + shape, always visible)
+// ──────────────────────────────────────────────
+#sticky-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  background: rgba(11, 14, 16, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(207, 160, 53, 0.35);
+  box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.6);
+  animation: slideUpBar 0.3s ease both;
+
+  #sticky-action-bar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  #sticky-shape-selector {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    .sticky-label {
+      font-family: "Cinzel", serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: $fantasy-text-muted;
+      white-space: nowrap;
+    }
+
+    .btn-group {
+      .btn {
+        padding: 6px 14px;
+        font-size: 14px;
+        border-color: rgba(207, 160, 53, 0.3);
+        background: rgba(207, 160, 53, 0.06);
+        color: $fantasy-text-muted;
+        transition: all 0.2s ease;
+
+        &.active,
+        &:hover {
+          background: rgba(207, 160, 53, 0.2) !important;
+          border-color: $fantasy-gold !important;
+          color: $fantasy-gold !important;
+          box-shadow: 0 0 10px rgba(207, 160, 53, 0.25) !important;
+        }
+      }
+    }
+  }
+
+  #print-all {
+    padding: 10px 28px;
+    font-family: "Cinzel", serif;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background: $fantasy-crimson !important;
+    border-color: $fantasy-crimson !important;
+    box-shadow: 0 4px 18px rgba(166, 43, 43, 0.5);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    white-space: nowrap;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px rgba(166, 43, 43, 0.7) !important;
+      background: $fantasy-crimson-hover !important;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    i {
+      margin-right: 6px;
+    }
+  }
+}
+
+// Compensate for sticky bar height so footer isn't hidden
+body:has(#sticky-action-bar) {
+  padding-bottom: 64px;
+}
+
+@keyframes slideUpBar {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media print {
+  #sticky-action-bar {
+    display: none !important;
+  }
+}
+
+// Light mode overrides for sticky bar
+.light-mode #sticky-action-bar {
+  background: rgba(240, 232, 210, 0.97);
+  border-top: 1px solid rgba(112, 77, 26, 0.4);
+  box-shadow: 0 -4px 20px rgba(112, 77, 26, 0.15);
+
+  #sticky-shape-selector {
+    .sticky-label {
+      color: #5a4020;
+    }
+
+    .btn-group .btn {
+      border-color: rgba(112, 77, 26, 0.3);
+      background: rgba(112, 77, 26, 0.06);
+      color: #7a5530;
+
+      &.active,
+      &:hover {
+        background: rgba(112, 77, 26, 0.18) !important;
+        border-color: #8B6914 !important;
+        color: #5a3a10 !important;
+      }
+    }
+  }
+}
+

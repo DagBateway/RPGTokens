@@ -118,19 +118,7 @@ const Table = ({
               ))}
             </tbody>
           </table>
-          <div id="table-actions-container">
-            <button
-              type="button"
-              className="btn btn-primary btn-lg"
-              id="print-all"
-              onClick={() => window.print()}
-            >
-              <i className="fas fa-print"></i>&nbsp;{t("btnPrint")}
-            </button>
-            <p>
-              {t("printFootnote")}
-            </p>
-          </div>
+
         </div>
       )}
     </>

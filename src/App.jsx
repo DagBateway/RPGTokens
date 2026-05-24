@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { AddToken } from "./components/AddToken";
 import { Table } from "./components/Table";
-import { Shape } from "./components/Shape";
 import { Tokens } from "./components/Tokens";
 import { useTokens } from "./hooks/useTokens";
 import { initializeApp } from "firebase/app";
@@ -222,9 +221,6 @@ const App = () => {
         {/* Creator Station Component */}
         <AddToken handleAddToken={handleAddToken} />
         
-        {/* Global Shape Selector */}
-        <Shape shape={shape} tokens={tokens} onUpdateShape={setShape} />
-        
         {/* Interactive Creature Database Grid */}
         <Table
           shape={shape}
@@ -371,6 +367,42 @@ const App = () => {
           <span className="text-muted">{t("footerCopyright")}</span>
         </div>
       </footer>
+
+      {/* Sticky Action Bar — only shown when there are tokens */}
+      {tokens.length > 0 && (
+        <div id="sticky-action-bar">
+          <div id="sticky-action-bar-inner">
+            <div id="sticky-shape-selector">
+              <span className="sticky-label">
+                <i className="fas fa-shapes"></i>&nbsp;&nbsp;{t("shapeSelectorLabel")}
+              </span>
+              <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                {[
+                  { type: 0, icon: "fa-square", label: "Square" },
+                  { type: 1, icon: "fa-circle", label: "Round" },
+                ].map(({ type, icon, label }) => (
+                  <label
+                    key={type}
+                    className={`btn btn-primary ${shape === type ? "active" : ""}`}
+                    aria-label={`Select ${label} shape`}
+                  >
+                    <input type="radio" name="sticky-shape" onClick={() => setShape(type)} />
+                    <i className={`far ${icon}`} />
+                  </label>
+                ))}
+              </div>
+            </div>
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              id="print-all"
+              onClick={() => window.print()}
+            >
+              <i className="fas fa-print"></i>&nbsp;{t("btnPrint")}
+            </button>
+          </div>
+        </div>
+      )}
     </>
   );
 };
