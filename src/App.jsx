@@ -228,6 +228,7 @@ const App = () => {
           tokens={tokens}
           onRemoveToken={removeToken}
           onRemoveAllTokens={removeAllTokens}
+          onUpdateTokenProperty={updateTokenProperty}
           onUpdateAllPawnsVisibility={(value) =>
             updateAllTokensProperty("showPawn", value)
           }

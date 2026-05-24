@@ -34,9 +34,17 @@ export const useTokens = () => {
     }
   }, [tokens, shape]);
 
-  const updateTokenProperty = useCallback((token, key, value) => {
+  const updateTokenProperty = useCallback((token, keyOrObj, value) => {
     setTokens((prevTokens) =>
-      prevTokens.map((t) => (t === token ? { ...t, [key]: value } : t))
+      prevTokens.map((t) => {
+        if (t.id === token.id) {
+          if (typeof keyOrObj === "object" && keyOrObj !== null) {
+            return { ...t, ...keyOrObj };
+          }
+          return { ...t, [keyOrObj]: value };
+        }
+        return t;
+      })
     );
   }, []);
 

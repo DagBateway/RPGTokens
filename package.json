@@ -1,6 +1,7 @@
 {
   "name": "paper-tokens",
   "version": "0.1.0",
+  "type": "module",
   "repository": "https://github.com/platypus85/paper-tokens.git",
   "author": "Alberto Camillo <info@albertocamillo.com>",
   "license": "MIT",

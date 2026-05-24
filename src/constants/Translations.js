@@ -18,7 +18,7 @@ export const TRANSLATIONS = {
     step1Title: "1. Paste or Upload",
     step1Desc: "Paste a direct image URL of your creature into the link box and click Add Token, or click the Dropbox button to import multiple images at once.",
     step2Title: "2. Customize Options",
-    step2Desc: "Choose your global shape (Round or Square). For each creature, easily adjust its Name, Size (Tiny to Gargantuan), Quantity, starting count, and toggle layout types.",
+    step2Desc: "Choose your global shape (Round or Square). For each creature, easily adjust its Name, Size, Quantity, and toggle layout types. You can also grab and drag the preview token image directly to pan, or scroll your mouse wheel over it to zoom!",
     step3Title: "3. Print & Craft",
     step3Desc: "Press Print to save to PDF or send it straight to your printer!",
 
@@ -39,7 +39,7 @@ export const TRANSLATIONS = {
     creatorInstructionsTitle: "How does it work? Paste, customise, print!",
     creatorStep1: "Paste an image URL in the scroll and press Add Token",
     creatorStep2: "or upload images directly from Dropbox",
-    creatorStep3: "Customise your token choosing the shape, size, quantity, paper mini, etc.",
+    creatorStep3: "Customize your token choosing the shape, size, quantity, etc. You can also click and drag the image directly inside the token to pan it, and scroll your wheel to zoom!",
     creatorStep4: "Press Print and save to PDF or send it directly to the printer!",
     creatorInstructionsFooter: "...You can add as many creatures as you want!",
     insertLinkPrompt: "Insert a link to a creature image to begin!",
@@ -89,6 +89,14 @@ export const TRANSLATIONS = {
     sizeHuge: "Huge",
     sizeGargantuan: "Gargantuan",
 
+    // Image Adjuster Controls
+    btnAdjust: "Adjust",
+    btnDone: "Done",
+    labelZoom: "Zoom / Scale",
+    labelOffsetX: "Horizontal Position",
+    labelOffsetY: "Vertical Position",
+    labelReset: "Reset",
+
     // Support Section
     supportTitle: "Support My TTRPG Creations!",
     supportBody: "I build and maintain the Paper Tokens Generator completely for free to support the global d20/TTRPG gaming community. If you love this utility and want to support my work, please consider checking out and purchasing my official adventure modules and supplements on DMsGuild!",
@@ -117,7 +125,7 @@ export const TRANSLATIONS = {
     step1Title: "1. Incolla o Carica",
     step1Desc: "Incolla l'URL diretto dell'immagine della tua creatura nella casella e clicca su Aggiungi Token, oppure clicca sul pulsante Dropbox per importare più immagini contemporaneamente.",
     step2Title: "2. Personalizza le Opzioni",
-    step2Desc: "Scegli la forma globale (Rotonda o Quadrata). Per ogni creatura, regola facilmente Nome, Dimensione (da Minuscola a Gargantuesca), Quantità, conteggio iniziale e attiva/disattiva i layout.",
+    step2Desc: "Scegli la forma globale (Rotonda o Quadrata). Per ogni creatura, regola facilmente Nome, Dimensione, Quantità e attiva/disattiva i layout. Puoi anche cliccare e trascinare l'immagine del token direttamente per spostarla, o usare la rotellina del mouse per fare zoom!",
     step3Title: "3. Stampa e Crea",
     step3Desc: "Premi Stampa per salvare in PDF o inviare direttamente alla stampante!",
 
@@ -138,7 +146,7 @@ export const TRANSLATIONS = {
     creatorInstructionsTitle: "Come funziona? Incolla, personalizza, stampa!",
     creatorStep1: "Incolla l'URL dell'immagine nel modulo e premi Aggiungi Token",
     creatorStep2: "oppure carica le immagini direttamente da Dropbox",
-    creatorStep3: "Personalizza il tuo token scegliendo forma, dimensione, quantità, miniatura cartacea, ecc.",
+    creatorStep3: "Personalizza il tuo token scegliendo forma, dimensione, quantità, ecc. Puoi anche cliccare e trascinare l'immagine direttamente dentro il token per spostarla e usare la rotellina per fare zoom!",
     creatorStep4: "Premi Stampa e salva in PDF o invia direttamente alla stampante!",
     creatorInstructionsFooter: "...Puoi aggiungere tutte le creature che desideri!",
     insertLinkPrompt: "Inserisci il link all'immagine di una creatura per iniziare!",
@@ -187,6 +195,14 @@ export const TRANSLATIONS = {
     sizeLarge: "Grande",
     sizeHuge: "Enorme",
     sizeGargantuan: "Gargantuesco",
+
+    // Image Adjuster Controls
+    btnAdjust: "Regola",
+    btnDone: "Fatto",
+    labelZoom: "Zoom / Scala",
+    labelOffsetX: "Posizione Orizzontale",
+    labelOffsetY: "Posizione Verticale",
+    labelReset: "Reimposta",
 
     // Support Section
     supportTitle: "Supporta le mie creazioni per GDR da tavolo!",

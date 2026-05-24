@@ -34,7 +34,14 @@ const Tokens = memo(({ tokens, shape }) => {
           ShapeEnum.properties[shape].name
         }`}
       >
-        <img alt={token.name} src={token.url} />
+        <img 
+          alt={token.name} 
+          src={token.url} 
+          style={{
+            transform: `translate(${token.offsetX ?? 0}%, ${token.offsetY ?? 0}%) scale(${(token.zoom ?? 100) / 100})`,
+            transformOrigin: "center center"
+          }}
+        />
         {token.count && <div className="number">{start + i}</div>}
       </div>
     ));

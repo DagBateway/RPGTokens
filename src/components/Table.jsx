@@ -20,6 +20,7 @@ const Table = ({
   onUpdateTokenCountStart,
   onRemoveToken,
   onDownloadToken,
+  onUpdateTokenProperty,
 }) => {
   const { t } = useTranslation();
 
@@ -97,7 +98,7 @@ const Table = ({
               {renderBulkSelection()}
             </thead>
             <tbody>
-              {tokens.map((token, i) => (
+               {tokens.map((token, i) => (
                 <TableRow
                   key={token.id}
                   token={token}
@@ -112,6 +113,7 @@ const Table = ({
                   onUpdateTokenCountStart={onUpdateTokenCountStart}
                   onRemoveToken={onRemoveToken}
                   onDownloadToken={onDownloadToken}
+                  onUpdateTokenProperty={onUpdateTokenProperty}
                 />
               ))}
             </tbody>
