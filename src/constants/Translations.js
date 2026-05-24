@@ -108,7 +108,7 @@ export const TRANSLATIONS = {
     supportFooter: "Your support directly helps me keep updating and optimizing this generator. Thank you, and happy gaming!",
 
     // Footer
-    footerCopyright: "© 2018 Alberto Camillo | All Rights Reserved"
+    footerCopyright: "© 2018 DagBateway | All Rights Reserved"
   },
   it: {
     // SEO & Document Metadata
@@ -219,6 +219,6 @@ export const TRANSLATIONS = {
     supportFooter: "Il tuo supporto mi aiuta direttamente a continuare ad aggiornare e ottimizzare questo generatore. Grazie e buon gioco!",
 
     // Footer
-    footerCopyright: "© 2018 Alberto Camillo | Tutti i Diritti Riservati"
+    footerCopyright: "© 2018 DagBateway | Tutti i Diritti Riservati"
   }
 };

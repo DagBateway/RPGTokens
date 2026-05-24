@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "type": "module",
   "repository": "https://github.com/platypus85/paper-tokens.git",
-  "author": "Alberto Camillo <alberto.camillo@outlook.com>",
+  "author": "DagBateway <alberto.camillo@outlook.com>",
   "license": "MIT",
   "private": true,
   "dependencies": {
