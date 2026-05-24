@@ -1692,15 +1692,35 @@ $parchment-text-muted: #635343;
 }
 
 @media all and (max-width: 768px) {
+  html body .header {
+    padding: 16px 12px !important;
+
+    h1 {
+      font-size: 1.6rem !important;
+      text-align: center !important;
+      letter-spacing: 1.5px !important;
+    }
+  }
+
+  .header-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 12px !important;
+  }
+
+  .header-actions {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+
   #theme-toggle,
   #language-toggle {
     padding: 6px 12px !important;
     font-size: 9.5px;
     letter-spacing: 1px;
-  }
-
-  .header h1 {
-    font-size: 1.1rem;
   }
 }
 
