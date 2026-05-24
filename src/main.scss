@@ -2309,7 +2309,11 @@ html.light-mode body {
 
 // Compensate for sticky bar height so footer isn't hidden
 body:has(#sticky-action-bar) {
-  padding-bottom: 64px;
+  margin-bottom: 130px;
+
+  .footer {
+    bottom: 70px !important;
+  }
 }
 
 @keyframes slideUpBar {

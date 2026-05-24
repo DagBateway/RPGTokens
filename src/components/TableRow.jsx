@@ -34,33 +34,7 @@ const TableRow = memo(({
   onUpdateTokenProperty,
 }) => {
   const { t } = useTranslation();
-  const [showAdjust, setShowAdjust] = useState(false);
-  const [dragStart, setDragStart] = useState(null);
-  const [offsetStart, setOffsetStart] = useState({ x: 0, y: 0 });
-  const tokenRef = useRef(null);
-
-  useEffect(() => {
-    const el = tokenRef.current;
-    if (!el) return;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      const zoomStep = 5;
-      const currentZoom = token.zoom ?? 100;
-      
-      const newZoom = e.deltaY < 0 
-        ? Math.min(300, currentZoom + zoomStep)
-        : Math.max(50, currentZoom - zoomStep);
-        
-      onUpdateTokenProperty(token, "zoom", newZoom);
-    };
-
-    el.addEventListener("wheel", handleWheel, { passive: false });
-    return () => {
-      el.removeEventListener("wheel", handleWheel);
-    };
-  }, [token, onUpdateTokenProperty]);
-
+  
   const {
     id,
     name,
@@ -74,50 +48,96 @@ const TableRow = memo(({
     showPawn,
   } = token;
 
+  const [showAdjust, setShowAdjust] = useState(false);
+  const [dragStart, setDragStart] = useState(null);
+  const [offsetStart, setOffsetStart] = useState({ x: 0, y: 0 });
+  const tokenRef = useRef(null);
+  
+  // Keep refs so window listeners always see the latest values without stale closures
+  const dragStartRef = useRef(null);
+  const offsetStartRef = useRef({ x: 0, y: 0 });
+  const tokenValRef = useRef(token);
+
+  useEffect(() => {
+    tokenValRef.current = token;
+  }, [token]);
+
+  useEffect(() => {
+    const el = tokenRef.current;
+    if (!el) return;
+
+    const handleWheel = (e) => {
+      e.preventDefault();
+      const zoomStep = 5;
+      const currentZoom = token.zoom ?? 100;
+      const newZoom = e.deltaY < 0
+        ? Math.min(300, currentZoom + zoomStep)
+        : Math.max(50, currentZoom - zoomStep);
+      onUpdateTokenProperty(token, "zoom", newZoom);
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, [token, onUpdateTokenProperty]);
+
+  // Attach global mouse listeners while dragging so the drag continues outside the token element
+  useEffect(() => {
+    if (!dragStart) return;
+
+    const handleWindowMove = (e) => {
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      const ds = dragStartRef.current;
+      const os = offsetStartRef.current;
+      if (!ds) return;
+
+      const dx = clientX - ds.x;
+      const dy = clientY - ds.y;
+
+      const currentToken = tokenValRef.current;
+      const tokenElement = document.getElementById(uuidByString(currentToken.url));
+      const rect = tokenElement ? tokenElement.getBoundingClientRect() : { width: 96, height: 96 };
+      const scaleFactor = (currentToken.zoom ?? 100) / 100;
+
+      const pctX = (dx / rect.width) * 100 / scaleFactor;
+      const pctY = (dy / rect.height) * 100 / scaleFactor;
+
+      const newOffsetX = Math.max(-100, Math.min(100, Math.round(os.x + pctX)));
+      const newOffsetY = Math.max(-100, Math.min(100, Math.round(os.y + pctY)));
+
+      onUpdateTokenProperty(currentToken, { offsetX: newOffsetX, offsetY: newOffsetY });
+    };
+
+    const handleWindowUp = () => setDragStart(null);
+
+    window.addEventListener("mousemove", handleWindowMove);
+    window.addEventListener("mouseup", handleWindowUp);
+    window.addEventListener("touchmove", handleWindowMove);
+    window.addEventListener("touchend", handleWindowUp);
+
+    return () => {
+      window.removeEventListener("mousemove", handleWindowMove);
+      window.removeEventListener("mouseup", handleWindowUp);
+      window.removeEventListener("touchmove", handleWindowMove);
+      window.removeEventListener("touchend", handleWindowUp);
+    };
+  }, [dragStart, onUpdateTokenProperty]);
+
   const handleDragStart = (e) => {
     if (e.button && e.button !== 0) return;
-    
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
-    setDragStart({ x: clientX, y: clientY });
-    setOffsetStart({
-      x: token.offsetX ?? 0,
-      y: token.offsetY ?? 0
-    });
-    
+    const start = { x: clientX, y: clientY };
+    const os = { x: token.offsetX ?? 0, y: token.offsetY ?? 0 };
+    dragStartRef.current = start;
+    offsetStartRef.current = os;
+    setDragStart(start);
+    setOffsetStart(os);
     if (e.cancelable) e.preventDefault();
   };
 
-  const handleDragMove = (e) => {
-    if (!dragStart) return;
-    
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-    
-    const dx = clientX - dragStart.x;
-    const dy = clientY - dragStart.y;
-    
-    const tokenElement = document.getElementById(uuidByString(url));
-    const rect = tokenElement ? tokenElement.getBoundingClientRect() : { width: 96, height: 96 };
-    
-    const scaleFactor = (token.zoom ?? 100) / 100;
-    
-    const pctX = (dx / rect.width) * 100 / scaleFactor;
-    const pctY = (dy / rect.height) * 100 / scaleFactor;
-    
-    const newOffsetX = Math.max(-100, Math.min(100, Math.round(offsetStart.x + pctX)));
-    const newOffsetY = Math.max(-100, Math.min(100, Math.round(offsetStart.y + pctY)));
-    
-    onUpdateTokenProperty(token, {
-      offsetX: newOffsetX,
-      offsetY: newOffsetY
-    });
-  };
-
-  const handleDragEnd = () => {
-    setDragStart(null);
-  };
+  const handleDragEnd = () => setDragStart(null);
 
   const getLocalizedSizeLabel = (value) => {
     switch (value.name) {
@@ -150,12 +170,7 @@ const TableRow = memo(({
               touchAction: "none"
             }}
             onMouseDown={handleDragStart}
-            onMouseMove={handleDragMove}
-            onMouseUp={handleDragEnd}
-            onMouseLeave={handleDragEnd}
             onTouchStart={handleDragStart}
-            onTouchMove={handleDragMove}
-            onTouchEnd={handleDragEnd}
           >
             <img 
               alt={name} 
