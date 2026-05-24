@@ -108,17 +108,30 @@ export const useTokens = () => {
   const downloadToken = useCallback(async (token) => {
     try {
       const tokenElement = document.getElementById(uuidByString(token.url));
+      if (!tokenElement) return;
+
       toggleNumber(tokenElement, "hidden");
 
-      const dataUrl = await htmlToImage.toPng(tokenElement);
-      download(dataUrl, `${token.name}.png`);
+      const dataUrl = await htmlToImage.toPng(tokenElement, {
+        backgroundColor: null,
+        style: {
+          boxShadow: "none",
+          borderRadius: shape === ShapeEnum.ROUND ? "50%" : "0",
+        },
+        pixelRatio: 3,
+        cacheBust: true,
+      });
+
+      download(dataUrl, `${token.name || "creature"}.png`);
     } catch (error) {
       console.error("Error downloading token:", error);
     } finally {
       const tokenElement = document.getElementById(uuidByString(token.url));
-      toggleNumber(tokenElement, "visible");
+      if (tokenElement) {
+        toggleNumber(tokenElement, "visible");
+      }
     }
-  }, []);
+  }, [shape]);
 
   return {
     tokens,

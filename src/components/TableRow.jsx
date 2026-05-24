@@ -31,6 +31,7 @@ const TableRow = memo(({
   onUpdatePawnVisibility,
   onUpdateTokenCountStart,
   onRemoveToken,
+  onDownloadToken,
   onUpdateTokenProperty,
 }) => {
   const { t } = useTranslation();
@@ -49,6 +50,13 @@ const TableRow = memo(({
   } = token;
 
   const [showAdjust, setShowAdjust] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const handleDownload = async () => {
+    setIsDownloading(true);
+    await onDownloadToken(token);
+    setIsDownloading(false);
+  };
   const [dragStart, setDragStart] = useState(null);
   const [offsetStart, setOffsetStart] = useState({ x: 0, y: 0 });
   const tokenRef = useRef(null);
@@ -270,6 +278,22 @@ const TableRow = memo(({
           value={showPawn}
           onUpdate={(value) => onUpdatePawnVisibility(token, value)}
         />
+        <td className="download">
+          <label className="mobile">{t("thDownload")}:</label>
+          <button
+            type="button"
+            className="btn btn-primary"
+            aria-label={t("thDownload")}
+            disabled={isDownloading}
+            onClick={handleDownload}
+          >
+            {isDownloading ? (
+              <i className="fas fa-spinner fa-spin"></i>
+            ) : (
+              <i className="fas fa-download"></i>
+            )}
+          </button>
+        </td>
         <td className="delete">
           <label className="mobile">{t("thDelete")}:</label>
           <button
@@ -288,7 +312,7 @@ const TableRow = memo(({
       </tr>
       {showAdjust && (
         <tr className="adjustments-row" style={{ background: "rgba(12, 17, 20, 0.45)" }}>
-          <td colSpan="10" style={{ borderTop: "none", padding: "16px 24px" }}>
+          <td colSpan="11" style={{ borderTop: "none", padding: "16px 24px" }}>
             <div className="adjustments-container" style={{ display: "flex", gap: "24px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
               <div style={{ display: "flex", gap: "24px", flex: "1", minWidth: "300px", flexWrap: "wrap" }}>
                 {/* Zoom Slider */}
@@ -334,7 +358,24 @@ const TableRow = memo(({
                   />
                 </div>
               </div>
-              <div style={{ flexShrink: 0 }}>
+              <div style={{ flexShrink: 0, display: "flex", gap: "8px" }}>
+                <button
+                  type="button"
+                  className="btn btn-success btn-sm"
+                  style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", letterSpacing: "0.5px", padding: "6px 16px" }}
+                  disabled={isDownloading}
+                  onClick={handleDownload}
+                >
+                  {isDownloading ? (
+                    <>
+                      <i className="fas fa-spinner fa-spin"></i> {t("labelDownloading")}
+                    </>
+                  ) : (
+                    <>
+                      <i className="fas fa-download"></i> {t("labelDownloadPng")}
+                    </>
+                  )}
+                </button>
                 <button
                   type="button"
                   className="btn btn-warning btn-sm"

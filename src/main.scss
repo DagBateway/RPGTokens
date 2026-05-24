@@ -1344,7 +1344,8 @@ select.form-control {
     .form-control,
     .btn-group-toggle,
     .btn-outline-danger,
-    .btn.btn-warning {
+    .btn.btn-warning,
+    td.download .btn {
       display: inline-block;
       width: 60%;
     }

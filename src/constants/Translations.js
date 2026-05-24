@@ -65,6 +65,7 @@ export const TRANSLATIONS = {
     thToken: "Token",
     thPaperPawn: "Paper Pawn",
     thDelete: "Delete",
+    thDownload: "Download",
 
     // Bulk Selection & Confirmations
     bulkSelection: "Bulk Selection",
@@ -96,6 +97,8 @@ export const TRANSLATIONS = {
     labelOffsetX: "Horizontal Position",
     labelOffsetY: "Vertical Position",
     labelReset: "Reset",
+    labelDownloadPng: "Download PNG",
+    labelDownloading: "Downloading...",
 
     // Support Section
     supportTitle: "Support My TTRPG Creations!",
@@ -172,6 +175,7 @@ export const TRANSLATIONS = {
     thToken: "Token",
     thPaperPawn: "Pedina di Carta",
     thDelete: "Elimina",
+    thDownload: "Scarica",
 
     // Bulk Selection & Confirmations
     bulkSelection: "Selezione Multipla",
@@ -203,6 +207,8 @@ export const TRANSLATIONS = {
     labelOffsetX: "Posizione Orizzontale",
     labelOffsetY: "Posizione Verticale",
     labelReset: "Reimposta",
+    labelDownloadPng: "Scarica PNG",
+    labelDownloading: "Download...",
 
     // Support Section
     supportTitle: "Supporta le mie creazioni per GDR da tavolo!",

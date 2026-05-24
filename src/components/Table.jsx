@@ -62,6 +62,7 @@ const Table = ({
           </div>
         </th>
       ))}
+      <th></th>
       <th>
         <button
           type="button"
@@ -93,6 +94,7 @@ const Table = ({
                 <th>{t("thMonsterTent")}</th>
                 <th>{t("thToken")}</th>
                 <th>{t("thPaperPawn")}</th>
+                <th>{t("thDownload")}</th>
                 <th>{t("thDelete")}</th>
               </tr>
               {renderBulkSelection()}
