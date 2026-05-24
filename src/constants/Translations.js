@@ -20,7 +20,7 @@ export const TRANSLATIONS = {
     step2Title: "2. Customize Options",
     step2Desc: "Choose your global shape (Round or Square). For each creature, easily adjust its Name, Size, Quantity, and toggle layout types. You can also grab and drag the preview token image directly to pan, or scroll your mouse wheel over it to zoom!",
     step3Title: "3. Print & Craft",
-    step3Desc: "Press Print to save to PDF or send it straight to your printer!",
+    step3Desc: "Press Print to save to PDF or send it straight to your printer, or download individual high-resolution transparent PNG tokens directly for Virtual Tabletops (VTT)!",
 
     // Crafting Section
     craftTitle: "Physical Crafting Support Ideas",
@@ -40,7 +40,7 @@ export const TRANSLATIONS = {
     creatorStep1: "Paste an image URL in the scroll and press Add Token",
     creatorStep2: "or upload images directly from Dropbox",
     creatorStep3: "Customize your token choosing the shape, size, quantity, etc. You can also click and drag the image directly inside the token to pan it, and scroll your wheel to zoom!",
-    creatorStep4: "Press Print and save to PDF or send it directly to the printer!",
+    creatorStep4: "Press Print and save to PDF, send it directly to the printer, or download individual transparent PNGs!",
     creatorInstructionsFooter: "...You can add as many creatures as you want!",
     insertLinkPrompt: "Insert a link to a creature image to begin!",
     pastePlaceholder: "Paste the Image URL",
@@ -97,6 +97,7 @@ export const TRANSLATIONS = {
     labelOffsetX: "Horizontal Position",
     labelOffsetY: "Vertical Position",
     labelReset: "Reset",
+    labelAdjustTip: "Tip: You can also click and drag the token image directly to pan, and scroll your mouse wheel over the token preview to zoom!",
     labelDownloadPng: "Download PNG",
     labelDownloading: "Downloading...",
 
@@ -130,7 +131,7 @@ export const TRANSLATIONS = {
     step2Title: "2. Personalizza le Opzioni",
     step2Desc: "Scegli la forma globale (Rotonda o Quadrata). Per ogni creatura, regola facilmente Nome, Dimensione, Quantità e attiva/disattiva i layout. Puoi anche cliccare e trascinare l'immagine del token direttamente per spostarla, o usare la rotellina del mouse per fare zoom!",
     step3Title: "3. Stampa e Crea",
-    step3Desc: "Premi Stampa per salvare in PDF o inviare direttamente alla stampante!",
+    step3Desc: "Premi su Stampa per salvare in PDF o inviare alla stampante, oppure scarica i singoli token in PNG ad alta risoluzione con sfondo trasparente per i tuoi Virtual Tabletop (VTT)!",
 
     // Crafting Section
     craftTitle: "Idee di Supporto per il Fai-da-Te",
@@ -150,7 +151,7 @@ export const TRANSLATIONS = {
     creatorStep1: "Incolla l'URL dell'immagine nel modulo e premi Aggiungi Token",
     creatorStep2: "oppure carica le immagini direttamente da Dropbox",
     creatorStep3: "Personalizza il tuo token scegliendo forma, dimensione, quantità, ecc. Puoi anche cliccare e trascinare l'immagine direttamente dentro il token per spostarla e usare la rotellina per fare zoom!",
-    creatorStep4: "Premi Stampa e salva in PDF o invia direttamente alla stampante!",
+    creatorStep4: "Premi su Stampa e salva in PDF, invia direttamente alla stampante, o scarica i singoli token in PNG trasparenti!",
     creatorInstructionsFooter: "...Puoi aggiungere tutte le creature che desideri!",
     insertLinkPrompt: "Inserisci il link all'immagine di una creatura per iniziare!",
     pastePlaceholder: "Incolla l'URL dell'immagine",
@@ -207,6 +208,7 @@ export const TRANSLATIONS = {
     labelOffsetX: "Posizione Orizzontale",
     labelOffsetY: "Posizione Verticale",
     labelReset: "Reimposta",
+    labelAdjustTip: "Suggerimento: Puoi anche trascinare l'immagine direttamente all'interno del token per spostarla, ed usare la rotellina del mouse sopra l'anteprima per lo zoom!",
     labelDownloadPng: "Scarica PNG",
     labelDownloading: "Download...",
 

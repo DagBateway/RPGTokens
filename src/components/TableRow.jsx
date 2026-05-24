@@ -314,6 +314,12 @@ const TableRow = memo(({
         <tr className="adjustments-row" style={{ background: "rgba(12, 17, 20, 0.45)" }}>
           <td colSpan="11" style={{ borderTop: "none", padding: "16px 24px" }}>
             <div className="adjustments-container" style={{ display: "flex", gap: "24px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+              <div style={{ width: "100%", marginBottom: "12px", borderBottom: "1px solid rgba(207, 160, 53, 0.15)", paddingBottom: "10px" }}>
+                <p style={{ margin: 0, fontSize: "11px", color: "#8e9e95", fontStyle: "italic" }}>
+                  <i className="fas fa-info-circle" style={{ color: "#cfa035", marginRight: "6px" }}></i>
+                  {t("labelAdjustTip")}
+                </p>
+              </div>
               <div style={{ display: "flex", gap: "24px", flex: "1", minWidth: "300px", flexWrap: "wrap" }}>
                 {/* Zoom Slider */}
                 <div style={{ flex: "1", minWidth: "150px" }}>
@@ -359,23 +365,6 @@ const TableRow = memo(({
                 </div>
               </div>
               <div style={{ flexShrink: 0, display: "flex", gap: "8px" }}>
-                <button
-                  type="button"
-                  className="btn btn-success btn-sm"
-                  style={{ fontFamily: "'Cinzel', serif", fontSize: "11px", letterSpacing: "0.5px", padding: "6px 16px" }}
-                  disabled={isDownloading}
-                  onClick={handleDownload}
-                >
-                  {isDownloading ? (
-                    <>
-                      <i className="fas fa-spinner fa-spin"></i> {t("labelDownloading")}
-                    </>
-                  ) : (
-                    <>
-                      <i className="fas fa-download"></i> {t("labelDownloadPng")}
-                    </>
-                  )}
-                </button>
                 <button
                   type="button"
                   className="btn btn-warning btn-sm"
