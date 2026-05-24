@@ -302,6 +302,10 @@ const App = () => {
           <div className={`changelog-content${changelogOpen ? " changelog-content--open" : ""}`}>
             <div className="changelog-inner">
               <div className="changelog-entry">
+                <span className="changelog-date">24.05.2026</span>
+                <p>Added premium high-resolution (3x) transparent PNG download functionality, allowing users to export customized tokens directly from the creature table or adjuster panel with responsive mobile styling.</p>
+              </div>
+              <div className="changelog-entry">
                 <span className="changelog-date">23.05.2026</span>
                 <p>Complete UI overhaul with a new Gothic Dark fantasy theme. Added a <strong>Dark / Parchment Light</strong> theme toggle, <strong>Italian / English</strong> localisation, and per-token <strong>image adjustment</strong> — use the mouse wheel to zoom and drag to reposition the image directly on the token preview.</p>
               </div>
