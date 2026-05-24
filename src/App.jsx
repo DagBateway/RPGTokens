@@ -33,6 +33,9 @@ const App = () => {
     }
   });
 
+  const [changelogOpen, setChangelogOpen] = useState(false);
+
+
   useEffect(() => {
     try {
       localStorage.setItem("theme", theme);
@@ -284,6 +287,79 @@ const App = () => {
                   </a>
                 </p>
                 <p>{t("supportFooter")}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Changelog Collapsible */}
+        <div className="changelog-section">
+          <button
+            id="changelog-toggle"
+            className="changelog-toggle"
+            onClick={() => setChangelogOpen(o => !o)}
+            aria-expanded={changelogOpen}
+          >
+            <i className={`fas fa-chevron-${changelogOpen ? "up" : "down"}`}></i>
+            <span> Changelog</span>
+          </button>
+          <div className={`changelog-content${changelogOpen ? " changelog-content--open" : ""}`}>
+            <div className="changelog-inner">
+              <div className="changelog-entry">
+                <span className="changelog-date">23.05.2026</span>
+                <p>Complete UI overhaul with a new Gothic Dark fantasy theme. Added a <strong>Dark / Parchment Light</strong> theme toggle, <strong>Italian / English</strong> localisation, and per-token <strong>image adjustment</strong> — use the mouse wheel to zoom and drag to reposition the image directly on the token preview.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">09.06.2021</span>
+                <p>Updated the quantity numbers on the tokens and on the paper minis to contain number &gt; 99</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">09.08.2019</span>
+                <p>Fixed paper pawns layout issue when printing. (Thanks Eli White for your help!) Also updated the paper pawns sizes.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">25.01.2019</span>
+                <p>Updated links to Amazon for token supports.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">20.01.2019</span>
+                <p>Added bulk selection/deletion on desktop and also improved pawns layout when printing.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">18.08.2018</span>
+                <p>Added paper pawns! They're WIP and for now available from Tiny to Huge.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">17.08.2018</span>
+                <p>Improved table icons.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">09.07.2018</span>
+                <p>Now you can upload your images directly from Dropbox!</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">04.07.2018</span>
+                <p>Made tokens and tent visibility optional. (You might need to reset the state of Count Start and Count in order to see the token correctly)</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">03.07.2018</span>
+                <p>Added minimal Monster Tents, useful on a DM screen to keep track of initiative or the encounters.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">28.06.2018</span>
+                <p>Improved image URL validation and fixed issue with tokens sizes when printing.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">26.06.2018</span>
+                <p>Made tokens count optional.</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">25.06.2018</span>
+                <p>Added tokens "Shape Selector".</p>
+              </div>
+              <div className="changelog-entry">
+                <span className="changelog-date">23.06.2018</span>
+                <p>Released first version with image load via URL.</p>
               </div>
             </div>
           </div>

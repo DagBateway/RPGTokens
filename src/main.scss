@@ -2140,3 +2140,89 @@ html.light-mode body {
     box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 15px rgba(112, 77, 26, 0.05) !important;
   }
 }
+
+// Changelog Collapsible
+.changelog-section {
+  max-width: 860px;
+  margin: 10px auto 40px auto;
+  text-align: left;
+
+  .changelog-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: 1px solid $fantasy-gold-border;
+    border-radius: 6px;
+    color: $fantasy-text-muted;
+    font-family: "Cinzel", serif;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+
+    i {
+      font-size: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: $fantasy-gold;
+      border-color: $fantasy-gold;
+    }
+  }
+
+  .changelog-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+
+    &--open {
+      max-height: 1200px;
+    }
+  }
+
+  .changelog-inner {
+    border-left: 2px solid $fantasy-gold-border;
+    margin-top: 16px;
+    padding: 4px 0 4px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .changelog-entry {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: $fantasy-gold-border;
+      border: 2px solid $fantasy-gold;
+    }
+
+    .changelog-date {
+      font-family: "Cinzel", serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: $fantasy-gold;
+      letter-spacing: 1px;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 13px;
+      color: $fantasy-text-muted;
+      line-height: 1.5;
+    }
+  }
+}
