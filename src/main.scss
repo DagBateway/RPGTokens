@@ -598,7 +598,6 @@ html {
           height: $two-square;
         }
       }
-
       &.huge {
         .pawn {
           width: $three-square;
@@ -607,10 +606,9 @@ html {
 
         .base {
           width: $three-square;
-          height: $three-square;
+          height: $one-half-square;
         }
       }
-
       &.gargantuan {
         display: none;
 
