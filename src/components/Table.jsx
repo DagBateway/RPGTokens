@@ -46,7 +46,7 @@ const Table = ({
         {
           label: t("bulkMinis"),
           onUpdate: onUpdateAllMinisVisibility,
-          icon: "fa-chess-pawn",
+          icon: "fa-chess-mini",
         },
       ].map(({ label, onUpdate, icon }) => (
         <th key={label}>

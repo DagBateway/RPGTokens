@@ -274,7 +274,7 @@ const TableRow = memo(({
         />
         <ToggleButtonGroup
           label={t("thPaperMini")}
-          icon="fa-chess-pawn"
+          icon="fa-chess-mini"
           value={showMini}
           onUpdate={(value) => onUpdateMiniVisibility(token, value)}
         />
