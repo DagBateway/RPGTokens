@@ -20,7 +20,7 @@ $one-half-square: 1.5in;
 $two-square: 2in;
 $two-half-square: 2.5in;
 $three-square: 3in;
-$gargantuan-height: 3.5in;
+$gargantuan-height: 5in;
 $four-square: 4in;
 $fold-border: 1pt dashed #e4e4e4;
 $cut-border: 1px solid #b9b9b9;
@@ -598,47 +598,124 @@ html {
       }
 
       &.gargantuan {
-        display: none;
+        display: block !important;
+        float: none !important;
+        width: 100% !important;
+        margin: 40px auto !important;
+        page-break-inside: avoid !important;
+        page-break-after: always !important;
+        border: none !important;
 
-        .front {
-          overflow: hidden;
-          float: left;
+        .gargantuan-title {
+          font-family: "Cinzel", serif;
+          font-weight: bold;
+          text-align: center;
+          font-size: 13px;
+          letter-spacing: 1px;
+          margin-bottom: 8px;
+          color: #111;
+          text-transform: uppercase;
+        }
 
-          .base {
-            &:after {
-              top: calc($gargantuan-height / 3);
-              height: calc($gargantuan-height / 3);
-              border-bottom: $cut-border !important;
+        .interlocking-card {
+          position: relative;
+          width: 5in;
+          height: 10in;
+          margin: 0 auto;
+          background: #ffffff;
+          border: 1.5pt dashed #555555 !important;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+          .half {
+            position: relative;
+            width: 5in;
+            height: 5in;
+            overflow: hidden;
+
+            &.top {
+              border-bottom: 1.5pt dashed #888888 !important;
+
+              .creature.rotated {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                -webkit-transform: translate(-50%, -50%) rotate(180deg) scaleX(-1);
+                transform: translate(-50%, -50%) rotate(180deg) scaleX(-1);
+              }
+            }
+
+            &.bottom {
+              .creature {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                max-width: 90%;
+                max-height: 90%;
+                object-fit: contain;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+              }
+            }
+
+            .label {
+              position: absolute;
+              left: 0;
+              right: 0;
+              text-align: center;
+              font-family: "Scala Sans Regular", sans-serif;
+              font-size: 11px;
+              font-weight: bold;
+              color: #000000;
+              background: rgba(255, 255, 255, 0.8);
+              padding: 3px 0;
+              z-index: 10;
+              text-transform: uppercase;
+              letter-spacing: 0.5px;
+
+              &.top-label {
+                top: 12px;
+                -webkit-transform: rotate(180deg);
+                transform: rotate(180deg);
+              }
+
+              &.bottom-label {
+                bottom: 12px;
+              }
+            }
+          }
+
+          .slit {
+            position: absolute;
+            left: 50%;
+            width: 2.5pt;
+            background: #000000;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: 20;
+
+            &.slit-bottom {
+              bottom: 0;
+              height: 5in;
+            }
+
+            &.slit-top {
+              top: 0;
+              height: 5in;
             }
           }
         }
 
-        .back {
-          overflow: hidden;
-          float: left;
-          border-right: 1pt solid #c1c1c1 !important;
-
-          .base {
-            &:after {
-              top: calc($gargantuan-height / 3);
-              height: calc($gargantuan-height / 3);
-              border-bottom: $cut-border !important;
-            }
-          }
-
-          .mini {
-            border-bottom: none !important;
-          }
-        }
-
-        .mini {
-          width: $four-square;
-          height: $gargantuan-height;
-        }
-
-        .base {
-          width: $four-square;
-          height: $gargantuan-height;
+        .gargantuan-instructions {
+          font-family: "Outfit", sans-serif;
+          text-align: center;
+          font-size: 11px;
+          margin-top: 8px;
+          color: #444444;
+          font-style: italic;
+          letter-spacing: 0.5px;
         }
       }
     }

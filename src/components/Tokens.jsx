@@ -74,6 +74,77 @@ const Tokens = memo(({ tokens, shape }) => {
   const createMinisList = (token) => {
     const start = parseInt(token.startFrom, 10) || 1;
     const end = start + parseInt(token.quantity, 10) || 1;
+
+    if (token.size === SizeEnum.GARGANTUAN) {
+      // 3D Interlocking Gargantuan Mini: Render Part 1 and Part 2 per quantity
+      return Array.from({ length: end - start }, (_, i) => [
+        // Part 1: Slit cut from bottom
+        <div
+          className={`mini-container gargantuan part1`}
+          key={`${token.id || token.url}-${i}-part1`}
+        >
+          <div className="gargantuan-title">Gargantuan 3D Mini - Part 1</div>
+          <div className="interlocking-card">
+            {/* Top Half (Flipped 180 degrees) */}
+            <div className="half top">
+              <img
+                alt={token.name}
+                src={getCorsProxiedUrl(token.url)}
+                className="creature rotated"
+              />
+              <div className="label top-label">{token.name}</div>
+            </div>
+            {/* Bottom Half (Normal) */}
+            <div className="half bottom">
+              <img
+                alt={token.name}
+                src={getCorsProxiedUrl(token.url)}
+                className="creature"
+              />
+              <div className="label bottom-label">{token.name}</div>
+            </div>
+            {/* Solid black slit guide starting from bottom to the center fold */}
+            <div className="slit slit-bottom"></div>
+          </div>
+          <div className="gargantuan-instructions">
+            1. Trim along dotted border | 2. Fold horizontal center | 3. Cut solid line from bottom
+          </div>
+        </div>,
+        // Part 2: Slit cut from top
+        <div
+          className={`mini-container gargantuan part2`}
+          key={`${token.id || token.url}-${i}-part2`}
+        >
+          <div className="gargantuan-title">Gargantuan 3D Mini - Part 2</div>
+          <div className="interlocking-card">
+            {/* Top Half (Flipped 180 degrees) */}
+            <div className="half top">
+              <img
+                alt={token.name}
+                src={getCorsProxiedUrl(token.url)}
+                className="creature rotated"
+              />
+              <div className="label top-label">{token.name}</div>
+            </div>
+            {/* Bottom Half (Normal) */}
+            <div className="half bottom">
+              <img
+                alt={token.name}
+                src={getCorsProxiedUrl(token.url)}
+                className="creature"
+              />
+              <div className="label bottom-label">{token.name}</div>
+            </div>
+            {/* Solid black slit guide starting from top to the center fold */}
+            <div className="slit slit-top"></div>
+          </div>
+          <div className="gargantuan-instructions">
+            1. Trim along dotted border | 2. Fold horizontal center | 3. Cut solid line from top
+          </div>
+        </div>
+      ]).flat();
+    }
+
     return Array.from({ length: end - start }, (_, i) => (
       <div
         className={`mini-container ${SizeEnum.properties[token.size].name}`}
