@@ -28,14 +28,14 @@ const TableRow = memo(({
   onUpdateTokenCount,
   onUpdateTokenTentVisibility,
   onUpdateTokenVisibility,
-  onUpdatePawnVisibility,
+  onUpdateMiniVisibility,
   onUpdateTokenCountStart,
   onRemoveToken,
   onDownloadToken,
   onUpdateTokenProperty,
 }) => {
   const { t } = useTranslation();
-  
+
   const {
     id,
     name,
@@ -46,7 +46,7 @@ const TableRow = memo(({
     count,
     showTent,
     showToken,
-    showPawn,
+    showMini,
   } = token;
 
   const [showAdjust, setShowAdjust] = useState(false);
@@ -60,7 +60,7 @@ const TableRow = memo(({
   const [dragStart, setDragStart] = useState(null);
   const [offsetStart, setOffsetStart] = useState({ x: 0, y: 0 });
   const tokenRef = useRef(null);
-  
+
   // Keep refs so window listeners always see the latest values without stale closures
   const dragStartRef = useRef(null);
   const offsetStartRef = useRef({ x: 0, y: 0 });
@@ -163,7 +163,7 @@ const TableRow = memo(({
   return (
     <>
       <tr>
-        <td 
+        <td
           className={`token-image ${showToken ? "" : "greyscale"}`}
           style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}
         >
@@ -171,8 +171,8 @@ const TableRow = memo(({
             id={uuidByString(url)}
             ref={tokenRef}
             className={`token medium ${ShapeEnum.properties[shape].name}`}
-            style={{ 
-              position: "relative", 
+            style={{
+              position: "relative",
               overflow: "hidden",
               cursor: dragStart ? "grabbing" : "grab",
               touchAction: "none"
@@ -180,9 +180,9 @@ const TableRow = memo(({
             onMouseDown={handleDragStart}
             onTouchStart={handleDragStart}
           >
-            <img 
-              alt={name} 
-              src={getCorsProxiedUrl(url)} 
+            <img
+              alt={name}
+              src={getCorsProxiedUrl(url)}
               style={{
                 transform: `translate(${token.offsetX ?? 0}%, ${token.offsetY ?? 0}%) scale(${(token.zoom ?? 100) / 100})`,
                 transformOrigin: "center center",
@@ -274,9 +274,9 @@ const TableRow = memo(({
         />
         <ToggleButtonGroup
           label={t("thPaperMini")}
-          icon="fa-chess-pawn"
-          value={showPawn}
-          onUpdate={(value) => onUpdatePawnVisibility(token, value)}
+          icon="fa-chess-mini"
+          value={showMini}
+          onUpdate={(value) => onUpdateMiniVisibility(token, value)}
         />
         <td className="download">
           <label className="mobile">{t("thDownload")}:</label>

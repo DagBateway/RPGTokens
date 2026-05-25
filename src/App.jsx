@@ -11,7 +11,7 @@ import FeedbackWidget from "./components/FeedbackWidget";
 
 const App = () => {
   const { t, language, setLanguage } = useTranslation();
-  
+
   const {
     tokens,
     shape,
@@ -93,7 +93,7 @@ const App = () => {
     }
 
     window.addEventListener("resize", updateHeaderHeight);
-    
+
     return () => {
       if (observer) observer.disconnect();
       window.removeEventListener("resize", updateHeaderHeight);
@@ -222,7 +222,7 @@ const App = () => {
 
         {/* Creator Station Component */}
         <AddToken handleAddToken={handleAddToken} />
-        
+
         {/* Interactive Creature Database Grid */}
         <Table
           shape={shape}
@@ -231,7 +231,7 @@ const App = () => {
           onRemoveAllTokens={removeAllTokens}
           onUpdateTokenProperty={updateTokenProperty}
           onUpdateAllMinisVisibility={(value) =>
-            updateAllTokensProperty("showPawn", value)
+            updateAllTokensProperty("showMini", value)
           }
           onUpdateAllTokensVisibility={(value) =>
             updateAllTokensProperty("showToken", value)
@@ -263,12 +263,12 @@ const App = () => {
           onUpdateTokenVisibility={(token, value) =>
             updateTokenProperty(token, "showToken", value)
           }
-          onUpdatePawnVisibility={(token, value) =>
-            updateTokenProperty(token, "showPawn", value)
+          onUpdateMiniVisibility={(token, value) =>
+            updateTokenProperty(token, "showMini", value)
           }
           onDownloadToken={downloadToken}
         />
-        
+
         {/* Printable Canvas */}
         <Tokens shape={shape} tokens={tokens} />
 

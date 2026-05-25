@@ -10,7 +10,18 @@ export const useTokens = () => {
   const [tokens, setTokens] = useState(() => {
     try {
       const saved = localStorage.getItem("tokens");
-      return saved ? JSON.parse(saved) : [];
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        // Flawless backward compatibility migration:
+        // Convert legacy showPawn property to showMini to preserve existing user selections
+        return parsed.map((token) => {
+          if (token.showMini === undefined) {
+            token.showMini = token.showPawn !== undefined ? token.showPawn : true;
+          }
+          return token;
+        });
+      }
+      return [];
     } catch {
       return [];
     }
@@ -65,7 +76,7 @@ export const useTokens = () => {
           const cleanUrl = decodedUrl.split(/[?#]/)[0];
           const cleanPath = cleanUrl.replace(/\/+$/, "");
           const lastSegment = cleanPath.substring(cleanPath.lastIndexOf("/") + 1);
-          
+
           if (lastSegment) {
             const dotIndex = lastSegment.lastIndexOf(".");
             let nameWithoutExt = dotIndex > 0 ? lastSegment.substring(0, dotIndex) : lastSegment;
@@ -89,7 +100,7 @@ export const useTokens = () => {
         quantity: 1,
         showTent: true,
         showToken: true,
-        showPawn: true,
+        showMini: true,
       };
       setTokens((prevTokens) => [...prevTokens, newToken]);
       return undefined;

@@ -16,7 +16,7 @@ const Table = ({
   onUpdateTokenCount,
   onUpdateTokenTentVisibility,
   onUpdateTokenVisibility,
-  onUpdatePawnVisibility,
+  onUpdateMiniVisibility,
   onUpdateTokenCountStart,
   onRemoveToken,
   onDownloadToken,
@@ -46,7 +46,7 @@ const Table = ({
         {
           label: t("bulkMinis"),
           onUpdate: onUpdateAllMinisVisibility,
-          icon: "fa-chess-pawn",
+          icon: "fa-chess-mini",
         },
       ].map(({ label, onUpdate, icon }) => (
         <th key={label}>
@@ -166,7 +166,7 @@ const Table = ({
               {renderBulkSelection()}
             </thead>
             <tbody>
-               {tokens.map((token, i) => (
+              {tokens.map((token, i) => (
                 <TableRow
                   key={token.id}
                   token={token}
@@ -177,7 +177,7 @@ const Table = ({
                   onUpdateTokenCount={onUpdateTokenCount}
                   onUpdateTokenTentVisibility={onUpdateTokenTentVisibility}
                   onUpdateTokenVisibility={onUpdateTokenVisibility}
-                  onUpdatePawnVisibility={onUpdatePawnVisibility}
+                  onUpdateMiniVisibility={onUpdateMiniVisibility}
                   onUpdateTokenCountStart={onUpdateTokenCountStart}
                   onRemoveToken={onRemoveToken}
                   onDownloadToken={onDownloadToken}

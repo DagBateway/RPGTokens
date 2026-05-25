@@ -31,13 +31,12 @@ const Tokens = memo(({ tokens, shape }) => {
     return Array.from({ length: end - start }, (_, i) => (
       <div
         key={`${token.id || token.url}-${i}`}
-        className={`token ${SizeEnum.properties[token.size].name} ${
-          ShapeEnum.properties[shape].name
-        }`}
+        className={`token ${SizeEnum.properties[token.size].name} ${ShapeEnum.properties[shape].name
+          }`}
       >
-        <img 
-          alt={token.name} 
-          src={getCorsProxiedUrl(token.url)} 
+        <img
+          alt={token.name}
+          src={getCorsProxiedUrl(token.url)}
           style={{
             transform: `translate(${token.offsetX ?? 0}%, ${token.offsetY ?? 0}%) scale(${(token.zoom ?? 100) / 100})`,
             transformOrigin: "center center"
@@ -77,22 +76,22 @@ const Tokens = memo(({ tokens, shape }) => {
     const end = start + parseInt(token.quantity, 10) || 1;
     return Array.from({ length: end - start }, (_, i) => (
       <div
-        className={`pawn-container ${SizeEnum.properties[token.size].name}`}
+        className={`mini-container ${SizeEnum.properties[token.size].name}`}
         key={`${token.id || token.url}-${i}`}
       >
         <div className="back">
           <div className="base"></div>
-          <div className="pawn-wrapper">
+          <div className="mini-wrapper">
             {token.count && <div className="number">{start + i}</div>}
-            <div className="pawn">
+            <div className="mini">
               <img alt={token.name} src={getCorsProxiedUrl(token.url)} className="creature" />
             </div>
           </div>
         </div>
         <div className="front">
-          <div className="pawn-wrapper">
+          <div className="mini-wrapper">
             {token.count && <div className="number">{start + i}</div>}
-            <div className="pawn">
+            <div className="mini">
               <img alt={token.name} src={getCorsProxiedUrl(token.url)} className="creature" />
             </div>
           </div>
@@ -114,7 +113,7 @@ const Tokens = memo(({ tokens, shape }) => {
         {renderTokens(tokens, shape, "showTent", (token) => [
           createTokensTents(token),
         ])}
-        {renderTokens(tokens, shape, "showPawn", createMinisList)}
+        {renderTokens(tokens, shape, "showMini", createMinisList)}
       </div>
     </div>
   );
