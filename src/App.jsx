@@ -6,6 +6,8 @@ import { useTokens } from "./hooks/useTokens";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { useTranslation } from "./hooks/useTranslation";
+import { TRANSLATIONS } from "./constants/Translations";
+import FeedbackWidget from "./components/FeedbackWidget";
 
 const App = () => {
   const { t, language, setLanguage } = useTranslation();
@@ -270,6 +272,9 @@ const App = () => {
         {/* Printable Canvas */}
         <Tokens shape={shape} tokens={tokens} />
 
+        {/* Localized Gothic Feedback Widget */}
+        <FeedbackWidget />
+
         {/* Support Section */}
         <div id="donate">
           <div className="row" id="dmsguild-support">
@@ -301,66 +306,12 @@ const App = () => {
           </button>
           <div className={`changelog-content${changelogOpen ? " changelog-content--open" : ""}`}>
             <div className="changelog-inner">
-              <div className="changelog-entry">
-                <span className="changelog-date">24.05.2026</span>
-                <p>Added premium high-resolution (3x) transparent PNG download functionality, allowing users to export customized tokens directly from the creature table or adjuster panel with responsive mobile styling.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">23.05.2026</span>
-                <p>Complete UI overhaul with a new Gothic Dark fantasy theme. Added a <strong>Dark / Parchment Light</strong> theme toggle, <strong>Italian / English</strong> localisation, and per-token <strong>image adjustment</strong> — use the mouse wheel to zoom and drag to reposition the image directly on the token preview.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">09.06.2021</span>
-                <p>Updated the quantity numbers on the tokens and on the paper minis to contain number &gt; 99</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">09.08.2019</span>
-                <p>Fixed paper minis layout issue when printing. (Thanks Eli White for your help!) Also updated the paper minis sizes.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">25.01.2019</span>
-                <p>Updated links to Amazon for token supports.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">20.01.2019</span>
-                <p>Added bulk selection/deletion on desktop and also improved paper minis layout when printing.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">18.08.2018</span>
-                <p>Added paper minis! They're WIP and for now available from Tiny to Huge.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">17.08.2018</span>
-                <p>Improved table icons.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">09.07.2018</span>
-                <p>Now you can upload your images directly from Dropbox!</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">04.07.2018</span>
-                <p>Made tokens and tent visibility optional. (You might need to reset the state of Count Start and Count in order to see the token correctly)</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">03.07.2018</span>
-                <p>Added minimal Monster Tents, useful on a DM screen to keep track of initiative or the encounters.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">28.06.2018</span>
-                <p>Improved image URL validation and fixed issue with tokens sizes when printing.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">26.06.2018</span>
-                <p>Made tokens count optional.</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">25.06.2018</span>
-                <p>Added tokens "Shape Selector".</p>
-              </div>
-              <div className="changelog-entry">
-                <span className="changelog-date">23.06.2018</span>
-                <p>Released first version with image load via URL.</p>
-              </div>
+              {(TRANSLATIONS[language]?.changelog || TRANSLATIONS.en.changelog).map((entry, index) => (
+                <div className="changelog-entry" key={index}>
+                  <span className="changelog-date">{entry.date}</span>
+                  <p dangerouslySetInnerHTML={{ __html: entry.desc }} />
+                </div>
+              ))}
             </div>
           </div>
         </div>

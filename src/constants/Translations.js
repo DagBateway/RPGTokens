@@ -121,6 +121,86 @@ export const TRANSLATIONS = {
     supportBtn: "BROWSE MY D&D 5E MODULES ON DMSGUILD",
     supportFooter: "Your support directly helps me keep updating and optimizing this generator. Thank you, and happy gaming!",
 
+    // Feedback Section
+    feedbackTitle: "Feedback & Suggestions",
+    feedbackLabelMessage: "Your Message / Suggestion",
+    feedbackPlaceholderMessage: "Tell me what features or options you'd like to see, or report an issue...",
+    feedbackLabelEmail: "Your Email (Optional)",
+    feedbackPlaceholderEmail: "Enter your email if you'd like a reply...",
+    feedbackBtnSend: "Send Suggestion",
+    feedbackBtnSending: "Sending...",
+    feedbackSuccess: "Thank you, adventurer! Your suggestion has been safely dispatched.",
+    feedbackError: "Could not deliver your suggestion! This is usually blocked by aggressive ad-blockers (like uBlock or Brave Shield) or temporary network issues. Try turning them off temporarily, or make sure your internet connection is active!",
+    feedbackValidationMessage: "Please enter a message before sending.",
+    feedbackRateLimit: "Please wait a few minutes before sending another suggestion, adventurer!",
+
+    changelog: [
+      {
+        date: "25.05.2026",
+        desc: "Added a localized suggestion box so that users can send feedback and suggestions directly from their browser."
+      },
+      {
+        date: "24.05.2026",
+        desc: "Added premium high-resolution (3x) transparent PNG download functionality, allowing users to export customized tokens directly from the creature table or adjuster panel with responsive mobile styling."
+      },
+      {
+        date: "23.05.2026",
+        desc: "Complete UI overhaul with a new Gothic Dark fantasy theme. Added a <strong>Dark / Parchment Light</strong> theme toggle, <strong>Italian / English</strong> localisation, and per-token <strong>image adjustment</strong> — use the mouse wheel to zoom and drag to reposition the image directly on the token preview."
+      },
+      {
+        date: "09.06.2021",
+        desc: "Updated the quantity numbers on the tokens and on the paper minis to contain number > 99"
+      },
+      {
+        date: "09.08.2019",
+        desc: "Fixed paper minis layout issue when printing. (Thanks Eli White for your help!) Also updated the paper minis sizes."
+      },
+      {
+        date: "25.01.2019",
+        desc: "Updated links to Amazon for token supports."
+      },
+      {
+        date: "20.01.2019",
+        desc: "Added bulk selection/deletion on desktop and also improved paper minis layout when printing."
+      },
+      {
+        date: "18.08.2018",
+        desc: "Added paper minis! They're WIP and for now available from Tiny to Huge."
+      },
+      {
+        date: "17.08.2018",
+        desc: "Improved table icons."
+      },
+      {
+        date: "09.07.2018",
+        desc: "Now you can upload your images directly from Dropbox!"
+      },
+      {
+        date: "04.07.2018",
+        desc: "Made tokens and tent visibility optional. (You might need to reset the state of Count Start and Count in order to see the token correctly)"
+      },
+      {
+        date: "03.07.2018",
+        desc: "Added minimal Monster Tents, useful on a DM screen to keep track of initiative or the encounters."
+      },
+      {
+        date: "28.06.2018",
+        desc: "Improved image URL validation and fixed issue with tokens sizes when printing."
+      },
+      {
+        date: "26.06.2018",
+        desc: "Made tokens count optional."
+      },
+      {
+        date: "25.06.2018",
+        desc: "Added tokens \"Shape Selector\"."
+      },
+      {
+        date: "23.06.2018",
+        desc: "Released first version with image load via URL."
+      }
+    ],
+
     // Footer
     footerCopyright: "© 2018 DagBateway | All Rights Reserved"
   },
@@ -245,6 +325,86 @@ export const TRANSLATIONS = {
     supportBody: "Sviluppo e mantengo il Generatore di Token Cartacei in modo completamente gratuito per supportare la community globale di GDR da tavolo/d20. Se ami questo strumento e desideri supportare il mio lavoro, prendi in considerazione l'idea di dare un'occhiata e acquistare i miei moduli di avventura e supplementi ufficiali su DMsGuild!",
     supportBtn: "SFOGLIA I MIEI MODULI D&D 5E SU DMSGUILD",
     supportFooter: "Il tuo supporto mi aiuta direttamente a continuare ad aggiornare e ottimizzare questo generatore. Grazie e buon gioco!",
+
+    // Feedback Section
+    feedbackTitle: "Feedback e Suggerimenti",
+    feedbackLabelMessage: "Il tuo Messaggio / Suggerimento",
+    feedbackPlaceholderMessage: "Dimmi quali funzionalità vorresti vedere, o segnala un problema...",
+    feedbackLabelEmail: "La tua Email (Opzionale)",
+    feedbackPlaceholderEmail: "Inserisci la tua email se desideri una risposta...",
+    feedbackBtnSend: "Invia Suggerimento",
+    feedbackBtnSending: "Invio in corso...",
+    feedbackSuccess: "Grazie, avventuriero! Il tuo suggerimento è stato inviato con successo.",
+    feedbackError: "Impossibile recapitare il suggerimento! Questo è solitamente dovuto ad ad-blocker aggressivi (come uBlock o Brave Shield) o problemi temporanei di connessione. Prova a disabilitarli temporaneamente, o verifica la tua connessione internet!",
+    feedbackValidationMessage: "Inserisci un messaggio prima di inviare.",
+    feedbackRateLimit: "Per favore, attendi qualche minuto prima di inviare un altro suggerimento, avventuriero!",
+
+    changelog: [
+      {
+        date: "25.05.2026",
+        desc: "Aggiunta una casella di suggerimenti localizzata per consentire agli utenti di inviare feedback e suggerimenti direttamente dal browser."
+      },
+      {
+        date: "24.05.2026",
+        desc: "Aggiunta la funzionalità di download in formato PNG trasparente ad alta risoluzione (3x), che consente agli utenti di esportare i token personalizzati direttamente dalla tabella delle creature o dal pannello di regolazione, con uno stile mobile reattivo."
+      },
+      {
+        date: "23.05.2026",
+        desc: "Completo rinnovamento dell'interfaccia utente con un tema fantasy Gothic Dark. Aggiunto un selettore di tema <strong>Buio Gotico / Pergamena Chiara</strong>, localizzazione <strong>Italiano / Inglese</strong> e <strong>regolazione dell'immagine</strong> per singolo token — usa la rotellina del mouse per lo zoom e trascina per riposizionare l'immagine direttamente sull'anteprima del token."
+      },
+      {
+        date: "09.06.2021",
+        desc: "Aggiornati i numeri di quantità sui token e sulle miniature di carta per supportare numeri superiori a 99."
+      },
+      {
+        date: "09.08.2019",
+        desc: "Risolto il problema di impaginazione delle miniature di carta durante la stampa. (Grazie a Eli White per l'aiuto!) Aggiornate anche le dimensioni delle miniature cartacee."
+      },
+      {
+        date: "25.01.2019",
+        desc: "Aggiornati i collegamenti ad Amazon per i supporti dei token."
+      },
+      {
+        date: "20.01.2019",
+        desc: "Aggiunta la selezione e cancellazione multipla su desktop e migliorata l'impaginazione delle miniature di carta durante la stampa."
+      },
+      {
+        date: "18.08.2018",
+        desc: "Aggiunte le miniature di carta! Sono ancora in fase di sviluppo (WIP) e per ora sono disponibili da Minuscolo a Enorme."
+      },
+      {
+        date: "17.08.2018",
+        desc: "Migliorate le icone della tabella."
+      },
+      {
+        date: "09.07.2018",
+        desc: "Ora puoi caricare le tue immagini direttamente da Dropbox!"
+      },
+      {
+        date: "04.07.2018",
+        desc: "Resa opzionale la visibilità dei token e delle tendine. (Potrebbe essere necessario reimpostare lo stato di Inizio Conteggio e Conteggio per visualizzare correttamente il token)"
+      },
+      {
+        date: "03.07.2018",
+        desc: "Aggiunte le Tendine Mostro minimali, utili sullo schermo del DM per tenere traccia dell'iniziativa o degli incontri."
+      },
+      {
+        date: "28.06.2018",
+        desc: "Migliorata la convalida degli URL delle immagini e risolto il problema con le dimensioni dei token durante la stampa."
+      },
+      {
+        date: "26.06.2018",
+        desc: "Reso opzionale il conteggio dei token."
+      },
+      {
+        date: "25.06.2018",
+        desc: "Aggiunto il \"Selettore di Forma\" per i token."
+      },
+      {
+        date: "23.06.2018",
+        desc: "Rilasciata la prima versione con caricamento delle immagini tramite URL."
+      }
+    ],
 
     // Footer
     footerCopyright: "© 2018 DagBateway | Tutti i Diritti Riservati"
