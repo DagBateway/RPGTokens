@@ -51,6 +51,9 @@ export const TRANSLATIONS = {
     errorExists: "This token already exists",
     errorDownloadCors: "We couldn't download this token directly because the website hosting the image is blocking access. To fix this easily, simply save the image to your device first, then upload it directly using the Dropbox button or drag-and-drop, or try a different image link!",
     defaultTokenName: "Creature",
+    legendTitle: "Crafting Guide",
+    legendFold: "Fold Line (Dashed)",
+    legendCut: "Cut Line (Solid)",
 
     // Shape Selector
     shapeSelectorLabel: "Select a shape for the tokens:",
@@ -256,6 +259,9 @@ export const TRANSLATIONS = {
     errorExists: "Questo token esiste già",
     errorDownloadCors: "Non è stato possibile scaricare direttamente questo token perché il sito che ospita l'immagine blocca l'accesso esterno. Per risolvere facilmente, salva l'immagine sul tuo dispositivo e caricala premendo il pulsante Dropbox o trascinandola nel modulo, oppure prova a usare il link di un'altra immagine!",
     defaultTokenName: "Creatura",
+    legendTitle: "Guida di Ritaglio",
+    legendFold: "Piegatura (Tratteggiato)",
+    legendCut: "Taglio (Continuo)",
 
     // Shape Selector
     shapeSelectorLabel: "Seleziona la forma dei token:",
