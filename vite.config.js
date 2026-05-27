@@ -16,5 +16,11 @@ export default defineConfig({
   },
   build: {
     outDir: "build",
+    rollupOptions: {
+      onwarn(warning, defaultHandler) {
+        if (warning.code === "EVAL") return;
+        defaultHandler(warning);
+      },
+    },
   },
 });
