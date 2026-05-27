@@ -35,6 +35,7 @@ const App = () => {
   });
 
   const [changelogOpen, setChangelogOpen] = useState(false);
+  const [craftingOpen, setCraftingOpen] = useState(false);
 
 
   useEffect(() => {
@@ -174,51 +175,7 @@ const App = () => {
           </div>
         </section>
 
-        {/* Support Crafting Tips */}
-        <section className="crafting-tips-section">
-          <h2>{t("craftTitle")}</h2>
-          <p>{t("craftDesc")}</p>
-        </section>
 
-        {/* Crafting Links Row with dynamic columns based on language */}
-        <div className="row crafting-links-row" style={{ marginBottom: "30px" }}>
-          {language === "it" ? (
-            <div className="col-md-6 mx-auto">
-              <div className="main-links">
-                <p>{t("amazonIt")}</p>
-                <ul>
-                  <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/dp/B07T8JDR3G">{t("craftFeltPads")}</a></li>
-                  <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/Trasparenti-Adesivi-Epossidica-Autoadesivi-Gioielli/dp/B07RR99H52/">{t("craftDomes")}</a></li>
-                  <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/Artibetter-Dischi-quadrati-decorazioni-rustiche/dp/B0874QX5SR/">{t("craftWoodenSquares")}</a></li>
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className="col-md-6">
-                <div className="main-links">
-                  <p>{t("amazonUs")}</p>
-                  <ul>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/Furniture-Quantity-Adhesive-Protector-Hardwood/dp/B0856S85ZR">{t("craftFeltPads")}</a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/MEYA-Adhesive-Stickers-Pendants-Scrapbooking/dp/B076B75HB6">{t("craftDomes")}</a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/Foraineam-Unfinished-Cutouts-Natural-Decoration/dp/B08BL5JNTT">{t("craftWoodenDiscs")}</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="main-links">
-                  <p>{t("amazonAus")}</p>
-                  <ul>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3YYNYdG">{t("craftFeltPads")}</a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/4ft94rI">{t("craftDomes")}</a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3YNSJXy">{t("craftPlasticDiscs")}</a></li>
-                    <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3Ogn4ZP">{t("craftWoodenDiscs")}</a></li>
-                  </ul>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
 
         {/* Creator Station Component */}
         <AddToken handleAddToken={handleAddToken} />
@@ -271,6 +228,75 @@ const App = () => {
 
         {/* Printable Canvas */}
         <Tokens shape={shape} tokens={tokens} />
+
+        {/* Floating Side Crafting Guide Widget */}
+        <div id="crafting-widget-container">
+          {/* Floating Action Button */}
+          <button
+            id="crafting-trigger-btn"
+            className={craftingOpen ? "active" : ""}
+            aria-label="Toggle Crafting Guide Widget"
+            onClick={() => setCraftingOpen(!craftingOpen)}
+          >
+            <i className={craftingOpen ? "fas fa-times" : "fas fa-book-open"}></i>
+            {!craftingOpen && (
+              <span className="crafting-badge">
+                <i className="fas fa-hammer" style={{ marginRight: "6px" }}></i>
+                Crafting
+              </span>
+            )}
+          </button>
+
+          {/* Slide-up Popover Card */}
+          {craftingOpen && (
+            <div id="crafting-popover-card">
+              <div className="crafting-header">
+                <h3>{t("craftTitle")}</h3>
+              </div>
+              <div className="crafting-body">
+                <p className="craft-desc">{t("craftDesc")}</p>
+                <div className="row crafting-links-row" style={{ marginTop: "12px" }}>
+                  {language === "it" ? (
+                    <div className="col-xs-12">
+                      <div className="main-links">
+                        <p>{t("amazonIt")}</p>
+                        <ul>
+                          <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/dp/B07T8JDR3G">{t("craftFeltPads")}</a></li>
+                          <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/Trasparenti-Adesivi-Epossidica-Autoadesivi-Gioielli/dp/B07RR99H52/">{t("craftDomes")}</a></li>
+                          <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.it/Artibetter-Dischi-quadrati-decorazioni-rustiche/dp/B0874QX5SR/">{t("craftWoodenSquares")}</a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
+                    <>
+                      <div className="col-xs-12">
+                        <div className="main-links" style={{ marginBottom: "12px" }}>
+                          <p>{t("amazonUs")}</p>
+                          <ul>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/Furniture-Quantity-Adhesive-Protector-Hardwood/dp/B0856S85ZR">{t("craftFeltPads")}</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/MEYA-Adhesive-Stickers-Pendants-Scrapbooking/dp/B076B75HB6">{t("craftDomes")}</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://www.amazon.com/Foraineam-Unfinished-Cutouts-Natural-Decoration/dp/B08BL5JNTT">{t("craftWoodenDiscs")}</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                      <div className="col-xs-12">
+                        <div className="main-links">
+                          <p>{t("amazonAus")}</p>
+                          <ul>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3YYNYdG">{t("craftFeltPads")}</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/4ft94rI">{t("craftDomes")}</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3YNSJXy">{t("craftPlasticDiscs")}</a></li>
+                            <li><a target="_blank" rel="noopener noreferrer" href="https://amzn.to/3Ogn4ZP">{t("craftWoodenDiscs")}</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         {/* Localized Gothic Feedback Widget */}
         <FeedbackWidget />
