@@ -355,7 +355,7 @@ const App = () => {
           <div id="sticky-action-bar-inner">
             <div id="sticky-shape-selector">
               <span className="sticky-label">
-                <i className="fas fa-shapes"></i>&nbsp;&nbsp;{t("shapeSelectorLabel")}
+                <i className="fas fa-shapes"></i>&nbsp;&nbsp;<span className="label-text">{t("shapeSelectorLabel")}</span>
               </span>
               <div className="btn-group btn-group-toggle" data-toggle="buttons">
                 {[

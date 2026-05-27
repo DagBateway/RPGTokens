@@ -3219,3 +3219,91 @@ body:has(#sticky-action-bar) {
     display: none !important;
   }
 }
+
+// ──────────────────────────────────────────────
+// Mobile Footer & Sticky Action Bar Optimizations
+// ──────────────────────────────────────────────
+@media (max-width: 767px) {
+  // Make the action bar compact on mobile so it doesn't wrap to two lines
+  #sticky-action-bar {
+    #sticky-action-bar-inner {
+      padding: 8px 16px !important;
+      gap: 12px !important;
+      flex-wrap: nowrap !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+    }
+
+    #sticky-shape-selector {
+      gap: 8px !important;
+
+      .sticky-label {
+        margin: 0 !important;
+        font-size: 14px !important; // Scale up the shape icon slightly for better tap targets
+        
+        .label-text {
+          display: none !important; // Hide wordy text on narrow screens
+        }
+      }
+
+      .btn-group .btn {
+        padding: 6px 12px !important;
+        font-size: 13px !important;
+      }
+    }
+
+    #print-all {
+      padding: 8px 20px !important;
+      font-size: 12px !important;
+      letter-spacing: 1px !important;
+      margin: 0 !important;
+    }
+  }
+
+  // Adjust standard positions of floating widgets on mobile when action bar is NOT visible
+  #feedback-widget-container {
+    right: 15px !important;
+    bottom: 20px !important;
+
+    #feedback-trigger-btn {
+      width: 46px !important;
+      height: 46px !important;
+      font-size: 16px !important;
+    }
+
+    #feedback-popover-card {
+      width: calc(100vw - 30px) !important;
+      max-width: 320px !important;
+      right: 0 !important;
+    }
+  }
+
+  #crafting-widget-container {
+    left: 15px !important;
+    bottom: 20px !important;
+
+    #crafting-trigger-btn {
+      width: 46px !important;
+      height: 46px !important;
+      font-size: 16px !important;
+    }
+
+    #crafting-popover-card {
+      width: calc(100vw - 30px) !important;
+      max-width: 360px !important;
+      left: 0 !important;
+    }
+  }
+}
+
+// Float the widgets cleanly above the sticky action bar when it is visible
+body:has(#sticky-action-bar) {
+  #feedback-widget-container,
+  #crafting-widget-container {
+    bottom: 85px !important; // Standard desktop offset
+
+    @media (max-width: 767px) {
+      bottom: 75px !important; // Mobile compact offset (60px action bar + 15px gap)
+    }
+  }
+}
