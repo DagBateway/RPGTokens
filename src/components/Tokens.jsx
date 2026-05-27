@@ -49,7 +49,6 @@ const Tokens = memo(({ tokens, shape }) => {
   };
 
   const createTokensTents = (token) => {
-    const { t } = useTranslation();
     return (
       <div className="tent" key={token.id || token.url}>
         <div className="side back">

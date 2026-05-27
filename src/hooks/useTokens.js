@@ -91,7 +91,7 @@ export const useTokens = () => {
       }
 
       const newToken = {
-        id: Math.random(),
+        id: crypto.randomUUID(),
         url: tokenUrl,
         size: SizeEnum.MEDIUM,
         name: derivedName,
