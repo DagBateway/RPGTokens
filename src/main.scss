@@ -27,8 +27,8 @@ $cut-border: 1px solid #b9b9b9;
 
 @font-face {
   font-family: "MrsEavesSmallCaps";
-  src: url("../fonts/mrseavessmallcaps_regular-webfont.woff2") format("woff2"),
-    url("../fonts/mrseavessmallcaps_regular-webfont.woff") format("woff");
+  src: url("/fonts/mrseavessmallcaps_regular-webfont.woff2") format("woff2"),
+    url("/fonts/mrseavessmallcaps_regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -36,8 +36,8 @@ $cut-border: 1px solid #b9b9b9;
 
 @font-face {
   font-family: "Scala Sans Regular";
-  src: url("../fonts/scalasans-regular-webfont.woff2") format("woff2"),
-    url("../fonts/scalasans-regular-webfont.woff") format("woff");
+  src: url("/fonts/scalasans-regular-webfont.woff2") format("woff2"),
+    url("/fonts/scalasans-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: swap;
