@@ -1,8 +1,8 @@
 export const TRANSLATIONS = {
   en: {
     // SEO & Document Metadata
-    docTitle: "Paper Token Generator & DnD Token Maker | Custom Token Sheet Print",
-    docDescription: "Free paper token generator & DnD token maker. Create custom RPG tokens and paper standees. Print instant tabletop token sheets for D&D, Pathfinder & TTRPGs!",
+    docTitle: "Paper Token Generator & DnD Token Maker | Print Sheets & VTT Exports",
+    docDescription: "Free paper token generator, DnD token maker, and VTT exporter. Create custom RPG tokens and paper standees. Print instant tabletop sheets or download transparent PNG tokens for Roll20, Foundry, and Owlbear Rodeo!",
 
     // Header & Theme
     headerTitle: "Paper Tokens Generator",
@@ -10,17 +10,17 @@ export const TRANSLATIONS = {
     themeGothicDark: "GOTHIC DARK",
 
     // Intro Section
-    introLead: "Paper Token Generator is a free, premium tabletop RPG companion and DnD token maker designed to let you instantly create, customize, and print custom paper tokens. Generate custom creature sheets, monster initiative tents, and fold-and-cut paper standee minis for Dungeons & Dragons (D&D), Pathfinder, Fate, Savage Worlds, or any d20 tabletop game.",
-    introSub: "Ditch expensive plastic minis! Simply paste any creature portrait URL or upload your files directly from Dropbox, customize your sheet parameters, and print immediately. Our generator automatically fits your designs on an A4 page, saving paper and ink while keeping your d20 battle maps beautiful.",
+    introLead: "Paper Tokens Generator is a free, premium utility designed for both physical and digital tabletop RPG gaming. Whether you need to print and craft custom physical tokens, initiative screen tents, and fold-and-cut standee minis, or you need to instantly download high-resolution transparent PNG tokens to upload directly into your favorite Virtual Tabletop (VTT) like Roll20, Foundry VTT, Owlbear Rodeo, or Fantasy Grounds — this is the ultimate GM companion!",
+    introSub: "Create custom creature sheets for your home game, or export beautiful digital assets in seconds. Simply paste any portrait URL, upload your files directly from Dropbox, use our intuitive click-and-drag controls to pan and zoom, and either print a perfectly auto-scaled sheet or download your customized tokens as VTT-ready transparent PNGs!",
 
     // Step-by-Step
     stepTitle: "How It Works — Step-by-Step",
-    step1Title: "1. Paste or Upload",
-    step1Desc: "Paste a direct image URL of your creature into the link box and click Add Token, or click the Dropbox button to import multiple images at once.",
+    step1Title: "1. Paste, Upload or Drag",
+    step1Desc: "Paste a direct image link of your creature, upload files directly from Dropbox, or use standard image URLs to customize any monster, player character, or NPC.",
     step2Title: "2. Customize Options",
     step2Desc: "Choose your global shape (Round or Square). For each creature, easily adjust its Name, Size, Quantity, and toggle layout types. You can also grab and drag the preview token image directly to pan, or scroll your mouse wheel over it to zoom!",
-    step3Title: "3. Print & Craft",
-    step3Desc: "Press Print to save to PDF or send it straight to your printer, or download individual high-resolution transparent PNG tokens directly for Virtual Tabletops (VTT)!",
+    step3Title: "3. Print Sheet or Export for VTT",
+    step3Desc: "Press Print to output perfectly auto-scaled paper tokens, foldable standee minis, and initiative screen tents, or click Download to save individual high-res transparent PNG tokens optimized for Roll20, Foundry VTT, Owlbear Rodeo, and more!",
 
     // Crafting Section
     craftTitle: "Physical Crafting Support Ideas",
@@ -36,11 +36,11 @@ export const TRANSLATIONS = {
 
     // Creator Station (Add Token Form)
     creatorStationBadge: "CREATOR STATION",
-    creatorInstructionsTitle: "How does it work? Paste, customise, print!",
-    creatorStep1: "Paste an image URL in the scroll and press Add Token",
-    creatorStep2: "or upload images directly from Dropbox",
-    creatorStep3: "Customize your token choosing the shape, size, quantity, etc. You can also click and drag the image directly inside the token to pan it, and scroll your wheel to zoom!",
-    creatorStep4: "Press Print and save to PDF, send it directly to the printer, or download individual transparent PNGs!",
+    creatorInstructionsTitle: "Physical Crafting or Digital VTT Exports?",
+    creatorStep1: "Paste any image URL or upload directly from Dropbox.",
+    creatorStep2: "Choose your global shape (Round or Square) and customize sizes (from Tiny to Gargantuan).",
+    creatorStep3: "Reposition dynamically! Click and drag the preview image directly to pan, and scroll your mouse wheel to zoom.",
+    creatorStep4: "Print physical battle sheets (standard tokens, double-sided fold-and-cut standees, or foldable DM screen tracker tents), or download high-res transparent PNGs optimized for VTTs (Roll20, Foundry, Owlbear Rodeo, etc.).",
     creatorInstructionsFooter: "...You can add as many creatures as you want!",
     insertLinkPrompt: "Insert a link to a creature image to begin!",
     pastePlaceholder: "Paste the Image URL",
@@ -209,8 +209,8 @@ export const TRANSLATIONS = {
   },
   it: {
     // SEO & Document Metadata
-    docTitle: "Generatore di Token Cartacei & DnD Token Maker | Stampa Fogli RPG",
-    docDescription: "Generatore di token cartacei e dnd token maker gratuito. Crea token RPG personalizzati e miniature. Stampa fogli di token da tavolo per D&D e Pathfinder!",
+    docTitle: "Generatore di Token Cartacei & DnD Token Maker | Stampa e Esporta per VTT",
+    docDescription: "Generatore di token cartacei gratuito, dnd token maker ed esportatore VTT. Crea token RPG personalizzati e miniature. Stampa fogli per battaglie fisiche o scarica PNG trasparenti per Roll20, Foundry e Owlbear Rodeo!",
 
     // Header & Theme
     headerTitle: "Generatore di Token Cartacei",
@@ -218,17 +218,17 @@ export const TRANSLATIONS = {
     themeGothicDark: "BUIO GOTICO",
 
     // Intro Section
-    introLead: "Il Generatore di Token Cartacei è uno strumento gratuito e premium progettato per DM e giocatori come un dnd token maker all'avanguardia. Stampa fogli di token personalizzati, tendine di iniziativa e miniature cartacee pieghevoli (standee) per Dungeons & Dragons (D&D), Pathfinder o qualsiasi altro GDR tavolo d20.",
-    introSub: "Dì addio alle costose miniature di plastica! Ti basta incollare l'URL del ritratto di una creatura o caricare i tuoi file direttamente da Dropbox, personalizzare i parametri e stampare immediatamente. Il nostro generatore impagina automaticamente i tuoi progetti su un foglio A4, risparmiando carta e inchiostro e mantenendo splendide le tue mappe d20.",
+    introLead: "Il Generatore di Token Cartacei è uno strumento gratuito e premium progettato per il gioco di ruolo sia fisico (face-to-face) che digitale. Che tu debba stampare e costruire token fisici personalizzati, tendine segna-iniziativa per lo schermo del DM e miniature di carta pieghevoli, o che tu voglia scaricare all'istante token PNG trasparenti ad alta risoluzione da importare direttamente sul tuo Virtual Tabletop (VTT) preferito come Roll20, Foundry VTT, Owlbear Rodeo o Fantasy Grounds: questo è il compagno ideale per ogni Master!",
+    introSub: "Crea fogli di creature personalizzati per la tua sessione dal vivo o esporta splendidi asset digitali in pochi secondi. Ti basta incollare l'URL di un ritratto, caricare i tuoi file direttamente da Dropbox, usare i comandi intuitivi per fare zoom e centrare l'immagine, e stampare fogli A4 perfettamente impaginati o scaricare i tuoi token personalizzati pronti per il VTT!",
 
     // Step-by-Step
     stepTitle: "Come Funziona — Passo dopo Passo",
-    step1Title: "1. Incolla o Carica",
-    step1Desc: "Incolla l'URL diretto dell'immagine della tua creatura nella casella e clicca su Aggiungi Token, oppure clicca sul pulsante Dropbox per importare più immagini contemporaneamente.",
+    step1Title: "1. Incolla, Carica o Trascina",
+    step1Desc: "Incolla il link diretto di un'immagine nel modulo, carica le immagini da Dropbox o usa file locali per creare mostri, personaggi o PNG personalizzati.",
     step2Title: "2. Personalizza le Opzioni",
     step2Desc: "Scegli la forma globale (Rotonda o Quadrata). Per ogni creatura, regola facilmente Nome, Dimensione, Quantità e attiva/disattiva i layout. Puoi anche cliccare e trascinare l'immagine del token direttamente per spostarla, o usare la rotellina del mouse per fare zoom!",
-    step3Title: "3. Stampa e Crea",
-    step3Desc: "Premi su Stampa per salvare in PDF o inviare alla stampante, oppure scarica i singoli token in PNG ad alta risoluzione con sfondo trasparente per i tuoi Virtual Tabletop (VTT)!",
+    step3Title: "3. Stampa o Esporta per VTT",
+    step3Desc: "Premi su Stampa per generare fogli di token fisici, miniature verticali pieghevoli e tendine di iniziativa, oppure premi Scarica per salvare i singoli token in PNG trasparenti ad alta risoluzione pronti per Roll20, Foundry, Owlbear Rodeo e altri!",
 
     // Crafting Section
     craftTitle: "Idee di Supporto per il Fai-da-Te",
@@ -244,11 +244,11 @@ export const TRANSLATIONS = {
 
     // Creator Station (Add Token Form)
     creatorStationBadge: "STAZIONE DI CREAZIONE",
-    creatorInstructionsTitle: "Come funziona? Incolla, personalizza, stampa!",
-    creatorStep1: "Incolla l'URL dell'immagine nel modulo e premi Aggiungi Token",
-    creatorStep2: "oppure carica le immagini direttamente da Dropbox",
-    creatorStep3: "Personalizza il tuo token scegliendo forma, dimensione, quantità, ecc. Puoi anche cliccare e trascinare l'immagine direttamente dentro il token per spostarla e usare la rotellina per fare zoom!",
-    creatorStep4: "Premi su Stampa e salva in PDF, invia direttamente alla stampante, o scarica i singoli token in PNG trasparenti!",
+    creatorInstructionsTitle: "Fai-da-Te Fisico o Esportazioni per VTT Digitali?",
+    creatorStep1: "Incolla l'URL di un'immagine o carica direttamente da Dropbox.",
+    creatorStep2: "Seleziona la forma globale (Rotonda o Quadrata) e imposta la taglia (da Minuscolo a Gargantuesco).",
+    creatorStep3: "Riposiziona l'inquadratura! Trascina l'immagine per centrarla e usa la rotellina per regolare lo zoom direttamente sull'anteprima.",
+    creatorStep4: "Stampa fogli fisici (token standard, miniature pieghevoli fronte-retro, tendine traccia-iniziativa per lo schermo del DM) o scarica i singoli PNG trasparenti ottimizzati per i VTT (Roll20, Foundry, Owlbear Rodeo, ecc.).",
     creatorInstructionsFooter: "...Puoi aggiungere tutte le creature che desideri!",
     insertLinkPrompt: "Inserisci il link all'immagine di una creatura per iniziare!",
     pastePlaceholder: "Incolla l'URL dell'immagine",
