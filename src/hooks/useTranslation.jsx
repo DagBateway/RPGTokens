@@ -69,25 +69,17 @@ export const TranslationProvider = ({ children }) => {
         }
       } catch (e) {}
 
-      // 3. Fallback Geo-IP check
+      // 3. Fallback Geo-IP check (Directly query CORS-compatible ipapi.co to prevent console warnings)
       try {
-        const response = await fetch("https://freeipapi.com/api/json");
+        const response = await fetch("https://ipapi.co/json/");
         if (response.ok) {
           const data = await response.json();
-          if (data && data.countryCode === "IT") {
+          if (data && (data.country_code === "IT" || data.country === "IT" || data.country_name === "Italy")) {
             setLanguage("it");
           }
         }
       } catch (err) {
-        try {
-          const res = await fetch("https://ipapi.co/json/");
-          if (res.ok) {
-            const data = await res.json();
-            if (data && (data.country_code === "IT" || data.country === "IT" || data.country_name === "Italy")) {
-              setLanguage("it");
-            }
-          }
-        } catch (e) {}
+        console.warn("Geo-IP location detection failed silently:", err);
       }
     };
 

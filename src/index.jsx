@@ -2,7 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import './main.scss';
-import registerServiceWorker from './registerServiceWorker';
+import { unregister as unregisterServiceWorker } from './registerServiceWorker';
 import { TranslationProvider } from './hooks/useTranslation';
 
 const container = document.getElementById('root');
@@ -13,6 +13,6 @@ root.render(
   </TranslationProvider>
 );
 
-registerServiceWorker();
+unregisterServiceWorker();
 
 

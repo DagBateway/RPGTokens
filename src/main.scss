@@ -31,6 +31,7 @@ $cut-border: 1px solid #b9b9b9;
     url("../fonts/mrseavessmallcaps_regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -39,6 +40,7 @@ $cut-border: 1px solid #b9b9b9;
     url("../fonts/scalasans-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 html {
