@@ -3009,3 +3009,32 @@ body:has(#sticky-action-bar) {
     }
   }
 }
+
+/* Modern Responsive Container Width Overrides for High-Resolution Table Layouts */
+@media (min-width: 992px) {
+  .container {
+    width: 1040px !important;
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1320px !important;
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    width: 1480px !important;
+    max-width: 95% !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .container {
+    width: 1600px !important;
+    max-width: 95% !important;
+  }
+}
