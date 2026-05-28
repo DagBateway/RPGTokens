@@ -1510,6 +1510,7 @@ select.form-control {
     .content-main,
     header,
     footer,
+    .promo-ribbon,
     .container p,
     #donate-form,
     #shape-selector,
@@ -1704,6 +1705,138 @@ $parchment-text: #2b221a;
 $parchment-text-muted: #635343;
 
 
+// Premium Announcement Promo Ribbon
+.promo-ribbon {
+  background: linear-gradient(135deg, rgba(166, 43, 43, 0.95) 0%, rgba(120, 90, 26, 0.95) 100%);
+  border-bottom: 1px solid rgba(207, 160, 53, 0.35);
+  padding: 10px 0;
+  position: relative;
+  z-index: 1010;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+
+  .promo-ribbon-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative;
+  }
+
+  .promo-text {
+    font-family: "Outfit", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+    padding-right: 24px;
+
+    .sparkle {
+      display: inline-block;
+      animation: sparkleAnim 2s infinite ease-in-out;
+      margin-right: 4px;
+    }
+  }
+
+  .promo-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    color: #ffffff !important;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-family: "Cinzel", serif;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-left: 10px;
+    text-decoration: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+    i {
+      font-size: 10px;
+    }
+
+    &:hover {
+      background: #ffffff !important;
+      color: #704d1a !important;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .promo-dismiss {
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    padding: 6px !important;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease !important;
+    position: absolute;
+    right: 0;
+
+    &:hover {
+      color: #ffffff !important;
+      transform: scale(1.1);
+    }
+  }
+}
+
+// Sparkle keyframe animation
+@keyframes sparkleAnim {
+  0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+  50% { transform: scale(1.2) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 4px #cfa035); }
+  100% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+}
+
+@media all and (max-width: 768px) {
+  .promo-ribbon {
+    padding: 8px 12px;
+
+    .promo-ribbon-inner {
+      flex-direction: column !important;
+      align-items: stretch !important;
+      gap: 8px;
+    }
+
+    .promo-text {
+      padding-right: 0;
+      text-align: center;
+      font-size: 12.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .promo-btn {
+      margin-left: 0;
+      width: fit-content;
+    }
+
+    .promo-dismiss {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+    }
+  }
+}
+
+
 // Header Layout
 .header {
   background: rgba(12, 15, 18, 0.97);
@@ -1849,6 +1982,38 @@ html.light-mode body {
       background: #ffffff !important;
       color: #000000 !important;
       box-shadow: 0 4px 20px rgba(112, 77, 26, 0.25) !important;
+    }
+  }
+
+  // Parchment promo ribbon
+  .promo-ribbon {
+    background: linear-gradient(135deg, #e6d7bf 0%, #ebe2d3 100%) !important;
+    border-bottom-color: rgba(112, 77, 26, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(112, 77, 26, 0.1) !important;
+
+    .promo-text {
+      color: $parchment-text !important;
+    }
+
+    .promo-btn {
+      background: $fantasy-crimson !important;
+      border-color: rgba(166, 43, 43, 0.5) !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 8px rgba(166, 43, 43, 0.2) !important;
+
+      &:hover {
+        background: $fantasy-crimson-hover !important;
+        color: #ffffff !important;
+        box-shadow: 0 4px 12px rgba(193, 39, 45, 0.35) !important;
+      }
+    }
+
+    .promo-dismiss {
+      color: $parchment-text-muted !important;
+
+      &:hover {
+        color: $parchment-text !important;
+      }
     }
   }
 

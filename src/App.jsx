@@ -37,6 +37,23 @@ const App = () => {
   const [changelogOpen, setChangelogOpen] = useState(false);
   const [craftingOpen, setCraftingOpen] = useState(false);
 
+  const [promoDismissed, setPromoDismissed] = useState(() => {
+    try {
+      return localStorage.getItem("promo-dismissed") === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const handleDismissPromo = () => {
+    try {
+      localStorage.setItem("promo-dismissed", "true");
+      setPromoDismissed(true);
+    } catch {
+      setPromoDismissed(true);
+    }
+  };
+
 
   useEffect(() => {
     try {
@@ -103,6 +120,30 @@ const App = () => {
 
   return (
     <>
+      {!promoDismissed && (
+        <div className="promo-ribbon">
+          <div className="container promo-ribbon-inner">
+            <span className="promo-text">
+              <span className="sparkle">✨</span> {t("promoRibbonText")}{" "}
+              <a
+                href="https://e-encounters-on-the-fly.web.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="promo-btn"
+              >
+                {t("promoRibbonBtn")} <i className="fas fa-external-link-alt"></i>
+              </a>
+            </span>
+            <button
+              className="promo-dismiss"
+              onClick={handleDismissPromo}
+              aria-label="Dismiss message"
+            >
+              <i className="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+      )}
       <header className="header">
         <div className="container header-inner">
           <h1>{t("headerTitle")}</h1>

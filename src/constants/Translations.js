@@ -8,6 +8,8 @@ export const TRANSLATIONS = {
     headerTitle: "Paper Tokens Generator",
     themeParchment: "PARCHMENT",
     themeGothicDark: "GOTHIC DARK",
+    promoRibbonText: "Check out my new project: 5e Encounters On The Fly — the ultimate tool to generate balanced D&D combat encounters instantly!",
+    promoRibbonBtn: "Try e-Encounters On The Fly",
 
     // Intro Section
     introLead: "Paper Tokens Generator is a free, premium utility designed for both physical and digital tabletop RPG gaming. Whether you need to print and craft custom physical tokens, initiative screen tents, and fold-and-cut standee minis, or you need to instantly download high-resolution transparent PNG tokens to upload directly into your favorite Virtual Tabletop (VTT) like Roll20, Foundry VTT, Owlbear Rodeo, or Fantasy Grounds — this is the ultimate GM companion!",
@@ -216,6 +218,8 @@ export const TRANSLATIONS = {
     headerTitle: "Generatore di Token Cartacei",
     themeParchment: "PERGAMENA",
     themeGothicDark: "BUIO GOTICO",
+    promoRibbonText: "Dai un'occhiata al mio nuovo progetto: 5e Encounters On The Fly — lo strumento definitivo per generare scontri di D&D bilanciati al volo!",
+    promoRibbonBtn: "Prova e-Encounters On The Fly",
 
     // Intro Section
     introLead: "Il Generatore di Token Cartacei è uno strumento gratuito e premium progettato per il gioco di ruolo sia fisico (face-to-face) che digitale. Che tu debba stampare e costruire token fisici personalizzati, tendine segna-iniziativa per lo schermo del DM e miniature di carta pieghevoli, o che tu voglia scaricare all'istante token PNG trasparenti ad alta risoluzione da importare direttamente sul tuo Virtual Tabletop (VTT) preferito come Roll20, Foundry VTT, Owlbear Rodeo o Fantasy Grounds: questo è il compagno ideale per ogni Master!",
