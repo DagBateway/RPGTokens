@@ -55,3 +55,61 @@ export const getCorsProxiedUrl = (url) => {
   
   return `https://images.weserv.nl/?url=${encodeURIComponent(url)}`;
 };
+
+/**
+ * Resizes and compresses an image file on the client side, returning a promise resolving to a base64 Data URL.
+ * Preserves transparency for PNGs and compresses JPEGs.
+ * @param {File} file - Selected image file.
+ * @param {number} maxWidth - Maximum width (default 256).
+ * @param {number} maxHeight - Maximum height (default 256).
+ * @param {number} quality - Compression quality between 0.0 and 1.0 (default 0.8).
+ * @returns {Promise<string>} - Promise resolving to base64 string.
+ */
+export const resizeAndCompressImage = (file, maxWidth = 256, maxHeight = 256, quality = 0.8) => {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      reject(new Error("No file provided"));
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new Image();
+      img.src = event.target.result;
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        let width = img.width;
+        let height = img.height;
+
+        if (width > height) {
+          if (width > maxWidth) {
+            height = Math.round((height * maxWidth) / width);
+            width = maxWidth;
+          }
+        } else {
+          if (height > maxHeight) {
+            width = Math.round((width * maxHeight) / height);
+            height = maxHeight;
+          }
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        const mimeType = file.type === "image/png" ? "image/png" : "image/jpeg";
+        const dataUrl = canvas.toDataURL(mimeType, quality);
+        resolve(dataUrl);
+      };
+      img.onerror = (err) => {
+        reject(new Error("Failed to load image: " + err.message));
+      };
+    };
+    reader.onerror = (err) => {
+      reject(new Error("Failed to read file: " + err.message));
+    };
+    reader.readAsDataURL(file);
+  });
+};
+

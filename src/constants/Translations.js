@@ -49,7 +49,9 @@ export const TRANSLATIONS = {
     addTokenBtn: "Add Token",
     orDivider: "OR",
     uploadDropboxBtn: "Upload images from Dropbox",
+    uploadLocalBtn: "Upload from PC",
     errorValidUrl: "Please, enter a valid image URL",
+    errorInvalidFormat: "Only JPG and PNG images are allowed",
     errorExists: "This token already exists",
     errorDownloadCors: "We couldn't download this token directly because the website hosting the image is blocking access. To fix this easily, simply save the image to your device first, then upload it directly using the Dropbox button or drag-and-drop, or try a different image link!",
     defaultTokenName: "Creature",
@@ -140,6 +142,10 @@ export const TRANSLATIONS = {
     feedbackRateLimit: "Please wait a few minutes before sending another suggestion, adventurer!",
 
     changelog: [
+      {
+        date: "26.06.2026",
+        desc: "Added direct PC image upload capability with support for multiple files, drag-and-drop gestures, file validation, and automatic client-side image resizing and compression to prevent local storage quota issues."
+      },
       {
         date: "25.05.2026",
         desc: "Added a localized suggestion box so that users can send feedback and suggestions directly from their browser."
@@ -259,7 +265,9 @@ export const TRANSLATIONS = {
     addTokenBtn: "Aggiungi Token",
     orDivider: "OPPURE",
     uploadDropboxBtn: "Carica immagini da Dropbox",
+    uploadLocalBtn: "Carica dal tuo dispositivo",
     errorValidUrl: "Inserisci un URL di immagine valido, per favore",
+    errorInvalidFormat: "Sono consentite solo immagini JPG e PNG",
     errorExists: "Questo token esiste già",
     errorDownloadCors: "Non è stato possibile scaricare direttamente questo token perché il sito che ospita l'immagine blocca l'accesso esterno. Per risolvere facilmente, salva l'immagine sul tuo dispositivo e caricala premendo il pulsante Dropbox o trascinandola nel modulo, oppure prova a usare il link di un'altra immagine!",
     defaultTokenName: "Creatura",
@@ -350,6 +358,10 @@ export const TRANSLATIONS = {
     feedbackRateLimit: "Per favore, attendi qualche minuto prima di inviare un altro suggerimento, avventuriero!",
 
     changelog: [
+      {
+        date: "26.06.2026",
+        desc: "Aggiunta la possibilità di caricare immagini direttamente dal proprio PC, con supporto per il caricamento multiplo, trascinamento dei file (drag-and-drop), validazione del formato e compressione automatica sul client per evitare di superare i limiti di spazio del browser."
+      },
       {
         date: "25.05.2026",
         desc: "Aggiunta una casella di suggerimenti localizzata per consentire agli utenti di inviare feedback e suggerimenti direttamente dal browser."

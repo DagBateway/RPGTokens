@@ -806,6 +806,13 @@ html {
       animation: goldPulse 3s infinite ease-in-out;
       transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 
+      &.dragging {
+        border-color: rgba(207, 160, 53, 0.95) !important;
+        background: radial-gradient(circle at top, rgba(207, 160, 53, 0.15) 0%, rgba(21, 27, 30, 0.99) 70%) !important;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8), 0 0 35px rgba(207, 160, 53, 0.45) !important;
+        transform: scale(1.01);
+      }
+
       .instructions-pane {
         border-right: 1px solid rgba(207, 160, 53, 0.15);
         padding-right: 32px;
@@ -871,7 +878,8 @@ html {
           max-width: 320px;
         }
 
-        .dropbox-button {
+        .dropbox-button,
+        .upload-button {
           margin: 0 auto !important;
           width: 100%;
           max-width: 320px;
@@ -972,7 +980,8 @@ html {
       }
     }
 
-    .dropbox-button {
+    .dropbox-button,
+    .upload-button {
       display: block;
       max-width: 300px;
       margin: 0 auto;
@@ -991,17 +1000,25 @@ html {
       transition: all 0.25s ease-in-out;
 
       i {
-        color: #0061fe;
         font-size: 14px;
-        filter: drop-shadow(0 0 4px rgba(0, 97, 254, 0.4));
       }
 
       &:hover {
         background: linear-gradient(135deg, #1f2d3d 0%, #16202c 100%) !important;
         border-color: $fantasy-gold !important;
-        box-shadow: 0 6px 20px rgba(207, 160, 53, 0.25), 0 0 15px rgba(0, 97, 254, 0.25) !important;
+        box-shadow: 0 6px 20px rgba(207, 160, 53, 0.25), 0 0 15px rgba(207, 160, 53, 0.15) !important;
         transform: translateY(-2px);
       }
+    }
+
+    .dropbox-button i {
+      color: #0061fe;
+      filter: drop-shadow(0 0 4px rgba(0, 97, 254, 0.4));
+    }
+
+    .upload-button i {
+      color: $fantasy-gold;
+      filter: drop-shadow(0 0 4px rgba(207, 160, 53, 0.4));
     }
 
     #donate-form {
@@ -1517,6 +1534,7 @@ select.form-control {
     .wrap-collabsible,
     .instructions,
     .dropbox-button,
+    .upload-button,
     #donate,
     .main-links,
     .feedback,
@@ -2047,6 +2065,13 @@ html.light-mode body {
     box-shadow: 0 16px 48px rgba(112, 77, 26, 0.15), 0 0 25px rgba(112, 77, 26, 0.1) !important;
     animation: parchmentPulse 3s infinite ease-in-out !important;
 
+    &.dragging {
+      border-color: rgba(112, 77, 26, 0.95) !important;
+      background: radial-gradient(circle at top, rgba(112, 77, 26, 0.12) 0%, rgba(251, 249, 244, 0.99) 70%) !important;
+      box-shadow: 0 16px 48px rgba(112, 77, 26, 0.22), 0 0 35px rgba(112, 77, 26, 0.25) !important;
+      transform: scale(1.01);
+    }
+
     .instructions-pane {
       border-right-color: rgba(112, 77, 26, 0.15) !important;
 
@@ -2106,7 +2131,8 @@ html.light-mode body {
     }
   }
 
-  #add-link-container .dropbox-button {
+  #add-link-container .dropbox-button,
+  #add-link-container .upload-button {
     background: linear-gradient(135deg, #fbf9f4 0%, #ebe2d3 100%) !important;
     border-color: rgba(112, 77, 26, 0.4) !important;
     color: $parchment-sepia !important;
@@ -2115,7 +2141,7 @@ html.light-mode body {
     &:hover {
       background: linear-gradient(135deg, #ffffff 0%, #f4ebd8 100%) !important;
       border-color: $parchment-sepia !important;
-      box-shadow: 0 6px 20px rgba(112, 77, 26, 0.2), 0 0 15px rgba(0, 97, 254, 0.15) !important;
+      box-shadow: 0 6px 20px rgba(112, 77, 26, 0.2), 0 0 15px rgba(207, 160, 53, 0.15) !important;
     }
   }
 

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import DropboxChooser from "./DropboxChooser";
 import { useTranslation } from "../hooks/useTranslation";
+import { resizeAndCompressImage } from "./Utils";
 
 const AddToken = ({ handleAddToken }) => {
   const { t } = useTranslation();
   const [error, setError] = useState(undefined);
+  const [isDragging, setIsDragging] = useState(false);
 
   const validateProcess = async (url) => {
     try {
@@ -31,6 +33,45 @@ const AddToken = ({ handleAddToken }) => {
     );
   };
 
+  const handleLocalFiles = async (files) => {
+    setError(undefined);
+    for (const file of files) {
+      if (file.type !== "image/png" && file.type !== "image/jpeg") {
+        setError("errorInvalidFormat");
+        continue;
+      }
+      try {
+        const compressedBase64 = await resizeAndCompressImage(file);
+        const validationError = handleAddToken(compressedBase64);
+        if (validationError) {
+          setError(validationError);
+        }
+      } catch (err) {
+        console.error("Compression error:", err);
+        setError("errorValidUrl");
+      }
+    }
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleLocalFiles(Array.from(e.dataTransfer.files));
+      e.dataTransfer.clearData();
+    }
+  };
+
   const handleAddTokenSubmit = (e) => {
     e.preventDefault();
     const tokenUrl = e.target.elements.tokenUrl.value.trim();
@@ -42,7 +83,13 @@ const AddToken = ({ handleAddToken }) => {
     <div id="links-instructions" style={{ margin: "20px 0" }}>
       <div className="row">
         <div className="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
-          <div id="add-link-container">
+          <div 
+            id="add-link-container"
+            className={isDragging ? "dragging" : ""}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
             <div className="creator-station-badge">
               <i className="fas fa-dice-d20"></i> {t("creatorStationBadge")}
             </div>
@@ -100,6 +147,26 @@ const AddToken = ({ handleAddToken }) => {
                     <i className="fab fa-dropbox"></i>
                   </div>
                 </DropboxChooser>
+
+                <div style={{ marginTop: "12px", width: "100%", display: "flex", justifyContent: "center" }}>
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/png, image/jpeg"
+                    style={{ display: "none" }}
+                    id="local-file-input"
+                    onChange={(e) => {
+                      if (e.target.files) {
+                        handleLocalFiles(Array.from(e.target.files));
+                      }
+                      e.target.value = ""; // Reset input so same file can be selected again
+                    }}
+                  />
+                  <label htmlFor="local-file-input" className="upload-button">
+                    {t("uploadLocalBtn")}&nbsp;
+                    <i className="fas fa-upload"></i>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
@@ -110,4 +177,5 @@ const AddToken = ({ handleAddToken }) => {
 };
 
 export { AddToken };
+
 
